@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="J Mafunisa Glass And Aluminum - Professional architectural glass and aluminum installations, custom window frames, glass garage doors, and sliding doors.">
+  <title>J Mafunisa Glass And Aluminum | Architectural Glass & Aluminum</title>
+  <style>
+    /* CSS Variables & Business Theme Palette */
+    :root {
+      --primary: #0b132b;
+      --primary-light: #1c2541;
+      --secondary: #0284c7;
+      --secondary-hover: #0369a1;
+      --accent: #22c55e;
+      --accent-hover: #16a34a;
+      --bg-light: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    /* Smooth Scrolling for Navigation */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(34, 197, 94, 0);
+      }
+    }
+
+    /* Scroll Reveal Utility Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* Sticky Header & Navigation */
+    header {
+      background-color: rgba(11, 19, 43, 0.95);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #38bdf8;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background-color: var(--secondary);
+      color: #ffffff !important;
+      padding: 0.5rem 1.1rem !important;
+      border-radius: 6px;
+      transition: background-color 0.3s, transform 0.2s !important;
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .nav-cta:hover {
+      background-color: var(--secondary-hover);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.75rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background-image: linear-gradient(
+          135deg,
+          rgba(11, 19, 43, 0.90) 0%,
+          rgba(28, 37, 65, 0.82) 55%,
+          rgba(2, 132, 199, 0.72) 100%
+        ),
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #ffffff;
+      padding: 6.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      margin: 0 auto;
+      animation: fadeInUp 0.9s ease-out forwards;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #7dd3fc;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: 3.1rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #e2e8f0;
+      margin-bottom: 2.25rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.9rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-call {
+      background-color: var(--secondary);
+      color: #ffffff;
+    }
+
+    .btn-call:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    .btn-whatsapp {
+      background-color: var(--accent);
+      color: #ffffff;
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* 6-Item Trust Strip */
+    .trust-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 2.25rem 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .trust-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .trust-item {
+      padding: 1rem;
+      border-radius: 10px;
+      background-color: var(--bg-light);
+      border: 1px solid var(--border-color);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .trust-item:hover {
+      transform: translateY(-3px);
+      border-color: #bae6fd;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 1.15rem;
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 0.25rem;
+    }
+
+    .trust-item span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.25rem;
+    }
+
+    .section-subtitle {
+      color: var(--secondary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .section-title h2 {
+      font-size: 2.25rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), #38bdf8);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 16px 30px rgba(11, 19, 43, 0.1);
+      border-color: #bae6fd;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      background-color: #e0f2fe;
+      color: var(--secondary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: 1.25rem;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .card-list {
+      list-style: none;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.9rem;
+    }
+
+    .card-list li {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-list li::before {
+      content: "✓";
+      color: var(--secondary);
+      font-weight: 800;
+    }
+
+    /* Unique Gallery Showcase Section */
+    .gallery-section {
+      background-color: #ffffff;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 5rem 1.5rem;
+    }
+
+    .gallery-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(11, 19, 43, 0.08);
+      height: 280px;
+      background-color: var(--primary);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(11, 19, 43, 0.95), transparent);
+      padding: 1.5rem 1.25rem 1rem;
+      color: #ffffff;
+    }
+
+    .gallery-overlay h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+      font-weight: 700;
+    }
+
+    .gallery-overlay p {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    /* Why Choose Us Section (No Image) */
+    .why-section {
+      background-color: var(--bg-light);
+    }
+
+    .why-content-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 3.5rem;
+      box-shadow: 0 10px 30px rgba(11, 19, 43, 0.05);
+    }
+
+    .why-content-box h3 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .why-content-box > p {
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .step-box {
+      background-color: var(--bg-light);
+      padding: 1.25rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--secondary);
+    }
+
+    .step-box strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-box span {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Contact & Full Embedded Map Location Section */
+    .contact-section {
+      background-color: #ffffff;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #ffffff;
+      border-radius: 16px 16px 0 0;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 2.5rem;
+      box-shadow: 0 20px 40px rgba(11, 19, 43, 0.18);
+    }
+
+    .contact-info h3 {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+    }
+
+    .contact-info p {
+      color: #cbd5e1;
+      margin-bottom: 1.75rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.15rem;
+      font-size: 1.05rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .contact-detail a {
+      color: #7dd3fc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-detail a:hover {
+      text-decoration: underline;
+    }
+
+    .quote-card {
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quote-card h4 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .quote-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Full Width Map Container */
+    .full-map-wrapper {
+      width: 100%;
+      border-radius: 0 0 16px 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      border-top: none;
+      box-shadow: 0 20px 40px rgba(11, 19, 43, 0.12);
+      background-color: #e2e8f0;
+    }
+
+    .full-map-header {
+      background-color: #070d1f;
+      color: #ffffff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .full-map-header span {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .full-map-header a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .full-map-header a:hover {
+      text-decoration: underline;
+    }
+
+    .full-map-iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #070d1f;
+      color: #94a3b8;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.92rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Mobile Styles */
+    @media (max-width: 900px) {
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 4.5rem 1.25rem;
+        background-attachment: scroll;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        padding: 1.5rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-content-box {
+        padding: 2rem 1.25rem;
+      }
+
+      .contact-box {
+        padding: 2rem 1.5rem;
+      }
+
+      .full-map-iframe {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="logo">J Mafunisa <span>Glass & Aluminum</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact & Map</a></li>
+        <li><a href="https://wa.me/27606023445?text=Hi%20J%20Mafunisa%20Glass%20and%20Aluminum,%20I'd%20like%20to%20request%20a%20quote." target="_blank" rel="noopener noreferrer" class="nav-cta">Get Quote</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="hero-badge">Residential & Commercial Specialists</span>
+      <h1>Modern Architectural Glass & Aluminum Solutions</h1>
+      <p>We manufacture, supply, and install precision-crafted aluminum windows, glass garage doors, sliding doors, and custom architectural glazing built for lasting beauty and security.</p>
+      <div class="cta-group">
+        <a href="tel:0606023445" class="btn btn-call">
+          📞 Call 060 602 3445
+        </a>
+        <a href="https://wa.me/27606023445?text=Hi%20J%20Mafunisa%20Glass%20and%20Aluminum,%20I'd%20like%20to%20request%20a%20quote." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+          💬 WhatsApp Instant Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6-Card Business Highlights Strip -->
+  <div class="trust-bar">
+    <div class="trust-grid">
+      <div class="trust-item reveal">
+        <strong>100% Custom Fit</strong>
+        <span>Measured & built to your exact house plans</span>
+      </div>
+      <div class="trust-item reveal delay-1">
+        <strong>Heavy-Duty Aluminum</strong>
+        <span>Weather-resistant, rust-free frames</span>
+      </div>
+      <div class="trust-item reveal delay-2">
+        <strong>Safety Glazing</strong>
+        <span>SANS-compliant toughened & laminated glass</span>
+      </div>
+      <div class="trust-item reveal delay-3">
+        <strong>Full Installation</strong>
+        <span>Clean, professional on-site fitting</span>
+      </div>
+      <div class="trust-item reveal delay-4">
+        <strong>Modern Color Finishes</strong>
+        <span>Available in charcoal, bronze, silver & white</span>
+      </div>
+      <div class="trust-item reveal delay-5">
+        <strong>Free On-Site Quotes</strong>
+        <span>Fast turnaround on house plan estimates</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <section class="container" id="services">
+    <div class="section-title reveal">
+      <span class="section-subtitle">What We Do</span>
+      <h2>Our Glass & Aluminum Services</h2>
+      <p>From new home builds to modern renovations, we deliver durable craftsmanship tailored to your property.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="card reveal">
+        <div class="card-icon">🪟</div>
+        <h3>Aluminum Window Frames</h3>
+        <p>Sleek, low-maintenance aluminum windows available in bronze, charcoal, natural silver, and white finishes.</p>
+        <ul class="card-list">
+          <li>Top-hung & side-hung casement windows</li>
+          <li>Large corner & architectural picture windows</li>
+          <li>Burglar bar & weather-seal compatibility</li>
+        </ul>
+      </div>
+
+      <div class="card reveal delay-1">
+        <div class="card-icon">🚘</div>
+        <h3>Aluminum & Glass Garage Doors</h3>
+        <p>Upgrade your home's curb appeal with modern frameless or framed aluminum glass garage doors.</p>
+        <ul class="card-list">
+          <li>Clear, tinted, or frosted safety glass</li>
+          <li>Smooth, quiet motorized or manual operation</li>
+          <li>Weatherproof seals against dust and rain</li>
+        </ul>
+      </div>
+
+      <div class="card reveal delay-2">
+        <div class="card-icon">🚪</div>
+        <h3>Sliding, Folding & Pivot Doors</h3>
+        <p>Maximize natural light and indoor-outdoor flow with smooth-gliding patio and main entrance doors.</p>
+        <ul class="card-list">
+          <li>Heavy-duty patio sliding & stack-away doors</li>
+          <li>Custom decorative front entrance doors</li>
+          <li>High-security multi-point locking systems</li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-icon">🏢</div>
+        <h3>Shopfronts & Commercial Glazing</h3>
+        <p>Professional aluminum shopfronts and office partitions engineered for high-traffic business spaces.</p>
+        <ul class="card-list">
+          <li>Full-height retail glass storefronts</li>
+          <li>Commercial swing & double-action doors</li>
+          <li>Custom branding & tinted privacy glass</li>
+        </ul>
+      </div>
+
+      <div class="card reveal delay-1">
+        <div class="card-icon">🚿</div>
+        <h3>Shower Enclosures & Balustrades</h3>
+        <p>Clean, modern toughened glass enclosures and stair railings that elevate your interior finishes.</p>
+        <ul class="card-list">
+          <li>Frameless & semi-frameless shower doors</li>
+          <li>Glass staircase & balcony balustrades</li>
+          <li>Custom-cut bathroom mirrors</li>
+        </ul>
+      </div>
+
+      <div class="card reveal delay-2">
+        <div class="card-icon">🛠️</div>
+        <h3>Glass Replacement & Maintenance</h3>
+        <p>Fast, reliable repairs for broken window panes, worn sliding door rollers, locks, and hinges.</p>
+        <ul class="card-list">
+          <li>Emergency broken glass replacement</li>
+          <li>Sliding door wheel & track servicing</li>
+          <li>Window handle, stay, and rubber seal upgrades</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unique Gallery Showcase Section -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-title reveal" style="margin-bottom: 2.5rem;">
+      <span class="section-subtitle">Project Showcase</span>
+      <h2>Our Installation Gallery</h2>
+      <p>A glimpse of completed residential window frames, glass garage doors, and custom aluminum fittings.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card reveal">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Modern Aluminum Windows">
+        <div class="gallery-overlay">
+          <h4>Modern Window Frames</h4>
+          <p>Sleek charcoal aluminum casement windows</p>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal delay-1">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Glass Sliding Doors">
+        <div class="gallery-overlay">
+          <h4>Patio & Sliding Doors</h4>
+          <p>Seamless indoor-outdoor transitions</p>
+        </div>
+      </div>
+
+      <div class="gallery-card reveal delay-2">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80" alt="Architectural Glazing">
+        <div class="gallery-overlay">
+          <h4>Architectural Glass</h4>
+          <p>Custom residential glazing & entryways</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="container why-section" id="why">
+    <div class="why-content-box reveal">
+      <span class="section-subtitle" style="text-align: center;">Why Choose J Mafunisa</span>
+      <h3>Precision Craftsmanship From Measurement to Fit</h3>
+      <p>We take pride in transforming residential homes and commercial buildings with clean lines, natural light, and secure aluminum framing.</p>
+
+      <div class="process-steps">
+        <div class="step-box">
+          <strong>1. Send Plans / Measure</strong>
+          <span>Share your window schedule or book an on-site measurement.</span>
+        </div>
+        <div class="step-box">
+          <strong>2. Free Detailed Quote</strong>
+          <span>Receive transparent pricing with zero hidden costs.</span>
+        </div>
+        <div class="step-box">
+          <strong>3. Custom Fabrication</strong>
+          <span>Built to exact dimensions using quality aluminum profiles.</span>
+        </div>
+        <div class="step-box">
+          <strong>4. Neat Installation</strong>
+          <span>Fitted, sealed, and tested for smooth operation.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Full Interactive Map Section -->
+  <section class="container contact-section" id="contact">
+    <div class="contact-box reveal">
+      <div class="contact-info">
+        <span class="section-subtitle" style="color: #7dd3fc;">Contact Us</span>
+        <h3>Ready to Start Your Project?</h3>
+        <p>Call, email, or WhatsApp us today for a free quotation, house plan estimation, or on-site consultation.</p>
+        
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div style="font-size: 0.8rem; color: #94a3b8;">Phone / WhatsApp</div>
+            <a href="tel:0606023445">060 602 3445</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div style="font-size: 0.8rem; color: #94a3b8;">Email Address</div>
+            <a href="mailto:jmafunisaaluminium@gmail.com">jmafunisaaluminium@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div style="font-size: 0.8rem; color: #94a3b8;">Official Facebook Page</div>
+            <a href="https://www.facebook.com/Justice.55o" target="_blank" rel="noopener noreferrer">J Mafunisa Glass And Aluminum</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="quote-card">
+        <h4>Request a Fast Quote on WhatsApp</h4>
+        <p>Have a window schedule, house plan, or rough measurements? Send them straight to our WhatsApp for a quick price estimate.</p>
+        <a href="https://wa.me/27606023445?text=Hi%20J%20Mafunisa%20Glass%20and%20Aluminum,%20I%20would%20like%20to%20request%20a%20quote." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="justify-content: center; width: 100%; margin-bottom: 0.75rem;">
+          💬 Chat on WhatsApp Now
+        </a>
+        <a href="tel:0606023445" class="btn btn-call" style="justify-content: center; width: 100%;">
+          📞 Call Direct: 060 602 3445
+        </a>
+      </div>
+    </div>
+
+    <!-- Full Embedded Google Map -->
+    <div class="full-map-wrapper reveal">
+      <div class="full-map-header">
+        <span>📍 Our Location & Service Area</span>
+        <a href="https://maps.app.goo.gl/9ThiVzFQHKNsjBZb6?g_st=ac" target="_blank" rel="noopener noreferrer">Open in Google Maps App ↗</a>
+      </div>
+      <iframe 
+        class="full-map-iframe"
+        src="https://maps.google.com/maps?q=J%20Mafunisa%20Glass%20And%20Aluminum&t=&z=14&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        title="J Mafunisa Glass And Aluminum Location Map">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> <strong>J Mafunisa Glass And Aluminum</strong>. All rights reserved.</p>
+    <p style="margin-top: 0.5rem;">
+      Follow our latest installations on <a href="https://www.facebook.com/Justice.55o" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu and smooth scroll when a nav link is clicked
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        navLinks.classList.remove('open');
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll Reveal Intersection Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

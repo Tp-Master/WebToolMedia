@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kyfree Driving School in Ka-Bungeni Manyunyu - Professional Learner's Licence classes and Code 8, Code 10, Code 14 driving lessons, refresher courses, and test car hire.">
+  <title>Kyfree Driving School | Code 8, 10, 14 & Learner's Classes</title>
+  <style>
+    /* High-Visibility Road & Asphalt Theme Variables */
+    :root {
+      --asphalt: #111317;
+      --asphalt-card: #1a1d24;
+      --asphalt-light: #242832;
+      --road-yellow: #facc15;
+      --road-yellow-hover: #eab308;
+      --signal-red: #ef4444;
+      --signal-green: #22c55e;
+      --signal-green-hover: #16a34a;
+      --text-white: #f8fafc;
+      --text-gray: #94a3b8;
+      --border-dark: #2e3440;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--asphalt);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Keyframe Animations */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-45px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(45px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes zoomPop {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes roadDash {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 60px 0;
+      }
+    }
+
+    /* Scroll Reveal Classes */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-zoom {
+      opacity: 0;
+      transform: scale(0.93);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-left.active,
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-zoom.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* Animated Highway Divider Strip */
+    .highway-line {
+      height: 6px;
+      width: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--road-yellow) 0px,
+        var(--road-yellow) 30px,
+        var(--asphalt) 30px,
+        var(--asphalt) 60px
+      );
+      animation: roadDash 1.8s linear infinite;
+    }
+
+    /* Sticky Navbar */
+    header {
+      background-color: rgba(17, 19, 23, 0.96);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .nav-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--text-white);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .logo-badge {
+      background-color: var(--road-yellow);
+      color: #000000;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--road-yellow);
+    }
+
+    .nav-btn {
+      background-color: var(--road-yellow);
+      color: #000000 !important;
+      padding: 0.55rem 1.15rem;
+      border-radius: 6px;
+      font-weight: 800 !important;
+      transition: background-color 0.25s, transform 0.2s;
+    }
+
+    .nav-btn:hover {
+      background-color: var(--road-yellow-hover);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--road-yellow);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Split Asymmetric Hero Layout */
+    .hero {
+      background: radial-gradient(circle at top right, #232834 0%, #111317 70%);
+      padding: 4.5rem 1.5rem;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .hero-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      animation: slideInLeft 0.85s ease-out forwards;
+    }
+
+    .location-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background-color: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      color: var(--road-yellow);
+      padding: 0.4rem 0.95rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.12;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .hero-text h1 span {
+      color: var(--road-yellow);
+    }
+
+    .hero-text p {
+      color: var(--text-gray);
+      font-size: 1.12rem;
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-yellow {
+      background-color: var(--road-yellow);
+      color: #000000;
+      box-shadow: 0 8px 20px rgba(250, 204, 21, 0.25);
+    }
+
+    .btn-yellow:hover {
+      background-color: var(--road-yellow-hover);
+    }
+
+    .btn-green {
+      background-color: var(--signal-green);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.25);
+    }
+
+    .btn-green:hover {
+      background-color: var(--signal-green-hover);
+    }
+
+    .hero-media {
+      position: relative;
+      animation: slideInRight 0.85s ease-out forwards;
+    }
+
+    .hero-image-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--border-dark);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 410px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-floating-tag {
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      right: 18px;
+      background: rgba(17, 19, 23, 0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-floating-tag strong {
+      color: var(--road-yellow);
+      font-size: 1.05rem;
+      display: block;
+    }
+
+    .hero-floating-tag span {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    /* Courses Section (6 Training Packages Grid) */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      color: var(--road-yellow);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.85rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.35rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .section-header p {
+      color: var(--text-gray);
+      max-width: 620px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .course-card {
+      background-color: var(--asphalt-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--road-yellow);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.45);
+    }
+
+    .course-img-box {
+      position: relative;
+      height: 190px;
+      overflow: hidden;
+    }
+
+    .course-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .course-card:hover .course-img-box img {
+      transform: scale(1.08);
+    }
+
+    .code-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: var(--road-yellow);
+      color: #000000;
+      font-weight: 900;
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .course-body {
+      padding: 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-body h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.65rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .course-body p {
+      color: var(--text-gray);
+      font-size: 0.94rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .course-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      border-top: 1px solid var(--border-dark);
+      padding-top: 1rem;
+      flex: 1;
+    }
+
+    .course-features li {
+      font-size: 0.88rem;
+      color: #e2e8f0;
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .course-features li::before {
+      content: "▸";
+      color: var(--road-yellow);
+      font-weight: 900;
+    }
+
+    .course-book-btn {
+      display: block;
+      text-align: center;
+      background-color: var(--asphalt-light);
+      color: var(--road-yellow);
+      border: 1px solid var(--road-yellow);
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+      transition: background-color 0.25s, color 0.25s;
+    }
+
+    .course-book-btn:hover {
+      background-color: var(--road-yellow);
+      color: #000000;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      background-color: var(--asphalt-card);
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding: 5rem 1.5rem;
+    }
+
+    .gallery-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 260px;
+      border: 1px solid var(--border-dark);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(17, 19, 23, 0.95), transparent);
+      padding: 1.5rem 1.25rem 1rem;
+    }
+
+    .gallery-caption h4 {
+      color: var(--road-yellow);
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .gallery-caption span {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    /* Training Steps Banner */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .step-card {
+      background-color: var(--asphalt-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      background-color: var(--road-yellow);
+      color: #000000;
+      font-weight: 900;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+
+    .step-card p {
+      color: var(--text-gray);
+      font-size: 0.92rem;
+    }
+
+    /* Contact & Full Embedded Map Location Section */
+    .contact-wrapper {
+      background-color: var(--asphalt-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    .contact-top {
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .contact-info h3 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .contact-info h3 span {
+      color: var(--road-yellow);
+    }
+
+    .contact-info p {
+      color: var(--text-gray);
+      margin-bottom: 1.75rem;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .info-icon {
+      width: 46px;
+      height: 46px;
+      background-color: var(--asphalt-light);
+      border: 1px solid var(--border-dark);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--road-yellow);
+    }
+
+    .info-row a {
+      color: var(--text-white);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .info-row a:hover {
+      color: var(--road-yellow);
+    }
+
+    .booking-card {
+      background-color: var(--asphalt-light);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .booking-card h4 {
+      font-size: 1.35rem;
+      margin-bottom: 0.65rem;
+      color: var(--road-yellow);
+      font-weight: 800;
+    }
+
+    .booking-card p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .full-map-bar {
+      background-color: #0b0d10;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .full-map-bar span {
+      font-weight: 700;
+      color: var(--road-yellow);
+      font-size: 0.95rem;
+    }
+
+    .full-map-bar a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .full-map-bar a:hover {
+      color: var(--road-yellow);
+      text-decoration: underline;
+    }
+
+    .full-map-iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #090a0d;
+      color: var(--text-gray);
+      text-align: center;
+      padding: 2.25rem 1.5rem;
+      font-size: 0.92rem;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    footer strong {
+      color: var(--road-yellow);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 2.25rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--asphalt);
+        padding: 1.5rem;
+        gap: 1.25rem;
+        border-bottom: 1px solid var(--border-dark);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .contact-top {
+        padding: 2rem 1.5rem;
+      }
+
+      .full-map-iframe {
+        height: 310px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <span class="logo-badge">K</span> Kyfree Driving School
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#contact">Contact & Map</a></li>
+        <li><a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20would%20like%20to%20book%20driving%20lessons." target="_blank" rel="noopener noreferrer" class="nav-btn">Book Now</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Split Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="location-pill">📍 305 Ka-Bungeni Manyunyu</div>
+        <h1>Get Licensed & Drive With <span>Confidence</span></h1>
+        <p>Professional K53 driver training in Ka-Bungeni Manyunyu. From Learner's Licence classes to Code 8, Code 10, and Code 14 heavy vehicle training—we prepare you to pass first time.</p>
+        <div class="hero-buttons">
+          <a href="tel:0827675000" class="btn btn-yellow">
+            📞 Call 082 767 5000
+          </a>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I'd%20like%20to%20enquire%20about%20packages%20and%20prices." target="_blank" rel="noopener noreferrer" class="btn btn-green">
+            💬 WhatsApp Booking
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-media">
+        <div class="hero-image-card">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=900&q=80" alt="Student driver behind the steering wheel with instructor">
+          <div class="hero-floating-tag">
+            <div>
+              <strong>K53 Certified Training</strong>
+              <span>Learner's • Code 8 • Code 10 • Code 14</span>
+            </div>
+            <span style="font-size: 1.75rem;">🚦</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animated Road Strip -->
+  <div class="highway-line"></div>
+
+  <!-- Training Packages Section (Expanded to 6 Sections) -->
+  <section class="container" id="courses">
+    <div class="section-header reveal-zoom">
+      <span class="section-tag">Training Packages</span>
+      <h2>Choose Your Licence Code</h2>
+      <p>Patient, experienced instructors and well-maintained training vehicles tailored to every licence category and refresher requirement.</p>
+    </div>
+
+    <div class="courses-grid">
+      <!-- 1. Learner's Licence -->
+      <div class="course-card reveal-left">
+        <div class="course-img-box">
+          <span class="code-badge">Learner's</span>
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80" alt="Learner's Licence study materials">
+        </div>
+        <div class="course-body">
+          <h3>Learner's Licence Classes</h3>
+          <p>Complete K53 road rules, road signs, and vehicle controls preparation for Code 1, 2, and 3 tests.</p>
+          <ul class="course-features">
+            <li>Full K53 road signs & markings guide</li>
+            <li>Practice test papers & mock exams</li>
+            <li>Booking assistance at testing station</li>
+          </ul>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20want%20to%20join%20Learner's%20Licence%20classes." target="_blank" rel="noopener noreferrer" class="course-book-btn">Enquire Learner's</a>
+        </div>
+      </div>
+
+      <!-- 2. Code 8 -->
+      <div class="course-card reveal-zoom delay-1">
+        <div class="course-img-box">
+          <span class="code-badge">Code 8 (B / EB)</span>
+          <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=700&q=80" alt="Code 8 Light Motor Vehicle driving lesson">
+        </div>
+        <div class="course-body">
+          <h3>Code 8 Light Motor Vehicle</h3>
+          <p>Master yard maneuvers and open-road driving in modern, easy-to-handle passenger vehicles.</p>
+          <ul class="course-features">
+            <li>Alley docking, parallel parking & 3-point turn</li>
+            <li>Incline start & full K53 road observations</li>
+            <li>Flexible lesson packages & test car hire</li>
+          </ul>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20want%20to%20book%20Code%208%20lessons." target="_blank" rel="noopener noreferrer" class="course-book-btn">Book Code 8</a>
+        </div>
+      </div>
+
+      <!-- 3. Code 10 -->
+      <div class="course-card reveal-zoom delay-2">
+        <div class="course-img-box">
+          <span class="code-badge">Code 10 (C1)</span>
+          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=700&q=80" alt="Code 10 Heavy Vehicle Truck training">
+        </div>
+        <div class="course-body">
+          <h3>Code 10 Heavy Motor Vehicle</h3>
+          <p>Our most popular heavy-vehicle licence package for trucks and minibuses up to 16,000 kg.</p>
+          <ul class="course-features">
+            <li>Pre-trip exterior & interior inspection</li>
+            <li>Precision yard docking & clutch control</li>
+            <li>Truck provided on your test day</li>
+          </ul>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20want%20to%20book%20Code%2010%20lessons." target="_blank" rel="noopener noreferrer" class="course-book-btn">Book Code 10</a>
+        </div>
+      </div>
+
+      <!-- 4. Code 14 -->
+      <div class="course-card reveal-right delay-3">
+        <div class="course-img-box">
+          <span class="code-badge">Code 14 (EC)</span>
+          <img src="https://images.unsplash.com/photo-1586191582151-f73872dfd183?auto=format&fit=crop&w=700&q=80" alt="Code 14 Extra Heavy Articulated Truck training">
+        </div>
+        <div class="course-body">
+          <h3>Code 14 Extra Heavy Truck</h3>
+          <p>Commercial articulated truck and trailer training designed for professional transport drivers.</p>
+          <ul class="course-features">
+            <li>Coupling & uncoupling trailer procedures</li>
+            <li>Reversing with trailer & wide-turn control</li>
+            <li>Full K53 yard & heavy-load road test prep</li>
+          </ul>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20want%20to%20book%20Code%2014%20lessons." target="_blank" rel="noopener noreferrer" class="course-book-btn">Book Code 14</a>
+        </div>
+      </div>
+
+      <!-- 5. Refresher Driving Lessons (New Section 5) -->
+      <div class="course-card reveal-left delay-4">
+        <div class="course-img-box">
+          <span class="code-badge">Refresher</span>
+          <img src="https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=700&q=80" alt="Refresher driving lessons">
+        </div>
+        <div class="course-body">
+          <h3>Refresher Driving Lessons</h3>
+          <p>For licensed drivers who want to build road confidence, overcome driving anxiety, or master city traffic.</p>
+          <ul class="course-features">
+            <li>Tailored sessions based on your skill level</li>
+            <li>Busy traffic navigation & parking practice</li>
+            <li>Defensive driving & night driving tips</li>
+          </ul>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20want%20to%20enquire%20about%20Refresher%20Lessons." target="_blank" rel="noopener noreferrer" class="course-book-btn">Book Refresher</a>
+        </div>
+      </div>
+
+      <!-- 6. Test Car & Truck Hire (New Section 6) -->
+      <div class="course-card reveal-zoom delay-5">
+        <div class="course-img-box">
+          <span class="code-badge">Test Hire</span>
+          <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=700&q=80" alt="Test vehicle hire for driver licensing test">
+        </div>
+        <div class="course-body">
+          <h3>Test Car & Truck Hire</h3>
+          <p>Hire our road-worthy, dual-control vehicles specifically for your practical driving test day at the testing station.</p>
+          <ul class="course-features">
+            <li>Clean, fully licensed & tested vehicles</li>
+            <li>Warm-up driving session before your slot</li>
+            <li>Available for Code 8, Code 10, and Code 14</li>
+          </ul>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20want%20to%20hire%20a%20vehicle%20for%20my%20driving%20test." target="_blank" rel="noopener noreferrer" class="course-book-btn">Enquire Test Hire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section" id="gallery">
+    <div class="section-header reveal-zoom" style="margin-bottom: 2.75rem;">
+      <span class="section-tag">Training In Action</span>
+      <h2>Kyfree Driving School Gallery</h2>
+      <p>Inside our yard training sessions, road practice, and fleet of Code 8, 10, and 14 vehicles.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item reveal-left">
+        <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=700&q=80" alt="Driver training on the open road">
+        <div class="gallery-caption">
+          <h4>K53 Road Practice</h4>
+          <span>Real-world traffic & highway confidence</span>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal-zoom delay-1">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80" alt="Code 8 training vehicle">
+        <div class="gallery-caption">
+          <h4>Code 8 Fleet</h4>
+          <span>Clean, dual-control training cars</span>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal-zoom delay-2">
+        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=700&q=80" alt="Commercial truck driving training">
+        <div class="gallery-caption">
+          <h4>Code 10 & 14 Trucks</h4>
+          <span>Heavy-duty commercial driver training</span>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal-right delay-3">
+        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=700&q=80" alt="Passed driving test celebration">
+        <div class="gallery-caption">
+          <h4>First-Time Passes</h4>
+          <span>Step-by-step yard & road test coaching</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="container" id="process">
+    <div class="section-header reveal-zoom">
+      <span class="section-tag">Simple Process</span>
+      <h2>How To Get Your Licence</h2>
+      <p>We guide you from day one all the way until you walk out of the testing station with your licence.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card reveal-left">
+        <div class="step-number">1</div>
+        <h3>Call or WhatsApp Us</h3>
+        <p>Reach out on <strong>082 767 5000</strong> to choose your Learner's, Code 8, 10, or 14 package.</p>
+      </div>
+      <div class="step-card reveal-zoom delay-1">
+        <div class="step-number">2</div>
+        <h3>Book Your Test Date</h3>
+        <p>We assist you with your testing station booking and schedule your practical training hours.</p>
+      </div>
+      <div class="step-card reveal-zoom delay-2">
+        <div class="step-number">3</div>
+        <h3>Master Yard & Road</h3>
+        <p>Train step-by-step with patient instructors until every parking maneuver and K53 check is automatic.</p>
+      </div>
+      <div class="step-card reveal-right delay-3">
+        <div class="step-number">4</div>
+        <h3>Pass & Drive</h3>
+        <p>Use our training vehicle on your test day and pass with full confidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Full Map Section -->
+  <section class="container" id="contact" style="padding-top: 0;">
+    <div class="contact-wrapper reveal-zoom">
+      <div class="contact-top">
+        <div class="contact-info">
+          <span class="section-tag">Get In Touch</span>
+          <h3>Start Driving With <span>Kyfree</span> Today</h3>
+          <p>Visit us at our branch or call/WhatsApp to ask about full packages, hourly lessons, and learner's classes.</p>
+
+          <div class="info-row">
+            <div class="info-icon">📞</div>
+            <div>
+              <div style="font-size: 0.82rem; color: var(--text-gray);">Phone / WhatsApp</div>
+              <a href="tel:0827675000">082 767 5000</a>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <div style="font-size: 0.82rem; color: var(--text-gray);">Branch Address</div>
+              <strong style="font-size: 1.05rem;">305 Ka-Bungeni Manyunyu</strong>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">🚦</div>
+            <div>
+              <div style="font-size: 0.82rem; color: var(--text-gray);">Courses Offered</div>
+              <strong style="font-size: 1.05rem;">Learner's • Code 8, 10, 14 • Refresher • Test Hire</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-card">
+          <h4>Fast WhatsApp Registration</h4>
+          <p>Send us a message with your name and the licence code or package you want to apply for.</p>
+          <a href="https://wa.me/27827675000?text=Hi%20Kyfree%20Driving%20School,%20I%20would%20like%20to%20register%20and%20get%20your%20price%20list." target="_blank" rel="noopener noreferrer" class="btn btn-green" style="justify-content: center; width: 100%; margin-bottom: 0.85rem;">
+            💬 WhatsApp 082 767 5000
+          </a>
+          <a href="tel:0827675000" class="btn btn-yellow" style="justify-content: center; width: 100%;">
+            📞 Call Now: 082 767 5000
+          </a>
+        </div>
+      </div>
+
+      <!-- Full Width Interactive Map -->
+      <div class="full-map-bar">
+        <span>📍 Location: 305 Ka-Bungeni Manyunyu</span>
+        <a href="https://maps.google.com/?q=305+Ka-Bungeni+Manyunyu" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a>
+      </div>
+      <iframe
+        class="full-map-iframe"
+        src="https://maps.google.com/maps?q=Ka-Bungeni%20Manyunyu&t=&z=14&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Kyfree Driving School Location - 305 Ka-Bungeni Manyunyu">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> <strong>Kyfree Driving School</strong> • 305 Ka-Bungeni Manyunyu. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Smooth Scroll Navigation
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        navLinks.classList.remove('open');
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Directional Scroll Reveal Animations
+    const revealElements = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-zoom');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
