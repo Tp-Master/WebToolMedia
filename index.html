@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WebToolMedia - Professional website development services and live interactive website templates for businesses.">
+  <title>Website Development & Templates | WebToolMedia</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-glow-orb orb-1"></div>
+  <div class="bg-glow-orb orb-2"></div>
+
+  <div class="modal-backdrop" id="templateModal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTemplateName">Template Live Preview</div>
+      <div class="modal-actions-right">
+        <button class="view-mode-btn active" id="btnDesktopMode" onclick="setModalViewport('desktop')">🖥️ Desktop View</button>
+        <button class="view-mode-btn" id="btnMobileMode" onclick="setModalViewport('mobile')">📱 Mobile View</button>
+        <a id="modalUseBtn" href="#" target="_blank" rel="noopener noreferrer" class="t-btn-use" style="padding: 0.45rem 0.9rem; font-size: 0.82rem;">Use Template</a>
+        <button class="modal-close-btn" onclick="closeModal()">✕ Close</button>
+      </div>
+    </div>
+    <div class="modal-iframe-wrap" id="modalIframeWrap">
+      <iframe id="modalIframe" src="" title="Template Fullscreen Preview"></iframe>
+    </div>
+  </div>
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span> WebTool<span>Media</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="packages.html" >Packages</a></li>
+        <li><a href="templates.html" >Templates</a></li>
+        <li><a href="contact.html" >Contact & Map</a></li>
+        <li><a href="contact.html#quote" class="nav-cta">Request Quote</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="status-pill">
+          <span class="dot-pulse"></span> WebToolMedia Digital Studio
+        </div>
+        <h1>Professional <span>Website Development</span></h1>
+        <p>We build fast, responsive, and SEO-friendly websites for businesses, freelancers, and startups. Explore our live interactive templates below or choose a custom development package.</p>
+        <div class="hero-buttons">
+          <a href="#templates" class="btn btn-primary">
+            👁️ Explore Live Templates
+          </a>
+          <a href="https://wa.me/27646362673?text=Hi%20WebToolMedia,%20I%20want%20to%20enquire%20about%20a%20website%20template." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+            💬 WhatsApp 064 636 2673
+          </a>
+        </div>
+      </div>
+
+      <div class="browser-mockup">
+        <div class="browser-top">
+          <span class="win-dot" style="background:#ef4444;"></span>
+          <span class="win-dot" style="background:#f59e0b;"></span>
+          <span class="win-dot" style="background:#10b981;"></span>
+          <div class="browser-url">https://webtoolmedia.co.za</div>
+        </div>
+        <div class="browser-body">
+          <span class="code-line"><span class="c-purple">const</span> <span class="c-cyan">webToolMedia</span> = {</span>
+          <span class="code-line">&nbsp;&nbsp;templates: <span class="c-green">"6 Interactive Desktop Demos"</span>,</span>
+          <span class="code-line">&nbsp;&nbsp;businessSite: <span class="c-yellow">"Starting From R1,500"</span>,</span>
+          <span class="code-line">&nbsp;&nbsp;wordpressSite: <span class="c-green">"Starting From R2,500"</span>,</span>
+          <span class="code-line">&nbsp;&nbsp;phone: <span class="c-cyan">"064 636 2673"</span></span>
+          <span class="code-line">};</span>
+          <span class="code-line" style="margin-top:0.5rem;"><span class="c-gray">// Test live previews & select your style</span></span>
+          <span class="code-line"><span class="c-purple">loadLiveTemplates</span>();</span>
+
+          <div class="metrics-strip">
+            <div>
+              <strong>Desktop Mode</strong>
+              <span>Full Layout View</span>
+            </div>
+            <div>
+              <strong>Full Screen</strong>
+              <span>Interactive Demos</span>
+            </div>
+            <div>
+              <strong>Ready to Use</strong>
+              <span>Instant WhatsApp Quote</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Templates Section (3x2 Grid) -->
+  <section class="templates-band" id="templates">
+    <div class="section-head reveal-up">
+      <span class="eyebrow">Explore Website Templates</span>
+      <h2>Live Interactive Website Previews</h2>
+      <p>Every template renders in full Desktop Mode so you can see the entire layout clearly. Test previews or click Full Screen to interact.</p>
+    </div>
+
+    <div class="templates-grid-3x2">
+      <div class="template-card reveal-up">
+        <div class="browser-frame">
+          <div class="browser-dots">
+            <span class="b-dot" style="background:#ef4444;"></span>
+            <span class="b-dot" style="background:#f59e0b;"></span>
+            <span class="b-dot" style="background:#10b981;"></span>
+          </div>
+          <div class="browser-title-bar">restaurant.webtoolmedia.co.za</div>
+          <span class="desktop-badge">🖥️ Desktop</span>
+        </div>
+        <div class="live-preview-box">
+          <iframe class="desktop-iframe" src="https://example.com" title="Restaurant Website Live Preview" loading="lazy"></iframe>
+          <div class="preview-overlay-bar">
+            <span>🟢 Live Desktop Preview</span>
+            <button onclick="openFullscreen('Restaurant Website', 'https://example.com')" style="background:none; border:none; color:#38bdf8; font-weight:700; cursor:pointer; font-size:0.78rem;">⛶ Fullscreen</button>
+          </div>
+        </div>
+        <div class="preview-actions-bar">
+          <div class="template-info-row">
+            <h4>Restaurant Website</h4>
+            <span class="template-tag">Food & Dining</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Includes menu showcase, table reservations, online food ordering, and map location.</p>
+          <div class="template-buttons">
+            <button class="t-btn-preview" onclick="openFullscreen('Restaurant Website', 'https://example.com')">Full Screen</button>
+            <a href="https://wa.me/27646362673?text=Hi%20WebToolMedia%2C%20I%20want%20to%20request%20the%20Restaurant%20Website%20Template." target="_blank" rel="noopener noreferrer" class="t-btn-use">Use Template</a>
+          </div>
+        </div>
+      </div>
+      <div class="template-card reveal-up">
+        <div class="browser-frame">
+          <div class="browser-dots">
+            <span class="b-dot" style="background:#ef4444;"></span>
+            <span class="b-dot" style="background:#f59e0b;"></span>
+            <span class="b-dot" style="background:#10b981;"></span>
+          </div>
+          <div class="browser-title-bar">mechanic.webtoolmedia.co.za</div>
+          <span class="desktop-badge">🖥️ Desktop</span>
+        </div>
+        <div class="live-preview-box">
+          <iframe class="desktop-iframe" src="https://example.com" title="Mechanic Website Live Preview" loading="lazy"></iframe>
+          <div class="preview-overlay-bar">
+            <span>🟢 Live Desktop Preview</span>
+            <button onclick="openFullscreen('Mechanic Website', 'https://example.com')" style="background:none; border:none; color:#38bdf8; font-weight:700; cursor:pointer; font-size:0.78rem;">⛶ Fullscreen</button>
+          </div>
+        </div>
+        <div class="preview-actions-bar">
+          <div class="template-info-row">
+            <h4>Mechanic Website</h4>
+            <span class="template-tag">Automotive</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Features diagnostics booking, fault scanning services, pricing list, and direct WhatsApp quote form.</p>
+          <div class="template-buttons">
+            <button class="t-btn-preview" onclick="openFullscreen('Mechanic Website', 'https://example.com')">Full Screen</button>
+            <a href="https://wa.me/27646362673?text=Hi%20WebToolMedia%2C%20I%20want%20to%20request%20the%20Mechanic%20Website%20Template." target="_blank" rel="noopener noreferrer" class="t-btn-use">Use Template</a>
+          </div>
+        </div>
+      </div>
+      <div class="template-card reveal-up">
+        <div class="browser-frame">
+          <div class="browser-dots">
+            <span class="b-dot" style="background:#ef4444;"></span>
+            <span class="b-dot" style="background:#f59e0b;"></span>
+            <span class="b-dot" style="background:#10b981;"></span>
+          </div>
+          <div class="browser-title-bar">cardealership.webtoolmedia.co.za</div>
+          <span class="desktop-badge">🖥️ Desktop</span>
+        </div>
+        <div class="live-preview-box">
+          <iframe class="desktop-iframe" src="https://example.com" title="Car Dealership Live Preview" loading="lazy"></iframe>
+          <div class="preview-overlay-bar">
+            <span>🟢 Live Desktop Preview</span>
+            <button onclick="openFullscreen('Car Dealership', 'https://example.com')" style="background:none; border:none; color:#38bdf8; font-weight:700; cursor:pointer; font-size:0.78rem;">⛶ Fullscreen</button>
+          </div>
+        </div>
+        <div class="preview-actions-bar">
+          <div class="template-info-row">
+            <h4>Car Dealership</h4>
+            <span class="template-tag">Vehicle Sales</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Vehicle inventory catalog, filter search, finance application form, and showroom details.</p>
+          <div class="template-buttons">
+            <button class="t-btn-preview" onclick="openFullscreen('Car Dealership', 'https://example.com')">Full Screen</button>
+            <a href="https://wa.me/27646362673?text=Hi%20WebToolMedia%2C%20I%20want%20to%20request%20the%20Car%20Dealership%20Template." target="_blank" rel="noopener noreferrer" class="t-btn-use">Use Template</a>
+          </div>
+        </div>
+      </div>
+      <div class="template-card reveal-up">
+        <div class="browser-frame">
+          <div class="browser-dots">
+            <span class="b-dot" style="background:#ef4444;"></span>
+            <span class="b-dot" style="background:#f59e0b;"></span>
+            <span class="b-dot" style="background:#10b981;"></span>
+          </div>
+          <div class="browser-title-bar">construction.webtoolmedia.co.za</div>
+          <span class="desktop-badge">🖥️ Desktop</span>
+        </div>
+        <div class="live-preview-box">
+          <iframe class="desktop-iframe" src="https://example.com" title="Construction Website Live Preview" loading="lazy"></iframe>
+          <div class="preview-overlay-bar">
+            <span>🟢 Live Desktop Preview</span>
+            <button onclick="openFullscreen('Construction Website', 'https://example.com')" style="background:none; border:none; color:#38bdf8; font-weight:700; cursor:pointer; font-size:0.78rem;">⛶ Fullscreen</button>
+          </div>
+        </div>
+        <div class="preview-actions-bar">
+          <div class="template-info-row">
+            <h4>Construction Website</h4>
+            <span class="template-tag">Builders & Trades</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Project galleries, contractor credentials, quote calculator, and service breakdowns.</p>
+          <div class="template-buttons">
+            <button class="t-btn-preview" onclick="openFullscreen('Construction Website', 'https://example.com')">Full Screen</button>
+            <a href="https://wa.me/27646362673?text=Hi%20WebToolMedia%2C%20I%20want%20to%20request%20the%20Construction%20Website%20Template." target="_blank" rel="noopener noreferrer" class="t-btn-use">Use Template</a>
+          </div>
+        </div>
+      </div>
+      <div class="template-card reveal-up">
+        <div class="browser-frame">
+          <div class="browser-dots">
+            <span class="b-dot" style="background:#ef4444;"></span>
+            <span class="b-dot" style="background:#f59e0b;"></span>
+            <span class="b-dot" style="background:#10b981;"></span>
+          </div>
+          <div class="browser-title-bar">business.webtoolmedia.co.za</div>
+          <span class="desktop-badge">🖥️ Desktop</span>
+        </div>
+        <div class="live-preview-box">
+          <iframe class="desktop-iframe" src="https://example.com" title="Business Website Live Preview" loading="lazy"></iframe>
+          <div class="preview-overlay-bar">
+            <span>🟢 Live Desktop Preview</span>
+            <button onclick="openFullscreen('Business Website', 'https://example.com')" style="background:none; border:none; color:#38bdf8; font-weight:700; cursor:pointer; font-size:0.78rem;">⛶ Fullscreen</button>
+          </div>
+        </div>
+        <div class="preview-actions-bar">
+          <div class="template-info-row">
+            <h4>Business Website</h4>
+            <span class="template-tag">Corporate</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Professional multi-section corporate layout with testimonials, services, and team profiles.</p>
+          <div class="template-buttons">
+            <button class="t-btn-preview" onclick="openFullscreen('Business Website', 'https://example.com')">Full Screen</button>
+            <a href="https://wa.me/27646362673?text=Hi%20WebToolMedia%2C%20I%20want%20to%20request%20the%20Business%20Website%20Template." target="_blank" rel="noopener noreferrer" class="t-btn-use">Use Template</a>
+          </div>
+        </div>
+      </div>
+      <div class="template-card reveal-up">
+        <div class="browser-frame">
+          <div class="browser-dots">
+            <span class="b-dot" style="background:#ef4444;"></span>
+            <span class="b-dot" style="background:#f59e0b;"></span>
+            <span class="b-dot" style="background:#10b981;"></span>
+          </div>
+          <div class="browser-title-bar">salon.webtoolmedia.co.za</div>
+          <span class="desktop-badge">🖥️ Desktop</span>
+        </div>
+        <div class="live-preview-box">
+          <iframe class="desktop-iframe" src="https://example.com" title="Salon Website Live Preview" loading="lazy"></iframe>
+          <div class="preview-overlay-bar">
+            <span>🟢 Live Desktop Preview</span>
+            <button onclick="openFullscreen('Salon Website', 'https://example.com')" style="background:none; border:none; color:#38bdf8; font-weight:700; cursor:pointer; font-size:0.78rem;">⛶ Fullscreen</button>
+          </div>
+        </div>
+        <div class="preview-actions-bar">
+          <div class="template-info-row">
+            <h4>Salon Website</h4>
+            <span class="template-tag">Beauty & Wellness</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Style gallery, appointment booking calendar, pricing list, and stylist profiles.</p>
+          <div class="template-buttons">
+            <button class="t-btn-preview" onclick="openFullscreen('Salon Website', 'https://example.com')">Full Screen</button>
+            <a href="https://wa.me/27646362673?text=Hi%20WebToolMedia%2C%20I%20want%20to%20request%20the%20Salon%20Website%20Template." target="_blank" rel="noopener noreferrer" class="t-btn-use">Use Template</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="see-more-wrapper reveal-up">
+      <a href="templates.html" class="btn-see-more">
+        <span>See More Templates</span>
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>WebToolMedia</h4>
+        <p>Professional Website Development, SEO Setup, Google Analytics, and Digital Solutions for businesses, freelancers, and startups.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="packages.html">Business Website (From R1,500)</a>
+        <a href="packages.html">WordPress Website (From R2,500)</a>
+        <a href="templates.html">Interactive Templates</a>
+        <a href="contact.html">Google Services & SEO</a>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="templates.html">Explore Templates</a>
+        <a href="contact.html">Request A Free Quote</a>
+        <a href="tel:0646362673">Call: 064 636 2673</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> <strong>WebToolMedia</strong>. All Rights Reserved.
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
