@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webtoolmedia | Fine Dining & Kitchen</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-base: #0a0a0c;
+            --bg-surface: rgba(18, 18, 22, 0.82);
+            --bg-card: rgba(26, 26, 32, 0.75);
+            --accent: #df9b52; /* Polished Copper Gold */
+            --accent-hover: #f0b16c;
+            --accent-alt: #e06d53; /* Warm Rust */
+            --text-main: #f5f4f0;
+            --text-muted: #aba59c;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(rgba(10, 10, 12, 0.8), rgba(12, 12, 16, 0.9)), url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1920&q=85') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Floating Glass Navbar */
+        nav {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 28px;
+            background: rgba(16, 16, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            z-index: 1000;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(223, 155, 82, 0.35);
+            transition: transform 0.4s ease;
+        }
+
+        .brand-logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.08);
+        }
+
+        .brand-text {
+            font-size: 1.55rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-text span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cart-nav-btn {
+            background: rgba(223, 155, 82, 0.12);
+            border: 1px solid var(--accent);
+            color: var(--text-main) !important;
+            padding: 8px 18px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-nav-btn:hover {
+            background: var(--accent);
+            color: #0a0a0c !important;
+        }
+
+        .cart-badge {
+            background: var(--accent-alt);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.78rem;
+            padding: 2px 7px;
+            border-radius: 50px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 860px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 74px;
+                right: 0;
+                width: 100%;
+                background: rgba(16, 16, 20, 0.96);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--glass-border);
+                border-radius: 24px;
+                flex-direction: column;
+                padding: 28px 0;
+                gap: 20px;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-15px);
+                transition: var(--transition);
+            }
+            .nav-links.active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        header.hero {
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 130px 24px 60px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            header.hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 115px;
+            }
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(223, 155, 82, 0.1);
+            border: 1px solid rgba(223, 155, 82, 0.3);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+            line-height: 1.06;
+            margin-bottom: 22px;
+        }
+
+        .hero-content h1 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.06rem;
+            line-height: 1.7;
+            margin-bottom: 34px;
+            max-width: 500px;
+        }
+
+        @media (max-width: 900px) {
+            .hero-content p {
+                margin: 0 auto 34px;
+            }
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 900px) {
+            .hero-btns {
+                justify-content: center;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent), #c78036);
+            color: #0a0a0c;
+            padding: 15px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(223, 155, 82, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(223, 155, 82, 0.45);
+        }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .hero-showcase {
+            position: relative;
+            height: 480px;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-showcase img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 24px;
+            scroll-margin-top: 85px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 22px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.2rem, 4vw, 3.1rem);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 440px;
+            font-size: 0.98rem;
+        }
+
+        /* Filter Tabs */
+        .menu-tabs {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            padding: 10px 22px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--accent);
+            color: #0a0a0c;
+            border-color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Menu Grid (25 Dishes) */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        @media (max-width: 960px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 620px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .menu-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            border-radius: 22px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(223, 155, 82, 0.45);
+            box-shadow: 0 22px 45px rgba(0, 0, 0, 0.5);
+        }
+
+        .menu-img-box {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-card:hover .menu-img-box img {
+            transform: scale(1.08);
+        }
+
+        .menu-cat-tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(8px);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--glass-border);
+        }
+
+        .menu-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .menu-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .menu-title-row h3 {
+            font-size: 1.35rem;
+            color: var(--text-main);
+        }
+
+        .menu-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .menu-desc {
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            line-height: 1.55;
+            margin-bottom: 20px;
+        }
+
+        .add-order-btn {
+            margin-top: auto;
+            width: 100%;
+            padding: 11px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .add-order-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #0a0a0c;
+        }
+
+        /* Hub Grid: Order Cart + Table Reservation */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (max-width: 920px) {
+            .hub-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .glass-panel {
+            background: var(--bg-surface);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 26px;
+            padding: 36px 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .glass-panel h3 {
+            font-size: 1.85rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .panel-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .cart-items-container {
+            min-height: 120px;
+            max-height: 280px;
+            overflow-y: auto;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 16px 0;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart-msg {
+            color: var(--text-muted);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.92rem;
+        }
+
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.08);
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.98rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .cart-item-info span {
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.06);
+            color: var(--text-main);
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .qty-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #0a0a0c;
+        }
+
+        .order-total-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .order-total-bar span:last-child {
+            color: var(--accent);
+            font-size: 1.6rem;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 500px) {
+            .form-row-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        label {
+            display: block;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 13px 15px;
+            background: rgba(10, 10, 12, 0.7);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            color-scheme: dark;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent);
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 100px;
+            background: #25d366;
+            color: #0a1a0e;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #2ce370;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Map */
+        .map-wrapper {
+            height: 380px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-card);
+            filter: grayscale(20%) contrast(105%);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: rgba(20, 20, 26, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--accent);
+            color: var(--text-main);
+            padding: 14px 22px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 12, 0.92);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 8% 30px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto 36px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: var(--text-muted);
+            font-size: 0.94rem;
+            text-decoration: none;
+            margin-bottom: 8px;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-col i {
+            color: var(--accent);
+            margin-right: 9px;
+            width: 16px;
+        }
+
+        .copyright {
+            text-align: center;
+            color: #7a746c;
+            font-size: 0.86rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="brand-logo">
+            <div class="logo-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a0a0c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 17h18"/>
+                    <path d="M5 17a7 7 0 0 1 14 0"/>
+                    <path d="M12 7v3"/>
+                    <circle cx="12" cy="5" r="1.5"/>
+                    <path d="M2 20h20"/>
+                </svg>
+            </div>
+            <span class="brand-text">webtoolmedia<span>.</span></span>
+        </a>
+
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#menu" onclick="closeMenu()">Menu (25 Dishes)</a></li>
+            <li><a href="#order-reserve" onclick="closeMenu()">Reservations</a></li>
+            <li><a href="#location" onclick="closeMenu()">Location</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            <li>
+                <a href="#order-reserve" class="cart-nav-btn" onclick="closeMenu()">
+                    <i class="fa-solid fa-bag-shopping"></i> Order <span class="cart-badge" id="navCartCount">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="hero-tag"><i class="fa-solid fa-utensils"></i> Artisan Kitchen & Grill</span>
+            <h1>Culinary Mastery, <em>Served</em> Fresh.</h1>
+            <p>Welcome to webtoolmedia. Explore our expanded collection of 25 handcrafted dishes, order online for rapid delivery or collection, or book your table.</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn">Explore All 25 Dishes <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#order-reserve" class="btn btn-glass">Book a Table</a>
+            </div>
+        </div>
+        <div class="hero-showcase">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85" alt="Delicious Gourmet Spread">
+        </div>
+    </header>
+
+    <!-- Menu Showcase: 25 Dishes (Scalable for Future Additions) -->
+    <section id="menu" class="container">
+        <div class="section-header">
+            <div>
+                <h2>Signature Menu</h2>
+            </div>
+            <p>Choose from our 25 signature culinary creations. Filter by category or add directly to your order.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="menu-tabs">
+            <button type="button" class="tab-btn active" onclick="filterMenu('all', this)">All (25)</button>
+            <button type="button" class="tab-btn" onclick="filterMenu('starters', this)">Starters (5)</button>
+            <button type="button" class="tab-btn" onclick="filterMenu('mains', this)">Flame Mains (6)</button>
+            <button type="button" class="tab-btn" onclick="filterMenu('platters', this)">Sharing Platters (5)</button>
+            <button type="button" class="tab-btn" onclick="filterMenu('pizzas', this)">Wood-Fired Pizzas (5)</button>
+            <button type="button" class="tab-btn" onclick="filterMenu('drinks', this)">Drinks & Desserts (4)</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            
+            <!-- ================= STARTERS (5 DISHES) ================= -->
+            <div class="menu-card" data-category="starters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Starter</span>
+                    <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=800&q=80" alt="Peri-Peri Wings">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Peri-Peri Flame Wings</h3>
+                        <span class="menu-price">R85</span>
+                    </div>
+                    <p class="menu-desc">Chargrilled free-range wings basted in house-smoked chilli marinade.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Peri-Peri Flame Wings', 85)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="starters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Starter</span>
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80" alt="Crispy Calamari">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Crispy Lemon Calamari</h3>
+                        <span class="menu-price">R110</span>
+                    </div>
+                    <p class="menu-desc">Flash-fried tender calamari strips tossed in sea salt with garlic aioli.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Crispy Lemon Calamari', 110)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="starters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Starter</span>
+                    <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80" alt="Bruschetta">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Artesian Tomato Bruschetta</h3>
+                        <span class="menu-price">R75</span>
+                    </div>
+                    <p class="menu-desc">Grilled sourdough, heirloom tomatoes, fresh basil, garlic, and aged balsamic glaze.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Artesian Tomato Bruschetta', 75)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="starters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Starter</span>
+                    <img src="https://images.unsplash.com/photo-1574484284002-712d98457e38?auto=format&fit=crop&w=800&q=80" alt="Garlic Prawns">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Garlic Butter Prawns</h3>
+                        <span class="menu-price">R125</span>
+                    </div>
+                    <p class="menu-desc">Pan-seared king prawns in a rich garlic, white wine, and herb butter sauce.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Garlic Butter Prawns', 125)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="starters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Starter</span>
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="Stuffed Mushrooms">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Creamy Stuffed Mushrooms</h3>
+                        <span class="menu-price">R80</span>
+                    </div>
+                    <p class="menu-desc">Cap mushrooms filled with cream cheese, herbs, and melted parmesan gratin.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Creamy Stuffed Mushrooms', 80)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <!-- ================= FLAME MAINS (6 DISHES) ================= -->
+            <div class="menu-card" data-category="mains">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Flame Main</span>
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80" alt="Ribeye Steak">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>300g Aged Ribeye Steak</h3>
+                        <span class="menu-price">R220</span>
+                    </div>
+                    <p class="menu-desc">Prime grain-fed ribeye seared over open coals, served with rustic fries.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('300g Aged Ribeye Steak', 220)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="mains">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Flame Main</span>
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Smash Burger">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Signature Smash Burger</h3>
+                        <span class="menu-price">R135</span>
+                    </div>
+                    <p class="menu-desc">Double Wagyu patty, aged cheddar, caramelized onions, and house sauce.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Signature Smash Burger', 135)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="mains">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Flame Main</span>
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Grilled Chicken">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Lemon Herb Half Chicken</h3>
+                        <span class="menu-price">R155</span>
+                    </div>
+                    <p class="menu-desc">Slow-roasted flame chicken basted in lemon zest, rosemary, and olive oil.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Lemon Herb Half Chicken', 155)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="mains">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Flame Main</span>
+                    <img src="https://images.unsplash.com/photo-1514944298352-f4d73911c0d6?auto=format&fit=crop&w=800&q=80" alt="Lamb Chops">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Karoo Rosemary Lamb Chops</h3>
+                        <span class="menu-price">R240</span>
+                    </div>
+                    <p class="menu-desc">Three succulent loin chops grilled over open wood fire with mint chimichurri.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Karoo Rosemary Lamb Chops', 240)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="mains">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Flame Main</span>
+                    <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80" alt="Salmon Fillet">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Pan-Seared Norwegian Salmon</h3>
+                        <span class="menu-price">R260</span>
+                    </div>
+                    <p class="menu-desc">Fresh salmon fillet with lemon butter reduction, asparagus, and baby potatoes.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Pan-Seared Norwegian Salmon', 260)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="mains">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Flame Main</span>
+                    <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=800&q=80" alt="Mushroom Risotto">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Truffle Wild Mushroom Risotto</h3>
+                        <span class="menu-price">R165</span>
+                    </div>
+                    <p class="menu-desc">Arborio rice simmered with wild forest mushrooms, truffle oil, and parmesan.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Truffle Wild Mushroom Risotto', 165)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <!-- ================= SHARING PLATTERS (5 DISHES) ================= -->
+            <div class="menu-card" data-category="platters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Sharing Platter</span>
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="Executive Grill Platter">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Executive Grill Platter</h3>
+                        <span class="menu-price">R380</span>
+                    </div>
+                    <p class="menu-desc">BBQ pork ribs, flame chicken, boerewors, spicy wings & two large sides.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Executive Grill Platter', 380)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="platters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Sharing Platter</span>
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Carnivore Feast">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Carnivore Feast Platter</h3>
+                        <span class="menu-price">R450</span>
+                    </div>
+                    <p class="menu-desc">Ribeye slices, lamb chops, sticky beef short ribs, onion rings, and dipping sauces.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Carnivore Feast Platter', 450)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="platters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Sharing Platter</span>
+                    <img src="https://images.unsplash.com/photo-1532336414038-cf19250c5756?auto=format&fit=crop&w=800&q=80" alt="Seafood Platter">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Coastal Seafood Platter</h3>
+                        <span class="menu-price">R490</span>
+                    </div>
+                    <p class="menu-desc>Grilled prawns, mussels in white wine cream, calamari, and line fish.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Coastal Seafood Platter', 490)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="platters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Sharing Platter</span>
+                    <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=800&q=80" alt="Tapas Board">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Mediterranean Tapas Board</h3>
+                        <span class="menu-price">R295</span>
+                    </div>
+                    <p class="menu-desc">Cured meats, artisanal cheeses, olives, stuffed piquant peppers, and flatbread.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Mediterranean Tapas Board', 295)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="platters">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Sharing Platter</span>
+                    <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80" alt="Sliders Platter">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Gourmet Slider Selection</h3>
+                        <span class="menu-price">R260</span>
+                    </div>
+                    <p class="menu-desc">Six mini sliders: 2 beef cheese, 2 crispy chicken, and 2 pulled pork burgers.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Gourmet Slider Selection', 260)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <!-- ================= WOOD-FIRED PIZZAS (5 DISHES) ================= -->
+            <div class="menu-card" data-category="pizzas">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Wood-Fired Pizza</span>
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80" alt="Margherita Pizza">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Classic Margherita Pizza</h3>
+                        <span class="menu-price">R110</span>
+                    </div>
+                    <p class="menu-desc">San Marzano tomato base, fresh fior di latte mozzarella, and basil leaves.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Classic Margherita Pizza', 110)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="pizzas">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Wood-Fired Pizza</span>
+                    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80" alt="Pepperoni Pizza">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Spicy Pepperoni Pizza</h3>
+                        <span class="menu-price">R145</span>
+                    </div>
+                    <p class="menu-desc">Loaded with Italian pepperoni, mozzarella, chilli flakes, and wild honey drizzle.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Spicy Pepperoni Pizza', 145)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="pizzas">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Wood-Fired Pizza</span>
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80" alt="BBQ Chicken Pizza">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Smoky BBQ Chicken Pizza</h3>
+                        <span class="menu-price">R150</span>
+                    </div>
+                    <p class="menu-desc">Grilled chicken breast, tangy BBQ sauce, red onions, peppers, and mozzarella.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Smoky BBQ Chicken Pizza', 150)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="pizzas">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Wood-Fired Pizza</span>
+                    <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=800&q=80" alt="Vegetarian Pizza">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Roasted Veg & Feta Pizza</h3>
+                        <span class="menu-price">R135</span>
+                    </div>
+                    <p class="menu-desc">Grilled zucchini, bell peppers, kalamata olives, sun-dried tomatoes, and creamy feta.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Roasted Veg & Feta Pizza', 135)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="pizzas">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Wood-Fired Pizza</span>
+                    <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80" alt="Meaty Supreme Pizza">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Ultimate Meaty Supreme</h3>
+                        <span class="menu-price">R170</span>
+                    </div>
+                    <p class="menu-desc">Bacon, ground beef, pepperoni, ham, spicy sausage, and double mozzarella.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Ultimate Meaty Supreme', 170)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <!-- ================= DRINKS & DESSERTS (4 DISHES) ================= -->
+            <div class="menu-card" data-category="drinks">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Dessert & Drink</span>
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80" alt="Chocolate Lava">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Molten Chocolate Lava Cake</h3>
+                        <span class="menu-price">R95</span>
+                    </div>
+                    <p class="menu-desc">Warm Belgian dark chocolate fondant served with vanilla bean gelato.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Molten Chocolate Lava Cake', 95)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="drinks">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Dessert & Drink</span>
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80" alt="Berry Cheesecake">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>New York Berry Cheesecake</h3>
+                        <span class="menu-price">R85</span>
+                    </div>
+                    <p class="menu-desc">Velvety baked cheesecake topped with a tart wild berry compote.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('New York Berry Cheesecake', 85)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="drinks">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Dessert & Drink</span>
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80" alt="Craft Mocktail">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Passionfruit Mint Cooler</h3>
+                        <span class="menu-price">R55</span>
+                    </div>
+                    <p class="menu-desc">Refreshing blend of passionfruit puree, fresh mint, lime, and sparkling soda.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Passionfruit Mint Cooler', 55)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="drinks">
+                <div class="menu-img-box">
+                    <span class="menu-cat-tag">Dessert & Drink</span>
+                    <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80" alt="Iced Coffee">
+                </div>
+                <div class="menu-body">
+                    <div class="menu-title-row">
+                        <h3>Caramel Cold Brew Iced Coffee</h3>
+                        <span class="menu-price">R50</span>
+                    </div>
+                    <p class="menu-desc">Smooth slow-steeped cold brew with rich caramel syrup and cold milk.</p>
+                    <button type="button" class="add-order-btn" onclick="addToCart('Caramel Cold Brew Iced Coffee', 50)"><i class="fa-solid fa-plus"></i> Add to Order</button>
+                </div>
+            </div>
+
+            <!-- FUTURE NOTE: To add more dishes in the future, just copy and paste any <div class="menu-card" data-category="..."> block above! -->
+
+        </div>
+    </section>
+
+    <!-- Hub: Order Cart + Table Reservation -->
+    <section id="order-reserve" class="container">
+        <div class="section-header">
+            <div>
+                <h2>Order & Reserve</h2>
+            </div>
+            <p>Review your online food basket or book a dining table instantly via WhatsApp.</p>
+        </div>
+
+        <div class="hub-grid">
+            <!-- Left: Order Cart -->
+            <div class="glass-panel">
+                <h3><i class="fa-solid fa-bag-shopping"></i> Online Food Order</h3>
+                <p class="panel-sub">Your selected dishes will be prepared fresh upon confirmation.</p>
+
+                <div class="cart-items-container" id="cartItemsList">
+                    <div class="empty-cart-msg">Your basket is empty. Add dishes from the menu above!</div>
+                </div>
+
+                <div class="order-total-bar">
+                    <span>Order Total</span>
+                    <span id="cartTotalAmount">R0</span>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="orderCustomerName" placeholder="e.g. John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Order Type</label>
+                        <select id="orderType">
+                            <option value="Collection / Pickup">Collection / Pickup</option>
+                            <option value="Local Delivery">Local Delivery</option>
+                            <option value="Dine-In Pre-Order">Dine-In Pre-Order</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Delivery Address or Special Notes</label>
+                    <input type="text" id="orderNotes" placeholder="e.g. Extra sauce, or street address">
+                </div>
+
+                <button type="button" class="whatsapp-btn" onclick="sendFoodOrderWhatsApp()">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.35rem;"></i> Order Food via WhatsApp
+                </button>
+            </div>
+
+            <!-- Right: Table Reservation -->
+            <div class="glass-panel">
+                <h3><i class="fa-solid fa-champagne-glasses"></i> Reserve a Table</h3>
+                <p class="panel-sub">Secure your dining spot for dates, family gatherings, or events.</p>
+
+                <div class="form-group">
+                    <label>Guest Full Name</label>
+                    <input type="text" id="resName" placeholder="e.g. Sarah Connor">
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="resDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Time</label>
+                        <input type="time" id="resTime" value="19:00">
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label>Number of Guests</label>
+                        <input type="number" id="resGuests" value="2" min="1" max="30">
+                    </div>
+                    <div class="form-group">
+                        <label>Seating Preference</label>
+                        <select id="resSeating">
+                            <option value="Indoor Main Dining">Indoor Main Dining</option>
+                            <option value="Outdoor Patio Lounge">Outdoor Patio Lounge</option>
+                            <option value="VIP Private Booth">VIP Private Booth</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Special Requests (Optional)</label>
+                    <input type="text" id="resNotes" placeholder="e.g. Birthday celebration">
+                </div>
+
+                <button type="button" class="whatsapp-btn" onclick="sendTableReservationWhatsApp()">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.35rem;"></i> Confirm Table via WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Location -->
+    <section id="location" class="container">
+        <div class="section-header">
+            <div>
+                <h2>Find Our Restaurant</h2>
+            </div>
+            <p>Visit webtoolmedia for dine-in and takeaway collection.</p>
+        </div>
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.5!2d30.4!3d-23.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDEyJzAwLjAiUyAzMMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sza!4v1650000000000!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="brand-logo" style="margin-bottom: 14px;">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a0a0c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 17h18"/>
+                            <path d="M5 17a7 7 0 0 1 14 0"/>
+                            <path d="M12 7v3"/>
+                            <circle cx="12" cy="5" r="1.5"/>
+                            <path d="M2 20h20"/>
+                        </svg>
+                    </div>
+                    <span class="brand-text">webtoolmedia<span>.</span></span>
+                </a>
+                <p><i class="fa-solid fa-envelope"></i> webtoolmedia@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> 070 357 2248</p>
+                <p><i class="fa-brands fa-whatsapp"></i> 070 357 2248</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Opening Hours</h4>
+                <p><i class="fa-regular fa-clock"></i> Mon – Thu: 10:00 AM – 10:00 PM</p>
+                <p><i class="fa-regular fa-clock"></i> Fri – Sat: 10:00 AM – 11:30 PM</p>
+                <p><i class="fa-regular fa-clock"></i> Sunday: 11:00 AM – 9:00 PM</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#menu">Our 25-Dish Menu</a>
+                <a href="#order-reserve">Online Food Order</a>
+                <a href="#order-reserve">Table Reservations</a>
+                <a href="#location">Map & Directions</a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 webtoolmedia Restaurant & Kitchen. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toastMsg">
+        <i class="fa-solid fa-circle-check" style="color: var(--accent);"></i>
+        <span id="toastText">Added to your order!</span>
+    </div>
+
+    <script>
+        const WHATSAPP_NUMBER = '27703572248';
+        let cart = [];
+
+        // Mobile Nav Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+
+        function closeMenu() {
+            navLinks.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+
+        // Default Reservation Date
+        document.addEventListener('DOMContentLoaded', () => {
+            const resDate = document.getElementById('resDate');
+            if (resDate) resDate.valueAsDate = new Date();
+        });
+
+        // Menu Filtering
+        function filterMenu(category, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.menu-card').forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Cart Logic
+        function addToCart(name, price) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            renderCart();
+            showToast(`Added "${name}" to your order`);
+        }
+
+        function updateQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cartItemsList');
+            const totalEl = document.getElementById('cartTotalAmount');
+            const badgeEl = document.getElementById('navCartCount');
+
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                totalQty += item.qty;
+                totalPrice += item.price * item.qty;
+            });
+
+            badgeEl.innerText = totalQty;
+            totalEl.innerText = 'R' + totalPrice;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-cart-msg">Your basket is empty. Add dishes from the menu above!</div>';
+                return;
+            }
+
+            container.innerHTML = cart.map((item, idx) => `
+                <div class="cart-item-row">
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <span>R${item.price} each &bull; Subtotal: R${item.price * item.qty}</span>
+                    </div>
+                    <div class="qty-controls">
+                        <button type="button" class="qty-btn" onclick="updateQty(${idx}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button type="button" class="qty-btn" onclick="updateQty(${idx}, 1)">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function sendFoodOrderWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Please add at least one dish to your order first.');
+                document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            const name = document.getElementById('orderCustomerName').value.trim() || 'Customer';
+            const type = document.getElementById('orderType').value;
+            const notes = document.getElementById('orderNotes').value.trim() || 'None';
+
+            let total = 0;
+            const itemsText = cart.map(item => {
+                const sub = item.price * item.qty;
+                total += sub;
+                return `• ${item.qty}x ${item.name} (R${sub})`;
+            }).join('%0A');
+
+            const message = `Hello *webtoolmedia*, I would like to place a food order:%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Order Type:* ${encodeURIComponent(type)}%0A%0A*Items:*%0A${itemsText}%0A%0A*Total Amount:* R${total}%0A*Notes/Address:* ${encodeURIComponent(notes)}`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+        }
+
+        function sendTableReservationWhatsApp() {
+            const name = document.getElementById('resName').value.trim() || 'Guest';
+            const date = document.getElementById('resDate').value || 'Not specified';
+            const time = document.getElementById('resTime').value || '19:00';
+            const guests = document.getElementById('resGuests').value || '2';
+            const seating = document.getElementById('resSeating').value;
+            const notes = document.getElementById('resNotes').value.trim() || 'None';
+
+            const message = `Hello *webtoolmedia*, I would like to reserve a table:%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Date:* ${date}%0A*Time:* ${time}%0A*Guests:* ${guests}%0A*Seating:* ${encodeURIComponent(seating)}%0A*Special Requests:* ${encodeURIComponent(notes)}%0A%0APlease confirm my table!`;
+
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+        }
+
+        let toastTimeout;
+        function showToast(text) {
+            const toast = document.getElementById('toastMsg');
+            document.getElementById('toastText').innerText = text;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2800);
+        }
+    </script>
+</body>
+</html>

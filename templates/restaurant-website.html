@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>webtoolmedia | Artisanal Bistro, Flame Grill & Online Food Ordering</title>
+    <meta name="title" content="webtoolmedia | Artisanal Bistro, Flame Grill & Online Food Ordering">
+    <meta name="description" content="Dine at webtoolmedia Bistro & Kitchen. Explore our 25-dish flame grill menu, order fresh meals online for pickup or delivery, or reserve your dining table today. Call 070 357 2248.">
+    <meta name="keywords" content="webtoolmedia restaurant, flame grill, online food ordering, table reservations, wood-fired pizza, sharing platters, bistro dining, steakhouse, takeaway delivery">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="webtoolmedia">
+    <link rel="canonical" href="https://webtoolmedia.co.za/">
+
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
+    <meta property="og:type" content="restaurant">
+    <meta property="og:title" content="webtoolmedia | Artisanal Bistro & Flame Grill">
+    <meta property="og:description" content="Explore 25 handcrafted dishes, order online via WhatsApp, or reserve your table at webtoolmedia.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="webtoolmedia | Artisanal Bistro & Flame Grill">
+    <meta name="twitter:description" content="Explore 25 handcrafted dishes, order online, or reserve your dining table at webtoolmedia.">
+
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231b4332'/%3E%3Cpath d='M6 21h20M9 21a7 7 0 0 1 14 0M16 11v3' stroke='%23faf7f2' stroke-width='2.2' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='16' cy='9' r='1.5' fill='%23d96b43'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- JSON-LD Structured Data for Google Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "webtoolmedia",
+      "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85",
+      "telephone": "+27703572248",
+      "email": "webtoolmedia@gmail.com",
+      "servesCuisine": ["Flame Grill", "Wood-Fired Pizza", "Contemporary Bistro", "Seafood"],
+      "priceRange": "$$",
+      "acceptsReservations": "True",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "10:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Friday", "Saturday"],
+          "opens": "10:00",
+          "closes": "23:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "11:00",
+          "closes": "21:00"
+        }
+      ],
+      "hasMenu": {
+        "@type": "Menu",
+        "name": "webtoolmedia Main Menu",
+        "description": "25 signature starters, flame-grilled mains, sharing platters, wood-fired pizzas, and desserts."
+      }
+    }
+    </script>
+
+    <style>
+        /* ==========================================================================
+           SUNLIT BOTANICAL BISTRO THEME & LAYOUT (Light Editorial Cream + Forest + Terracotta)
+           ========================================================================== */
+        :root {
+            --bg-cream: #faf7f2;
+            --bg-sand: #f1ebe1;
+            --bg-white: #ffffff;
+            --primary-green: #1b4332;
+            --primary-green-light: #2d6a4f;
+            --accent-terracotta: #d96b43;
+            --accent-terracotta-dark: #bf5630;
+            --text-ink: #1e2421;
+            --text-slate: #56615b;
+            --border-warm: #e4ddd1;
+            --shadow-soft: 0 12px 32px rgba(27, 67, 50, 0.06);
+            --shadow-hover: 0 20px 44px rgba(27, 67, 50, 0.12);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-name {
+            font-family: 'Fraunces', serif;
+            color: var(--primary-green);
+        }
+
+        /* Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Top Full-Width Announcement & Contact Ribbon */
+        .top-ribbon {
+            background-color: var(--primary-green);
+            color: var(--bg-cream);
+            font-size: 0.82rem;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .top-ribbon a {
+            color: var(--bg-cream);
+            text-decoration: none;
+            margin-right: 18px;
+            transition: opacity 0.2s;
+        }
+
+        .top-ribbon a:hover {
+            opacity: 0.85;
+            text-decoration: underline;
+        }
+
+        /* Sticky Full-Width Editorial Header */
+        header.site-header {
+            position: sticky;
+            top: 0;
+            background: rgba(250, 247, 242, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-warm);
+            z-index: 1000;
+            padding: 14px 5%;
+        }
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-emblem {
+            width: 42px;
+            height: 42px;
+            background-color: var(--primary-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s ease;
+        }
+
+        .brand-logo:hover .logo-emblem {
+            transform: rotate(-8deg) scale(1.06);
+        }
+
+        .brand-name {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            letter-spacing: -0.4px;
+        }
+
+        .brand-name span {
+            color: var(--accent-terracotta);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-ink);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-terracotta);
+        }
+
+        .nav-order-pill {
+            background-color: var(--accent-terracotta);
+            color: #ffffff !important;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700 !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 18px rgba(217, 107, 67, 0.28);
+        }
+
+        .nav-order-pill:hover {
+            background-color: var(--accent-terracotta-dark);
+            transform: translateY(-2px);
+        }
+
+        .badge-count {
+            background: #ffffff;
+            color: var(--accent-terracotta);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 20px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-warm);
+            color: var(--primary-green);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 880px) {
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-menu {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-white);
+                border-bottom: 1px solid var(--border-warm);
+                flex-direction: column;
+                padding: 28px 5%;
+                gap: 18px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+                display: none;
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+        }
+
+        /* Editorial Asymmetric Hero Banner + Bento Collage */
+        .hero-bistro {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 60px 5% 80px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        @media (max-width: 920px) {
+            .hero-bistro {
+                grid-template-columns: 1fr;
+                padding-top: 40px;
+            }
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            background: var(--bg-sand);
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 7px 14px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            border: 1px solid var(--border-warm);
+        }
+
+        .hero-bistro h1 {
+            font-size: clamp(2.6rem, 5vw, 4.3rem);
+            line-height: 1.08;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-bistro h1 em {
+            color: var(--accent-terracotta);
+            font-style: italic;
+        }
+
+        .hero-lead {
+            color: var(--text-slate);
+            font-size: 1.08rem;
+            margin-bottom: 32px;
+            max-width: 520px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(27, 67, 50, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-white);
+            color: var(--primary-green);
+            border: 1px solid var(--border-warm);
+            padding: 15px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-green);
+            background-color: var(--bg-sand);
+        }
+
+        /* Bento Image Collage on Right */
+        .hero-bento {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-rows: 220px 220px;
+            gap: 16px;
+        }
+
+        @media (max-width: 560px) {
+            .hero-bento {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+        }
+
+        .bento-tile {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-warm);
+        }
+
+        .bento-tile.tall {
+            grid-row: span 2;
+        }
+
+        @media (max-width: 560px) {
+            .bento-tile.tall {
+                grid-row: span 1;
+                height: 260px;
+            }
+            .bento-tile {
+                height: 200px;
+            }
+        }
+
+        .bento-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .bento-tile:hover img {
+            transform: scale(1.06);
+        }
+
+        .bento-caption {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--primary-green);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 6px;
+        }
+
+        /* Section Wrapper */
+        .section-block {
+            padding: 80px 5%;
+            max-width: 1280px;
+            margin: 0 auto;
+            scroll-margin-top: 80px;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 44px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2.1rem, 4vw, 2.9rem);
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: var(--text-slate);
+            font-size: 1.02rem;
+        }
+
+        /* Filter Pill Bar + Search */
+        .menu-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+            background: var(--bg-white);
+            padding: 14px 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border-warm);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pill-btn {
+            background: var(--bg-cream);
+            border: 1px solid var(--border-warm);
+            color: var(--text-ink);
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .pill-btn.active, .pill-btn:hover {
+            background: var(--primary-green);
+            color: #ffffff;
+            border-color: var(--primary-green);
+        }
+
+        .menu-search {
+            position: relative;
+            min-width: 240px;
+            flex-grow: 1;
+            max-width: 320px;
+        }
+
+        .menu-search input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border: 1px solid var(--border-warm);
+            border-radius: 8px;
+            background: var(--bg-cream);
+            color: var(--text-ink);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .menu-search input:focus {
+            border-color: var(--primary-green);
+        }
+
+        .menu-search i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-slate);
+            font-size: 0.88rem;
+        }
+
+        /* Editorial Bistro Menu Layout (2-Column Horizontal Cards on Desktop) */
+        .bistro-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        @media (max-width: 860px) {
+            .bistro-menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .dish-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-warm);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .dish-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-terracotta);
+            box-shadow: var(--shadow-hover);
+        }
+
+        @media (max-width: 480px) {
+            .dish-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .dish-thumb {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 480px) {
+            .dish-thumb {
+                width: 100%;
+                height: 180px;
+            }
+        }
+
+        .dish-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .dish-card:hover .dish-thumb img {
+            transform: scale(1.08);
+        }
+
+        .dish-details {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dish-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .dish-top h3 {
+            font-size: 1.25rem;
+            color: var(--primary-green);
+            line-height: 1.25;
+        }
+
+        .dish-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-terracotta);
+            white-space: nowrap;
+        }
+
+        .dish-desc {
+            font-size: 0.86rem;
+            color: var(--text-slate);
+            margin-bottom: 12px;
+            line-height: 1.45;
+        }
+
+        .dish-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .dish-cat-label {
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--primary-green-light);
+            background: var(--bg-sand);
+            padding: 3px 9px;
+            border-radius: 4px;
+        }
+
+        .btn-add-dish {
+            background: var(--primary-green);
+            color: #ffffff;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .btn-add-dish:hover {
+            background: var(--accent-terracotta);
+        }
+
+        /* Interactive Ordering & Reservation Workspace */
+        .workspace-band {
+            background-color: var(--bg-sand);
+            border-top: 1px solid var(--border-warm);
+            border-bottom: 1px solid var(--border-warm);
+            padding: 80px 5%;
+            scroll-margin-top: 75px;
+        }
+
+        .workspace-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (max-width: 920px) {
+            .workspace-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bistro-card-panel {
+            background: var(--bg-white);
+            border: 1px solid var(--border-warm);
+            border-radius: 20px;
+            padding: 34px 28px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .bistro-card-panel h3 {
+            font-size: 1.75rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bistro-card-panel h3 i {
+            color: var(--accent-terracotta);
+        }
+
+        .panel-caption {
+            color: var(--text-slate);
+            font-size: 0.9rem;
+            margin-bottom: 22px;
+        }
+
+        /* Cart List */
+        .order-basket {
+            min-height: 110px;
+            max-height: 270px;
+            overflow-y: auto;
+            border-top: 1px solid var(--border-warm);
+            border-bottom: 1px solid var(--border-warm);
+            padding: 14px 0;
+            margin-bottom: 18px;
+        }
+
+        .basket-empty {
+            text-align: center;
+            color: var(--text-slate);
+            padding: 28px 0;
+            font-size: 0.92rem;
+        }
+
+        .basket-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-warm);
+        }
+
+        .basket-row:last-child {
+            border-bottom: none;
+        }
+
+        .basket-item-meta h4 {
+            font-size: 0.95rem;
+            color: var(--text-ink);
+        }
+
+        .basket-item-meta span {
+            font-size: 0.82rem;
+            color: var(--accent-terracotta);
+            font-weight: 600;
+        }
+
+        .qty-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid var(--border-warm);
+            background: var(--bg-cream);
+            color: var(--primary-green);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .qty-circle:hover {
+            background: var(--primary-green);
+            color: #ffffff;
+        }
+
+        .basket-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+
+        .basket-total-row span:last-child {
+            color: var(--accent-terracotta);
+            font-size: 1.55rem;
+        }
+
+        /* Forms */
+        .field-group {
+            margin-bottom: 15px;
+        }
+
+        .field-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media (max-width: 500px) {
+            .field-row-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        label {
+            display: block;
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-ink);
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-cream);
+            border: 1px solid var(--border-warm);
+            border-radius: 10px;
+            color: var(--text-ink);
+            font-size: 0.94rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-green);
+            background: #ffffff;
+        }
+
+        .btn-whatsapp-submit {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: #1f9d55;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+
+        .btn-whatsapp-submit:hover {
+            background-color: #188246;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(31, 157, 85, 0.25);
+        }
+
+        /* Location & Contact Split */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        @media (max-width: 880px) {
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-warm);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .info-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 16px;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            color: var(--text-slate);
+        }
+
+        .info-list li i {
+            color: var(--accent-terracotta);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .map-frame {
+            height: 360px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-warm);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .map-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Toast */
+        .bistro-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--primary-green);
+            color: #ffffff;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 15px 35px rgba(27, 67, 50, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 3000;
+        }
+
+        .bistro-toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer.site-footer {
+            background-color: var(--primary-green);
+            color: var(--bg-cream);
+            padding: 60px 5% 30px;
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto 36px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .footer-col h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.45rem;
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(250, 247, 242, 0.82);
+            text-decoration: none;
+            font-size: 0.94rem;
+            margin-bottom: 8px;
+            display: block;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-terracotta);
+        }
+
+        .footer-col i {
+            color: var(--accent-terracotta);
+            margin-right: 9px;
+            width: 16px;
+        }
+
+        .footer-copy {
+            text-align: center;
+            font-size: 0.86rem;
+            color: rgba(250, 247, 242, 0.65);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Contact & Hours Ribbon -->
+    <div class="top-ribbon">
+        <div>
+            <a href="tel:+27703572248"><i class="fa-solid fa-phone"></i> 070 357 2248</a>
+            <a href="mailto:webtoolmedia@gmail.com"><i class="fa-solid fa-envelope"></i> webtoolmedia@gmail.com</a>
+        </div>
+        <div>
+            <span><i class="fa-regular fa-clock"></i> Open Daily: 10:00 AM – 10:30 PM</span>
+        </div>
+    </div>
+
+    <!-- Sticky Editorial Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#" class="brand-logo" aria-label="webtoolmedia Home">
+                <div class="logo-emblem">
+                    <!-- Custom Culinary Logo SVG -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#faf7f2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 17h18"/>
+                        <path d="M5 17a7 7 0 0 1 14 0"/>
+                        <path d="M12 7v3"/>
+                        <circle cx="12" cy="5" r="1.5" fill="#d96b43" stroke="none"/>
+                        <path d="M2 20h20"/>
+                    </svg>
+                </div>
+                <span class="brand-name">webtoolmedia<span>.</span></span>
+            </a>
+
+            <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Open Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav aria-label="Primary Navigation">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#menu" onclick="closeMobileNav()">Menu</a></li>
+                    <li><a href="#order-book" onclick="closeMobileNav()">Table Booking</a></li>
+                    <li><a href="#location" onclick="closeMobileNav()">Location</a></li>
+                    <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
+                    <li>
+                        <a href="#order-book" class="nav-order-pill" onclick="closeMobileNav()">
+                            <i class="fa-solid fa-basket-shopping"></i> Basket <span class="badge-count" id="headerCartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Bento Photo Grid -->
+        <section class="hero-bistro">
+            <div class="reveal-up visible">
+                <span class="hero-eyebrow">Fresh Ingredients • Flame-Grilled Daily</span>
+                <h1>Honest Food, <em>Crafted</em> for Every Table.</h1>
+                <p class="hero-lead">Welcome to <strong>webtoolmedia</strong>. Browse our 25 handcrafted bistro dishes, order online for swift pickup or delivery, or reserve a table for your next gathering.</p>
+                <div class="hero-actions">
+                    <a href="#menu" class="btn-primary">Browse 25-Dish Menu <i class="fa-solid fa-utensils"></i></a>
+                    <a href="#order-book" class="btn-secondary">Reserve a Table <i class="fa-regular fa-calendar"></i></a>
+                </div>
+            </div>
+
+            <div class="hero-bento reveal-up visible">
+                <div class="bento-tile tall">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85" alt="Signature Flame Grilled Platter at webtoolmedia">
+                    <span class="bento-caption">Flame-Grilled Signatures</span>
+                </div>
+                <div class="bento-tile">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80" alt="Wood-Fired Artisanal Pizza">
+                    <span class="bento-caption">Wood-Fired Pizzas</span>
+                </div>
+                <div class="bento-tile">
+                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=700&q=80" alt="Handcrafted Bistro Desserts">
+                    <span class="bento-caption">House Desserts</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 25-Dish Interactive Bistro Menu -->
+        <section id="menu" class="section-block">
+            <div class="section-heading reveal-up">
+                <h2>Our 25-Dish Bistro Menu</h2>
+                <p>Filter by course or search for your favorite dish. Click "+ Add" to build your online order.</p>
+            </div>
+
+            <!-- Filter Pills & Search Input -->
+            <div class="menu-controls reveal-up">
+                <div class="filter-pills" role="tablist">
+                    <button type="button" class="pill-btn active" onclick="filterDishes('all', this)">All Dishes (25)</button>
+                    <button type="button" class="pill-btn" onclick="filterDishes('starters', this)">Starters (5)</button>
+                    <button type="button" class="pill-btn" onclick="filterDishes('mains', this)">Flame Mains (6)</button>
+                    <button type="button" class="pill-btn" onclick="filterDishes('platters', this)">Platters (5)</button>
+                    <button type="button" class="pill-btn" onclick="filterDishes('pizzas', this)">Pizzas (5)</button>
+                    <button type="button" class="pill-btn" onclick="filterDishes('drinks', this)">Desserts & Drinks (4)</button>
+                </div>
+
+                <div class="menu-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="dishSearchInput" placeholder="Search dishes..." oninput="searchDishes()" aria-label="Search menu dishes">
+                </div>
+            </div>
+
+            <!-- Menu Grid (Rendered dynamically from scalable JS array so adding future dishes takes 1 line!) -->
+            <div class="bistro-menu-grid" id="bistroMenuContainer"></div>
+        </section>
+
+        <!-- Online Food Order & Table Reservation Workspace -->
+        <section id="order-book" class="workspace-band">
+            <div class="workspace-inner">
+                <div class="section-heading reveal-up">
+                    <h2>Online Ordering & Reservations</h2>
+                    <p>Send your food order directly to our kitchen or reserve a dining table via WhatsApp.</p>
+                </div>
+
+                <div class="workspace-grid">
+                    <!-- Online Food Order Basket -->
+                    <article class="bistro-card-panel reveal-up">
+                        <h3><i class="fa-solid fa-bag-shopping"></i> Your Food Order</h3>
+                        <p class="panel-caption">Select dishes from the menu above to calculate your total and checkout.</p>
+
+                        <div class="order-basket" id="basketContainer">
+                            <div class="basket-empty">Your basket is currently empty. Add dishes from the menu!</div>
+                        </div>
+
+                        <div class="basket-total-row">
+                            <span>Total Payable</span>
+                            <span id="basketTotalDisplay">R0</span>
+                        </div>
+
+                        <div class="field-row-2">
+                            <div class="field-group">
+                                <label for="custName">Your Full Name</label>
+                                <input type="text" id="custName" placeholder="e.g. Thabo Mokoena">
+                            </div>
+                            <div class="field-group">
+                                <label for="fulfillmentType">Collection or Delivery</label>
+                                <select id="fulfillmentType">
+                                    <option value="Takeaway Collection">Takeaway Collection</option>
+                                    <option value="Local Delivery">Local Delivery</option>
+                                    <option value="Dine-In Pre-Order">Dine-In Pre-Order</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="orderNotes">Delivery Address or Cooking Notes</label>
+                            <input type="text" id="orderNotes" placeholder="e.g. Street address or extra peri-peri sauce">
+                        </div>
+
+                        <button type="button" class="btn-whatsapp-submit" onclick="checkoutOrderWhatsApp()">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Send Food Order via WhatsApp
+                        </button>
+                    </article>
+
+                    <!-- Table Reservation Form -->
+                    <article class="bistro-card-panel reveal-up">
+                        <h3><i class="fa-solid fa-chair"></i> Reserve a Dining Table</h3>
+                        <p class="panel-caption">Planning a family lunch, date night, or celebration? Book your table in seconds.</p>
+
+                        <div class="field-group">
+                            <label for="guestFullName">Guest Name</label>
+                            <input type="text" id="guestFullName" placeholder="e.g. Lerato Khumalo">
+                        </div>
+
+                        <div class="field-row-2">
+                            <div class="field-group">
+                                <label for="bookingDate">Reservation Date</label>
+                                <input type="date" id="bookingDate">
+                            </div>
+                            <div class="field-group">
+                                <label for="bookingTime">Preferred Time</label>
+                                <input type="time" id="bookingTime" value="19:00">
+                            </div>
+                        </div>
+
+                        <div class="field-row-2">
+                            <div class="field-group">
+                                <label for="partySize">Number of Guests</label>
+                                <input type="number" id="partySize" value="2" min="1" max="30">
+                            </div>
+                            <div class="field-group">
+                                <label for="seatingZone">Dining Area</label>
+                                <select id="seatingZone">
+                                    <option value="Main Bistro Dining">Main Bistro Dining</option>
+                                    <option value="Garden Terrace Patio">Garden Terrace Patio</option>
+                                    <option value="Private Lounge Booth">Private Lounge Booth</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="bookingNotes">Special Requests (Optional)</label>
+                            <input type="text" id="bookingNotes" placeholder="e.g. Birthday cake setup, baby chair">
+                        </div>
+
+                        <button type="button" class="btn-whatsapp-submit" onclick="bookTableWhatsApp()">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Confirm Table via WhatsApp
+                        </button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Contact Details -->
+        <section id="location" class="section-block">
+            <div class="section-heading reveal-up">
+                <h2>Visit webtoolmedia</h2>
+                <p>Find our location for dine-in service and takeaway pickups.</p>
+            </div>
+
+            <div class="location-grid">
+                <div class="info-card reveal-up">
+                    <h3>Kitchen & Contact</h3>
+                    <ul class="info-list">
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <div><strong>Phone & WhatsApp:</strong><br><a href="tel:+27703572248" style="color: inherit; text-decoration: none;">070 357 2248</a></div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <div><strong>Email Enquiries:</strong><br><a href="mailto:webtoolmedia@gmail.com" style="color: inherit; text-decoration: none;">webtoolmedia@gmail.com</a></div>
+                        </li>
+                        <li>
+                            <i class="fa-regular fa-clock"></i>
+                            <div><strong>Trading Hours:</strong><br>Mon–Thu: 10:00 – 22:00<br>Fri–Sat: 10:00 – 23:30<br>Sun: 11:00 – 21:00</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="map-frame reveal-up">
+                    <iframe title="webtoolmedia Restaurant Map Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3597.5!2d30.4!3d-23.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDEyJzAwLjAiUyAzMMKwMjQnMDAuMCJF!5e0!3m2!1sen!2sza!4v1650000000000!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>webtoolmedia</h4>
+                <p><i class="fa-solid fa-envelope"></i> webtoolmedia@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i> 070 357 2248</p>
+                <p><i class="fa-brands fa-whatsapp"></i> 070 357 2248</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <a href="#menu">25-Dish Menu</a>
+                <a href="#order-book">Order Food Online</a>
+                <a href="#order-book">Reserve a Table</a>
+                <a href="#location">Location & Map</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Service Options</h4>
+                <p><i class="fa-solid fa-utensils"></i> Dine-In Bistro</p>
+                <p><i class="fa-solid fa-bag-shopping"></i> Fast Takeaway Collection</p>
+                <p><i class="fa-solid fa-motorcycle"></i> Local Delivery</p>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 webtoolmedia Restaurant & Bistro. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Toast Alert -->
+    <div class="bistro-toast" id="bistroToast" role="status" aria-live="polite">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="bistroToastText">Item added to your basket!</span>
+    </div>
+
+    <script>
+        const WHATSAPP_PHONE = '27703572248';
+
+        /* ==========================================================================
+           SCALABLE MENU DATA (25 DISHES)
+           To add more dishes in the future, simply copy any { ... } object below
+           and paste it into the list!
+           ========================================================================== */
+        const MENU_ITEMS = [
+            // --- STARTERS (5) ---
+            { id: 1, category: 'starters', tag: 'Starter', name: 'Peri-Peri Flame Wings', price: 85, desc: 'Chargrilled free-range wings basted in house-smoked chilli & garlic herb marinade.', img: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80' },
+            { id: 2, category: 'starters', tag: 'Starter', name: 'Crispy Lemon Calamari', price: 110, desc: 'Flash-fried tender calamari strips tossed in sea salt with roasted garlic aioli.', img: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80' },
+            { id: 3, category: 'starters', tag: 'Starter', name: 'Artisan Tomato Bruschetta', price: 75, desc: 'Toasted sourdough topped with heirloom tomatoes, fresh basil, and aged balsamic.', img: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80' },
+            { id: 4, category: 'starters', tag: 'Starter', name: 'Garlic Butter King Prawns', price: 125, desc: 'Pan-seared king prawns simmered in rich garlic, white wine, and herb butter.', img: 'https://images.unsplash.com/photo-1574484284002-712d98457e38?auto=format&fit=crop&w=600&q=80' },
+            { id: 5, category: 'starters', tag: 'Starter', name: 'Creamy Stuffed Mushrooms', price: 80, desc: 'Large brown mushrooms filled with herb cream cheese and melted parmesan.', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80' },
+
+            // --- FLAME MAINS (6) ---
+            { id: 6, category: 'mains', tag: 'Flame Main', name: '300g Aged Ribeye Steak', price: 220, desc: 'Prime grain-fed ribeye seared over open coals with rustic fries & pepper sauce.', img: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80' },
+            { id: 7, category: 'mains', tag: 'Flame Main', name: 'Signature Wagyu Smash Burger', price: 135, desc: 'Double beef patty, aged cheddar, caramelized onions, house sauce & brioche bun.', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80' },
+            { id: 8, category: 'mains', tag: 'Flame Main', name: 'Lemon Herb Half Chicken', price: 155, desc: 'Flame-grilled half chicken basted in lemon zest, rosemary, and olive oil.', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80' },
+            { id: 9, category: 'mains', tag: 'Flame Main', name: 'Karoo Rosemary Lamb Chops', price: 240, desc: 'Three succulent loin chops grilled over wood fire with fresh mint chimichurri.', img: 'https://images.unsplash.com/photo-1514944298352-f4d73911c0d6?auto=format&fit=crop&w=600&q=80' },
+            { id: 10, category: 'mains', tag: 'Flame Main', name: 'Pan-Seared Norwegian Salmon', price: 260, desc: 'Fresh salmon fillet with lemon butter reduction, asparagus, and baby potatoes.', img: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80' },
+            { id: 11, category: 'mains', tag: 'Flame Main', name: 'Truffle Wild Mushroom Risotto', price: 165, desc: 'Creamy arborio rice cooked with wild forest mushrooms, truffle oil & parmesan.', img: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80' },
+
+            // --- SHARING PLATTERS (5) ---
+            { id: 12, category: 'platters', tag: 'Platter', name: 'Executive Grill Platter', price: 380, desc: 'BBQ pork ribs, flame chicken, boerewors, spicy wings & two large sides.', img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80' },
+            { id: 13, category: 'platters', tag: 'Platter', name: 'Carnivore Feast Board', price: 450, desc: 'Ribeye slices, lamb chops, sticky beef short ribs, onion rings & dipping sauces.', img: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=600&q=80' },
+            { id: 14, category: 'platters', tag: 'Platter', name: 'Coastal Seafood Platter', price: 490, desc: 'Grilled prawns, mussels in white wine cream, crispy calamari & line fish.', img: 'https://images.unsplash.com/photo-1532336414038-cf19250c5756?auto=format&fit=crop&w=600&q=80' },
+            { id: 15, category: 'platters', tag: 'Platter', name: 'Mediterranean Mezze Board', price: 295, desc: 'Cured meats, artisanal cheeses, olives, stuffed peppers & warm flatbread.', img: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80' },
+            { id: 16, category: 'platters', tag: 'Platter', name: 'Gourmet Slider Trio Platter', price: 260, desc: 'Six mini sliders: 2 Wagyu cheese, 2 crispy chicken, and 2 pulled pork burgers.', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80' },
+
+            // --- WOOD-FIRED PIZZAS (5) ---
+            { id: 17, category: 'pizzas', tag: 'Pizza', name: 'Classic Margherita Pizza', price: 110, desc: 'San Marzano tomato base, fresh mozzarella, olive oil, and sweet basil leaves.', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80' },
+            { id: 18, category: 'pizzas', tag: 'Pizza', name: 'Spicy Pepperoni & Honey Pizza', price: 145, desc: 'Italian pepperoni, mozzarella, chilli flakes, and a drizzle of wild blossom honey.', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=600&q=80' },
+            { id: 19, category: 'pizzas', tag: 'Pizza', name: 'Smoky BBQ Chicken Pizza', price: 150, desc: 'Flame-grilled chicken strips, tangy BBQ glaze, red onions, and bell peppers.', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80' },
+            { id: 20, category: 'pizzas', tag: 'Pizza', name: 'Roasted Veg & Feta Pizza', price: 135, desc: 'Charred zucchini, peppers, kalamata olives, sun-dried tomatoes, and feta.', img: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80' },
+            { id: 21, category: 'pizzas', tag: 'Pizza', name: 'Ultimate Meaty Supreme', price: 170, desc: 'Crispy bacon, seasoned beef, pepperoni, ham, spicy sausage & double cheese.', img: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=600&q=80' },
+
+            // --- DESSERTS & DRINKS (4) ---
+            { id: 22, category: 'drinks', tag: 'Dessert', name: 'Molten Chocolate Lava Cake', price: 95, desc: 'Warm Belgian dark chocolate fondant served with creamy vanilla bean gelato.', img: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=600&q=80' },
+            { id: 23, category: 'drinks', tag: 'Dessert', name: 'New York Berry Cheesecake', price: 85, desc: 'Velvety baked vanilla cheesecake topped with a tangy wild berry compote.', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80' },
+            { id: 24, category: 'drinks', tag: 'Drink', name: 'Passionfruit Mint Cooler', price: 55, desc: 'Refreshing blend of passionfruit puree, garden mint, fresh lime & soda.', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80' },
+            { id: 25, category: 'drinks', tag: 'Drink', name: 'Salted Caramel Cold Brew', price: 50, desc: 'Slow-steeped artisan iced coffee swirled with house salted caramel & milk.', img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=600&q=80' }
+        ];
+
+        let activeCategory = 'all';
+        let basket = [];
+
+        // Render Menu Items
+        function renderMenu() {
+            const container = document.getElementById('bistroMenuContainer');
+            const query = document.getElementById('dishSearchInput').value.toLowerCase().trim();
+
+            const filtered = MENU_ITEMS.filter(item => {
+                const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+                const matchesSearch = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color: var(--text-slate); padding: 30px;">No dishes matched your search. Try another keyword!</p>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => `
+                <article class="dish-card">
+                    <div class="dish-thumb">
+                        <img src="${item.img}" alt="${item.name}" loading="lazy">
+                    </div>
+                    <div class="dish-details">
+                        <div class="dish-top">
+                            <h3>${item.name}</h3>
+                            <span class="dish-price">R${item.price}</span>
+                        </div>
+                        <p class="dish-desc">${item.desc}</p>
+                        <div class="dish-footer">
+                            <span class="dish-cat-label">${item.tag}</span>
+                            <button type="button" class="btn-add-dish" onclick="addDishToBasket(${item.id})">
+                                <i class="fa-solid fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function filterDishes(category, btnEl) {
+            activeCategory = category;
+            document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+            btnEl.classList.add('active');
+            renderMenu();
+        }
+
+        function searchDishes() {
+            renderMenu();
+        }
+
+        // Basket Management
+        function addDishToBasket(id) {
+            const dish = MENU_ITEMS.find(d => d.id === id);
+            if (!dish) return;
+
+            const existing = basket.find(b => b.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                basket.push({ id: dish.id, name: dish.name, price: dish.price, qty: 1 });
+            }
+            updateBasketUI();
+            triggerToast(`Added "${dish.name}" to your basket`);
+        }
+
+        function changeBasketQty(index, delta) {
+            basket[index].qty += delta;
+            if (basket[index].qty <= 0) {
+                basket.splice(index, 1);
+            }
+            updateBasketUI();
+        }
+
+        function updateBasketUI() {
+            const container = document.getElementById('basketContainer');
+            const totalDisplay = document.getElementById('basketTotalDisplay');
+            const headerBadge = document.getElementById('headerCartCount');
+
+            let totalItems = 0;
+            let totalCost = 0;
+
+            basket.forEach(item => {
+                totalItems += item.qty;
+                totalCost += item.price * item.qty;
+            });
+
+            headerBadge.innerText = totalItems;
+            totalDisplay.innerText = 'R' + totalCost;
+
+            if (basket.length === 0) {
+                container.innerHTML = '<div class="basket-empty">Your basket is currently empty. Add dishes from the menu!</div>';
+                return;
+            }
+
+            container.innerHTML = basket.map((item, idx) => `
+                <div class="basket-row">
+                    <div class="basket-item-meta">
+                        <h4>${item.name}</h4>
+                        <span>R${item.price} &times; ${item.qty} = R${item.price * item.qty}</span>
+                    </div>
+                    <div class="qty-box">
+                        <button type="button" class="qty-circle" onclick="changeBasketQty(${idx}, -1)" aria-label="Decrease quantity">-</button>
+                        <strong>${item.qty}</strong>
+                        <button type="button" class="qty-circle" onclick="changeBasketQty(${idx}, 1)" aria-label="Increase quantity">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // WhatsApp Food Order Checkout
+        function checkoutOrderWhatsApp() {
+            if (basket.length === 0) {
+                triggerToast('Please add at least one dish to your basket first.');
+                document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim() || 'Guest Customer';
+            const type = document.getElementById('fulfillmentType').value;
+            const notes = document.getElementById('orderNotes').value.trim() || 'None';
+
+            let total = 0;
+            const lines = basket.map(item => {
+                const sub = item.price * item.qty;
+                total += sub;
+                return `• ${item.qty}x ${item.name} (R${sub})`;
+            }).join('%0A');
+
+            const text = `Hello *webtoolmedia*, I would like to place a food order:%0A%0A*Customer:* ${encodeURIComponent(name)}%0A*Service:* ${encodeURIComponent(type)}%0A%0A*Order Items:*%0A${lines}%0A%0A*Total:* R${total}%0A*Notes/Address:* ${encodeURIComponent(notes)}`;
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${text}`, '_blank');
+        }
+
+        // WhatsApp Table Booking
+        function bookTableWhatsApp() {
+            const name = document.getElementById('guestFullName').value.trim() || 'Guest';
+            const date = document.getElementById('bookingDate').value || 'Not specified';
+            const time = document.getElementById('bookingTime').value || '19:00';
+            const guests = document.getElementById('partySize').value || '2';
+            const area = document.getElementById('seatingZone').value;
+            const notes = document.getElementById('bookingNotes').value.trim() || 'None';
+
+            const text = `Hello *webtoolmedia*, I would like to reserve a dining table:%0A%0A*Guest Name:* ${encodeURIComponent(name)}%0A*Date:* ${date}%0A*Time:* ${time}%0A*Guests:* ${guests}%0A*Dining Area:* ${encodeURIComponent(area)}%0A*Special Requests:* ${encodeURIComponent(notes)}%0A%0APlease confirm my table!`;
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${text}`, '_blank');
+        }
+
+        // Mobile Navigation
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+
+        function closeMobileNav() {
+            navMenu.classList.remove('open');
+        }
+
+        // Toast Feedback
+        let toastTimer;
+        function triggerToast(message) {
+            const toast = document.getElementById('bistroToast');
+            document.getElementById('bistroToastText').innerText = message;
+            toast.classList.add('active');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('active'), 2600);
+        }
+
+        // Scroll Reveal & Initial Setup
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu();
+
+            const dateInput = document.getElementById('bookingDate');
+            if (dateInput) dateInput.valueAsDate = new Date();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
