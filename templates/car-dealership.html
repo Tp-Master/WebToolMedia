@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Your Dealership Name | Quality Used & New Cars For Sale in South Africa</title>
+    <meta name="description" content="Browse certified pre-owned and new vehicles at Your Dealership Name. Easy vehicle finance applications, trade-ins accepted, and nationwide delivery across South Africa.">
+    <meta name="keywords" content="car dealership South Africa, used cars for sale, vehicle finance, pre-owned cars, buy cars online, bakkies for sale, SUVs for sale, Your Dealership Name">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yourdealershipdomain.co.za/">
+
+    <!-- Open Graph / Social Media SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Your Dealership Name | Certified Pre-Owned & Performance Vehicles">
+    <meta property="og:description" content="Explore our hand-picked vehicle inventory with instant online finance pre-approval and transparent pricing.">
+    <meta property="og:url" content="https://www.yourdealershipdomain.co.za/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Schema.org Structured Data (AutoDealer JSON-LD for Google Rich Snippets) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "Your Dealership Name",
+      "image": "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=1200&q=80",
+      "telephone": "+27000000000",
+      "email": "sales@yourdealership.co.za",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Showroom Boulevard",
+        "addressLocality": "Your City",
+        "addressRegion": "Your Province",
+        "postalCode": "0001",
+        "addressCountry": "ZA"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "17:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:30",
+          "closes": "14:00"
+        }
+      ],
+      "priceRange": "R150,000 - R1,500,000"
+    }
+    </script>
+
+    <!-- Google Fonts: Syne (Display) & Inter (Clean UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ================= CSS VARIABLES: DARK MODE (DEFAULT) ================= */
+        :root {
+            --bg-main: #090B0E;
+            --bg-surface: #11151C;
+            --bg-card: #161B24;
+            --bg-nav: rgba(9, 11, 14, 0.88);
+            --bg-footer: #050608;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-gold: rgba(212, 175, 55, 0.45);
+            --accent-gold: #E5A93C;
+            --accent-gold-hover: #F3B94E;
+            --accent-emerald: #10B981;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --hero-highlight: linear-gradient(90deg, #F3B94E, #E5A93C, #FFF3D1);
+            --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+            --map-filter: grayscale(85%) invert(92%) contrast(90%);
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ================= CSS VARIABLES: LIGHT MODE ================= */
+        body.light-mode {
+            --bg-main: #F8FAFC;
+            --bg-surface: #EEF2F6;
+            --bg-card: #FFFFFF;
+            --bg-nav: rgba(255, 255, 255, 0.92);
+            --bg-footer: #0F172A;
+            --border-subtle: rgba(15, 23, 42, 0.1);
+            --border-gold: rgba(196, 134, 24, 0.45);
+            --accent-gold: #D4921D;
+            --accent-gold-hover: #B87B12;
+            --accent-emerald: #059669;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --hero-highlight: linear-gradient(90deg, #D4921D, #B4720C, #E5A93C);
+            --card-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+            --map-filter: none;
+        }
+
+        /* ================= RESET & BASE ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ================= ANIMATIONS ================= */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(229, 169, 60, 0.2); }
+            50% { box-shadow: 0 0 32px rgba(229, 169, 60, 0.45); }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease-out, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= BUTTONS & THEME TOGGLE ================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 26px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #E5A93C, #C88A1E);
+            color: #090B0E;
+            box-shadow: 0 8px 24px rgba(229, 169, 60, 0.25);
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #F3B94E, #E5A93C);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(229, 169, 60, 0.4);
+        }
+
+        .btn-outline {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: #090B0E;
+            font-weight: 700;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20BD5A;
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 15px;
+            border-radius: 50px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-1px);
+        }
+
+        .theme-toggle-btn i {
+            color: var(--accent-gold);
+            font-size: 1rem;
+        }
+
+        /* ================= NAVBAR ================= */
+        header.navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg-nav);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background-color 0.35s ease;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #E5A93C, #9E6B12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #090B0E;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .logo-text span:first-child {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .logo-text span:last-child {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            position: relative;
+            padding: 90px 0 110px;
+            overflow: hidden;
+            background: radial-gradient(circle at 75% 30%, rgba(229, 169, 60, 0.14), transparent 50%),
+                        radial-gradient(circle at 15% 80%, rgba(16, 185, 129, 0.07), transparent 45%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: rgba(229, 169, 60, 0.12);
+            border: 1px solid var(--border-gold);
+            color: var(--accent-gold);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.1rem);
+            font-weight: 800;
+            line-height: 1.08;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 .highlight {
+            background: var(--hero-highlight);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 560px;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 44px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border-subtle);
+            max-width: 520px;
+        }
+
+        .stat-item h3 {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+        }
+
+        .stat-item p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .hero-showcase {
+            position: relative;
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        .showcase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .showcase-img {
+            position: relative;
+            height: 310px;
+            overflow: hidden;
+        }
+
+        .showcase-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showcase-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(9, 11, 14, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-gold);
+            color: #F3B94E;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .showcase-details {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ================= SEARCH & FILTER BAR ================= */
+        .inventory-section {
+            padding: 80px 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background-color 0.35s ease;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 48px;
+        }
+
+        .section-kicker {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+        }
+
+        .filter-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr) auto;
+            gap: 14px;
+            align-items: end;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .filter-control {
+            width: 100%;
+            background: var(--bg-main);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .filter-control:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .results-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ================= VEHICLE CATALOG GRID ================= */
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+        }
+
+        .car-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--card-shadow);
+        }
+
+        .car-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-gold);
+        }
+
+        .car-thumb {
+            position: relative;
+            height: 230px;
+            overflow: hidden;
+            background: #0d1015;
+        }
+
+        .car-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .car-card:hover .car-thumb img {
+            transform: scale(1.06);
+        }
+
+        .badge-status {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(9, 11, 14, 0.85);
+            backdrop-filter: blur(6px);
+            color: #34D399;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-year {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #E5A93C;
+            color: #090B0E;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .car-body {
+            padding: 22px;
+        }
+
+        .car-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .car-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .car-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 14px 0;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 18px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .spec-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .spec-pill i {
+            color: var(--accent-gold);
+        }
+
+        .car-pricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 18px;
+        }
+
+        .price-cash span {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .price-cash strong {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.45rem;
+            color: var(--text-primary);
+        }
+
+        .price-monthly {
+            text-align: right;
+        }
+
+        .price-monthly span {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .price-monthly strong {
+            color: var(--accent-gold);
+            font-size: 0.95rem;
+        }
+
+        .car-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .car-actions .btn {
+            padding: 10px 14px;
+            font-size: 0.85rem;
+        }
+
+        /* ================= FINANCE APPLICATION SECTION ================= */
+        .finance-section {
+            padding: 90px 0;
+            background: var(--bg-main);
+            transition: background-color 0.35s ease;
+        }
+
+        .finance-wrapper {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .calculator-card, .application-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .calculator-card {
+            border-color: var(--border-gold);
+        }
+
+        .est-box {
+            background: linear-gradient(135deg, rgba(229, 169, 60, 0.14), rgba(229, 169, 60, 0.04));
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            text-align: center;
+            margin: 24px 0;
+            animation: pulseGlow 4s infinite;
+        }
+
+        .est-box span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        .est-box h3 {
+            font-size: 2.35rem;
+            color: var(--accent-gold);
+            margin: 4px 0;
+        }
+
+        .range-group {
+            margin-bottom: 18px;
+        }
+
+        .range-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            margin-bottom: 6px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent-gold);
+            cursor: pointer;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .toast-success {
+            display: none;
+            margin-top: 18px;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: var(--accent-emerald);
+            font-size: 0.9rem;
+        }
+
+        /* ================= SHOWROOM DETAILS SECTION ================= */
+        .showroom-section {
+            padding: 85px 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            transition: background-color 0.35s ease;
+        }
+
+        .showroom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .showroom-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--card-shadow);
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 24px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-list li {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(229, 169, 60, 0.14);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .map-frame {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            min-height: 380px;
+            background: var(--bg-card);
+            box-shadow: var(--card-shadow);
+        }
+
+        .map-frame iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            border: 0;
+            filter: var(--map-filter);
+            transition: filter 0.35s ease;
+        }
+
+        /* ================= MODAL FOR VEHICLE DETAILS ================= */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            max-width: 720px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            animation: floatSlow 0.4s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(9, 11, 14, 0.85);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            font-size: 1.1rem;
+            z-index: 10;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: var(--bg-footer);
+            border-top: 1px solid var(--border-subtle);
+            padding: 60px 0 30px;
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.82rem;
+            color: #64748B;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .hero-grid, .finance-wrapper, .showroom-grid {
+                grid-template-columns: 1fr;
+            }
+            .filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-links.show {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--bg-surface);
+                padding: 24px;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .filter-grid, .form-grid-2, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .car-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVIGATION ================= -->
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="logo" aria-label="Your Dealership Name Home">
+                <div class="logo-badge"><i class="fa-solid fa-crown"></i></div>
+                <div class="logo-text">
+                    <span>YOUR DEALERSHIP</span>
+                    <span>Luxury & Pre-Owned Auto</span>
+                </div>
+            </a>
+
+            <div class="nav-right">
+                <nav aria-label="Main Navigation">
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#inventory">Showroom Stock</a></li>
+                        <li><a href="#finance">Vehicle Finance</a></li>
+                        <li><a href="#showroom">Visit Showroom</a></li>
+                        <li><a href="#finance" class="btn btn-gold" style="padding: 10px 20px;">Get Pre-Approved</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Light / Dark Mode Toggle Button -->
+                <button type="button" id="themeToggle" class="theme-toggle-btn" aria-label="Switch between Light and Dark Mode">
+                    <i class="fa-solid fa-sun" id="themeIcon"></i>
+                    <span id="themeText">Light Mode</span>
+                </button>
+
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= HERO SECTION ================= -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="reveal">
+                    <div class="hero-pill">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>DEKRA Certified & Multi-Point Inspected</span>
+                    </div>
+                    <h1>Drive Your Next <span class="highlight">Statement</span> Today.</h1>
+                    <p>Explore South Africa's finest hand-selected pre-owned sedans, SUVs, and double-cab bakkies. Transparent pricing, instant bank finance approval, and nationwide delivery.</p>
+                    
+                    <div class="hero-actions">
+                        <a href="#inventory" class="btn btn-gold">
+                            <i class="fa-solid fa-car-side"></i> Browse Inventory
+                        </a>
+                        <a href="#finance" class="btn btn-outline">
+                            <i class="fa-solid fa-calculator"></i> Finance Calculator
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>120+</h3>
+                            <p>Vehicles in Stock</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>All Banks</h3>
+                            <p>WesBank, MFC, Absa, Std</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>4.9 ★</h3>
+                            <p>Verified Buyer Rating</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Hero Vehicle Card -->
+                <div class="hero-showcase reveal">
+                    <article class="showcase-card">
+                        <div class="showcase-img">
+                            <span class="showcase-tag"><i class="fa-solid fa-fire"></i> Featured Arrival</span>
+                            <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=900&q=80" alt="2023 BMW M4 Competition Coupe in Showroom" loading="eager">
+                        </div>
+                        <div class="showcase-details">
+                            <div>
+                                <span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700;">2023 • 14,500 KM • AUTOMATIC</span>
+                                <h2 style="font-size: 1.35rem; margin-top: 2px;">BMW M4 Competition</h2>
+                            </div>
+                            <div style="text-align: right;">
+                                <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Retail Price</span>
+                                <strong style="font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--accent-gold);">R1,489,900</strong>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VEHICLE INVENTORY & FILTER SEARCH ================= -->
+        <section id="inventory" class="inventory-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-kicker">Showroom Catalog</span>
+                    <h2>Explore Available Vehicles</h2>
+                    <p>Filter by make, body type, fuel, or maximum budget to find your ideal vehicle in seconds.</p>
+                </div>
+
+                <!-- Interactive Filter Bar -->
+                <div class="filter-panel reveal" role="search" aria-label="Vehicle Inventory Filter">
+                    <div class="filter-grid">
+                        <div class="filter-group">
+                            <label for="searchInput">Keyword / Model</label>
+                            <input type="text" id="searchInput" class="filter-control" placeholder="e.g. Golf GTI, Hilux, Ranger...">
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="makeFilter">Make</label>
+                            <select id="makeFilter" class="filter-control">
+                                <option value="all">All Makes</option>
+                                <option value="Volkswagen">Volkswagen</option>
+                                <option value="Toyota">Toyota</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Ford">Ford</option>
+                                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="bodyFilter">Body Type</label>
+                            <select id="bodyFilter" class="filter-control">
+                                <option value="all">All Body Types</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Bakkie">Bakkie / Double Cab</option>
+                                <option value="Sedan">Sedan / Coupe</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="fuelFilter">Fuel Type</label>
+                            <select id="fuelFilter" class="filter-control">
+                                <option value="all">All Fuels</option>
+                                <option value="Petrol">Petrol</option>
+                                <option value="Diesel">Diesel</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="priceFilter">Max Price</label>
+                            <select id="priceFilter" class="filter-control">
+                                <option value="9999999">Any Budget</option>
+                                <option value="350000">Up to R350,000</option>
+                                <option value="550000">Up to R550,000</option>
+                                <option value="850000">Up to R850,000</option>
+                                <option value="1500000">Up to R1,500,000</option>
+                            </select>
+                        </div>
+
+                        <button type="button" id="resetFiltersBtn" class="btn btn-outline" style="height: 45px;" title="Reset Filters">
+                            <i class="fa-solid fa-rotate-right"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Count & Sort -->
+                <div class="results-meta">
+                    <span id="resultsCount">Showing 6 vehicles</span>
+                    <div>
+                        <label for="sortSelect" style="margin-right: 8px;">Sort by:</label>
+                        <select id="sortSelect" class="filter-control" style="width: auto; display: inline-block; padding: 8px 12px;">
+                            <option value="featured">Featured First</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="year-desc">Year: Newest First</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Dynamic Vehicle Cards Container -->
+                <div class="car-grid" id="carGrid">
+                    <!-- Populated via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= VEHICLE FINANCE CALCULATOR & APPLICATION ================= -->
+        <section id="finance" class="finance-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-kicker">Tailored Vehicle Finance</span>
+                    <h2>Calculate & Apply Online</h2>
+                    <p>Accredited FSP partner with all major South African banks. Get pre-approved in under 2 hours.</p>
+                </div>
+
+                <div class="finance-wrapper">
+                    <!-- Left: Interactive Installment Calculator -->
+                    <div class="calculator-card reveal">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 6px;">Monthly Installment Estimator</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Adjust the sliders below to estimate your monthly repayment.</p>
+
+                        <div class="est-box">
+                            <span>Estimated Monthly Repayment</span>
+                            <h3 id="monthlyResult">R8,420 p/m</h3>
+                            <span style="font-size: 0.72rem; color: var(--text-muted);">*Excludes initiation & monthly admin fees</span>
+                        </div>
+
+                        <div class="range-group">
+                            <div class="range-header">
+                                <span>Vehicle Price</span>
+                                <strong id="calcPriceLabel" style="color: var(--accent-gold);">R450,000</strong>
+                            </div>
+                            <input type="range" id="calcPrice" min="100000" max="1500000" step="10000" value="450000">
+                        </div>
+
+                        <div class="range-group">
+                            <div class="range-header">
+                                <span>Deposit Amount</span>
+                                <strong id="calcDepositLabel" style="color: var(--accent-gold);">R45,000 (10%)</strong>
+                            </div>
+                            <input type="range" id="calcDeposit" min="0" max="500000" step="5000" value="45000">
+                        </div>
+
+                        <div class="range-group">
+                            <div class="range-header">
+                                <span>Repayment Period</span>
+                                <strong id="calcTermLabel" style="color: var(--accent-gold);">72 Months</strong>
+                            </div>
+                            <input type="range" id="calcTerm" min="12" max="72" step="12" value="72">
+                        </div>
+
+                        <div class="range-group">
+                            <div class="range-header">
+                                <span>Interest Rate (Prime Linked)</span>
+                                <strong id="calcRateLabel" style="color: var(--accent-gold);">11.75%</strong>
+                            </div>
+                            <input type="range" id="calcRate" min="8.5" max="18.0" step="0.25" value="11.75">
+                        </div>
+                    </div>
+
+                    <!-- Right: Finance Application Form -->
+                    <div class="application-card reveal">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 6px;">Quick Finance Application</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 22px;">Complete your details below and our F&amp;I manager will contact you with bank offers.</p>
+
+                        <form id="financeForm">
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="finName">Full Name & Surname *</label>
+                                    <input type="text" id="finName" class="filter-control" required placeholder="e.g. Sipho Nkosi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="finPhone">Mobile Number *</label>
+                                    <input type="tel" id="finPhone" class="filter-control" required placeholder="e.g. 082 123 4567">
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="finEmail">Email Address *</label>
+                                    <input type="email" id="finEmail" class="filter-control" required placeholder="name@example.co.za">
+                                </div>
+                                <div class="form-group">
+                                    <label for="finId">SA ID Number (For Credit Check) *</label>
+                                    <input type="text" id="finId" class="filter-control" maxlength="13" required placeholder="13-digit ID number">
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="finVehicle">Selected Vehicle *</label>
+                                    <input type="text" id="finVehicle" class="filter-control" required placeholder="e.g. 2022 VW Polo GTI">
+                                </div>
+                                <div class="form-group">
+                                    <label for="finIncome">Gross Monthly Income (ZAR) *</label>
+                                    <input type="number" id="finIncome" class="filter-control" required placeholder="e.g. 32000">
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="finEmployment">Employment Status</label>
+                                    <select id="finEmployment" class="filter-control">
+                                        <option value="Permanently Employed">Permanently Employed</option>
+                                        <option value="Self-Employed / Business Owner">Self-Employed / Business Owner</option>
+                                        <option value="Contract Worker">Contract Worker</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="finTradeIn">Do you have a Trade-In?</label>
+                                    <select id="finTradeIn" class="filter-control">
+                                        <option value="No Trade-In">No Trade-In</option>
+                                        <option value="Yes - Trade-In Available">Yes - Trade-In Available</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-gold" style="width: 100%; padding: 15px; font-size: 1rem;">
+                                <i class="fa-solid fa-paper-plane"></i> Submit Finance Application
+                            </button>
+                        </form>
+
+                        <div id="financeSuccess" class="toast-success">
+                            <strong><i class="fa-solid fa-circle-check"></i> Application Submitted Successfully!</strong>
+                            <p style="margin-top: 4px; font-size: 0.84rem;">Thank you! Our Finance &amp; Insurance specialist has received your request and will call you within 2 business hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SHOWROOM DETAILS & LOCATION ================= -->
+        <section id="showroom" class="showroom-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-kicker">Experience In Person</span>
+                    <h2>Visit Our Showroom</h2>
+                    <p>Book a private test drive or stop by for a complimentary trade-in valuation over fresh espresso.</p>
+                </div>
+
+                <div class="showroom-grid">
+                    <div class="showroom-info-card reveal">
+                        <div>
+                            <h3 style="font-size: 1.65rem; margin-bottom: 8px;">Your Dealership Flagship</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem;">Conveniently located on the main motoring strip with secure customer parking and indoor viewing bays.</p>
+
+                            <ul class="info-list">
+                                <li>
+                                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                    <div>
+                                        <strong style="display: block; color: var(--text-primary);">Showroom Address</strong>
+                                        <span style="color: var(--text-secondary); font-size: 0.9rem;">123 Showroom Boulevard, Motoring District, South Africa</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+                                    <div>
+                                        <strong style="display: block; color: var(--text-primary);">Trading Hours</strong>
+                                        <span style="color: var(--text-secondary); font-size: 0.9rem;">Mon – Fri: 08:00 – 17:30 | Sat: 08:30 – 14:00 | Sun: By Appointment</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="info-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                                    <div>
+                                        <strong style="display: block; color: var(--text-primary);">Sales & Finance Desk</strong>
+                                        <span style="color: var(--text-secondary); font-size: 0.9rem;">Tel: +27 ××× ××× ××× | Email: sales@yourdealership.co.za</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <a href="https://wa.me/27000000000?text=Hi%20Your%20Dealership%2C%20I%20would%20like%20to%20book%20a%20test%20drive." target="_blank" rel="noopener" class="btn btn-whatsapp" style="flex: 1;">
+                                <i class="fa-brands fa-whatsapp"></i> WhatsApp Sales Team
+                            </a>
+                            <a href="tel:+27000000000" class="btn btn-outline" style="flex: 1;">
+                                <i class="fa-solid fa-phone"></i> Call Showroom
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Embedded Showroom Map -->
+                    <div class="map-frame reveal">
+                        <iframe 
+                            title="Your Dealership Showroom Map Location"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=28.0300%2C-26.1500%2C28.0700%2C-26.1100&amp;layer=mapnik" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================= VEHICLE QUICK-VIEW MODAL ================= -->
+    <div class="modal-backdrop" id="carModal" role="dialog" aria-modal="true" aria-labelledby="modalCarTitle">
+        <div class="modal-box">
+            <button class="modal-close" id="closeModalBtn" aria-label="Close Vehicle Details"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo" style="margin-bottom: 16px;">
+                        <div class="logo-badge"><i class="fa-solid fa-crown"></i></div>
+                        <div class="logo-text">
+                            <span style="color: #F8FAFC;">YOUR DEALERSHIP</span>
+                            <span>Luxury & Pre-Owned Auto</span>
+                        </div>
+                    </div>
+                    <p style="max-width: 360px;">Authorized Financial Services Provider. All vehicles undergo a strict multi-point mechanical &amp; diagnostic inspection prior to delivery.</p>
+                </div>
+
+                <div>
+                    <h4 style="color: #F8FAFC; margin-bottom: 14px;">Quick Navigation</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a href="#inventory">Browse All Vehicles</a></li>
+                        <li><a href="#finance">Installment Calculator</a></li>
+                        <li><a href="#finance">Apply For Vehicle Finance</a></li>
+                        <li><a href="#showroom">Showroom Location & Hours</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: #F8FAFC; margin-bottom: 14px;">Connect With Us</h4>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><i class="fa-solid fa-phone" style="color: #E5A93C; width: 20px;"></i> +27 ××× ××× ×××</li>
+                        <li><i class="fa-solid fa-envelope" style="color: #E5A93C; width: 20px;"></i> sales@yourdealership.co.za</li>
+                        <li><i class="fa-solid fa-location-dot" style="color: #E5A93C; width: 20px;"></i> 123 Showroom Blvd, South Africa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Your Dealership Name. All Rights Reserved. E&amp;OE.</span>
+                <span>SEO Optimized Automotive Dealership Template</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT: THEME TOGGLE, INVENTORY, FILTERS & CALCULATOR ================= -->
+    <script>
+        // 0. Light / Dark Mode Toggle with LocalStorage Persistence
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+        const themeText = document.getElementById("themeText");
+
+        function applyTheme(mode) {
+            if (mode === "light") {
+                document.body.classList.add("light-mode");
+                themeIcon.className = "fa-solid fa-moon";
+                themeText.textContent = "Dark Mode";
+            } else {
+                document.body.classList.remove("light-mode");
+                themeIcon.className = "fa-solid fa-sun";
+                themeText.textContent = "Light Mode";
+            }
+        }
+
+        // Load saved theme (default to light or dark; change 'light' to 'dark' if you prefer dark default)
+        const savedTheme = localStorage.getItem("dealership_theme") || "light";
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener("click", () => {
+            const isLight = document.body.classList.contains("light-mode");
+            const nextTheme = isLight ? "dark" : "light";
+            localStorage.setItem("dealership_theme", nextTheme);
+            applyTheme(nextTheme);
+        });
+
+        // 1. Sample Vehicle Inventory Data
+        const vehicles = [
+            {
+                id: 1,
+                year: 2022,
+                make: "Volkswagen",
+                model: "Golf 8 GTI 2.0 TSI DSG",
+                body: "Hatchback",
+                fuel: "Petrol",
+                transmission: "Automatic",
+                mileage: "28,400 km",
+                price: 689900,
+                monthly: 12850,
+                badge: "Full Service History",
+                image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&w=800&q=80",
+                features: ["Panoramic Sunroof", "Harman Kardon Audio", "IQ.Light LED Matrix", "Adaptive Chassis Control"]
+            },
+            {
+                id: 2,
+                year: 2023,
+                make: "Toyota",
+                model: "Hilux 2.8 GD-6 Legend RS 4x4",
+                body: "Bakkie",
+                fuel: "Diesel",
+                transmission: "Automatic",
+                mileage: "19,200 km",
+                price: 849900,
+                monthly: 15800,
+                badge: "Balance of Warranty",
+                image: "https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=800&q=80",
+                features: ["Roller Shutter Lid", "360-Degree Camera", "JBL Sound System", "Diff Lock & 4WD"]
+            },
+            {
+                id: 3,
+                year: 2021,
+                make: "BMW",
+                model: "320d M Sport Steptronic",
+                body: "Sedan",
+                fuel: "Diesel",
+                transmission: "Automatic",
+                mileage: "44,000 km",
+                price: 539900,
+                monthly: 10050,
+                badge: "Motorplan Active",
+                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80",
+                features: ["Live Cockpit Pro", "M Sport Brakes", "Ambient Lighting", "Reverse Camera & PDC"]
+            },
+            {
+                id: 4,
+                year: 2022,
+                make: "Ford",
+                model: "Ranger 2.0 Bi-Turbo Wildtrak",
+                body: "Bakkie",
+                fuel: "Diesel",
+                transmission: "Automatic",
+                mileage: "36,500 km",
+                price: 619900,
+                monthly: 11540,
+                badge: "DEKRA Certified",
+                image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80",
+                features: ["Leather Wildtrak Seats", "Apple CarPlay & Android Auto", "Towbar & Loadbin Liner", "Adaptive Cruise Control"]
+            },
+            {
+                id: 5,
+                year: 2020,
+                make: "Volkswagen",
+                model: "Polo 1.0 TSI Highline DSG",
+                body: "Hatchback",
+                fuel: "Petrol",
+                transmission: "Automatic",
+                mileage: "51,800 km",
+                price: 299900,
+                monthly: 5590,
+                badge: "Low Fuel Consumption",
+                image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80",
+                features: ["Digital Cockpit", "17-inch Alloy Wheels", "Touchscreen Infotainment", "Smash & Grab Tint"]
+            },
+            {
+                id: 6,
+                year: 2023,
+                make: "Mercedes-Benz",
+                model: "GLC 300d 4MATIC AMG Line",
+                body: "SUV",
+                fuel: "Diesel",
+                transmission: "Automatic",
+                mileage: "16,900 km",
+                price: 1149900,
+                monthly: 21400,
+                badge: "1 Owner • Mint",
+                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80",
+                features: ["AMG Body Styling", "Burmester Surround Sound", "Air Suspension", "Electric Tailgate"]
+            }
+        ];
+
+        // Helper to format ZAR Currency
+        const formatZAR = (num) => "R" + Number(num).toLocaleString("en-ZA");
+
+        // 2. Render Vehicle Cards
+        const carGrid = document.getElementById("carGrid");
+        const resultsCount = document.getElementById("resultsCount");
+
+        function renderVehicles(list) {
+            resultsCount.textContent = `Showing ${list.length} vehicle${list.length === 1 ? '' : 's'}`;
+
+            if (list.length === 0) {
+                carGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-subtle);">
+                        <i class="fa-solid fa-car-burst" style="font-size: 2.5rem; color: var(--accent-gold); margin-bottom: 12px;"></i>
+                        <h3>No vehicles match your exact filters</h3>
+                        <p style="color: var(--text-secondary); margin: 8px 0 20px;">Try clearing your filters or increasing your maximum budget.</p>
+                        <button onclick="resetAllFilters()" class="btn btn-gold">Show All Vehicles</button>
+                    </div>
+                `;
+                return;
+            }
+
+            carGrid.innerHTML = list.map(car => `
+                <article class="car-card">
+                    <div>
+                        <div class="car-thumb">
+                            <span class="badge-status">${car.badge}</span>
+                            <span class="badge-year">${car.year}</span>
+                            <img src="${car.image}" alt="${car.year} ${car.make} ${car.model}" loading="lazy">
+                        </div>
+                        <div class="car-body">
+                            <h3 class="car-title">${car.make} ${car.model}</h3>
+                            <p class="car-subtitle">${car.body} • ${car.transmission}</p>
+
+                            <div class="car-specs">
+                                <div class="spec-pill"><i class="fa-solid fa-gauge"></i> ${car.mileage}</div>
+                                <div class="spec-pill"><i class="fa-solid fa-gas-pump"></i> ${car.fuel}</div>
+                                <div class="spec-pill"><i class="fa-solid fa-gears"></i> ${car.transmission === 'Automatic' ? 'Auto' : 'Manual'}</div>
+                            </div>
+
+                            <div class="car-pricing">
+                                <div class="price-cash">
+                                    <span>Cash Price</span>
+                                    <strong>${formatZAR(car.price)}</strong>
+                                </div>
+                                <div class="price-monthly">
+                                    <span>Est. Finance</span>
+                                    <strong>From ${formatZAR(car.monthly)} p/m</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 0 22px 22px;">
+                        <div class="car-actions">
+                            <button type="button" onclick="openCarModal(${car.id})" class="btn btn-outline">
+                                <i class="fa-solid fa-eye"></i> View Specs
+                            </button>
+                            <button type="button" onclick="applyForCar(${car.id})" class="btn btn-gold">
+                                <i class="fa-solid fa-file-signature"></i> Finance This
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join("");
+        }
+
+        // 3. Filter & Sort Logic
+        const searchInput = document.getElementById("searchInput");
+        const makeFilter = document.getElementById("makeFilter");
+        const bodyFilter = document.getElementById("bodyFilter");
+        const fuelFilter = document.getElementById("fuelFilter");
+        const priceFilter = document.getElementById("priceFilter");
+        const sortSelect = document.getElementById("sortSelect");
+
+        function filterAndSortVehicles() {
+            const query = searchInput.value.toLowerCase().trim();
+            const make = makeFilter.value;
+            const body = bodyFilter.value;
+            const fuel = fuelFilter.value;
+            const maxPrice = Number(priceFilter.value);
+            const sortBy = sortSelect.value;
+
+            let filtered = vehicles.filter(car => {
+                const matchesText = `${car.year} ${car.make} ${car.model}`.toLowerCase().includes(query);
+                const matchesMake = make === "all" || car.make === make;
+                const matchesBody = body === "all" || car.body === body;
+                const matchesFuel = fuel === "all" || car.fuel === fuel;
+                const matchesPrice = car.price <= maxPrice;
+                return matchesText && matchesMake && matchesBody && matchesFuel && matchesPrice;
+            });
+
+            if (sortBy === "price-asc") filtered.sort((a, b) => a.price - b.price);
+            if (sortBy === "price-desc") filtered.sort((a, b) => b.price - a.price);
+            if (sortBy === "year-desc") filtered.sort((a, b) => b.year - a.year);
+
+            renderVehicles(filtered);
+        }
+
+        function resetAllFilters() {
+            searchInput.value = "";
+            makeFilter.value = "all";
+            bodyFilter.value = "all";
+            fuelFilter.value = "all";
+            priceFilter.value = "9999999";
+            sortSelect.value = "featured";
+            renderVehicles(vehicles);
+        }
+
+        [searchInput, makeFilter, bodyFilter, fuelFilter, priceFilter, sortSelect].forEach(el => {
+            el.addEventListener("input", filterAndSortVehicles);
+            el.addEventListener("change", filterAndSortVehicles);
+        });
+        document.getElementById("resetFiltersBtn").addEventListener("click", resetAllFilters);
+
+        // Initial Render
+        renderVehicles(vehicles);
+
+        // 4. Vehicle Quick-View Modal
+        const carModal = document.getElementById("carModal");
+        const modalContent = document.getElementById("modalContent");
+
+        function openCarModal(id) {
+            const car = vehicles.find(v => v.id === id);
+            if (!car) return;
+
+            const waMessage = encodeURIComponent(`Hi Your Dealership, I am interested in the ${car.year} ${car.make} ${car.model} listed at ${formatZAR(car.price)}.`);
+
+            modalContent.innerHTML = `
+                <img src="${car.image}" alt="${car.year} ${car.make} ${car.model}" style="width: 100%; height: 280px; object-fit: cover;">
+                <div style="padding: 28px;">
+                    <span style="color: var(--accent-gold); font-size: 0.8rem; font-weight: 700;">${car.year} • ${car.mileage} • ${car.fuel}</span>
+                    <h2 id="modalCarTitle" style="font-size: 1.75rem; margin: 4px 0 12px;">${car.make} ${car.model}</h2>
+                    <p style="font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 18px;">
+                        ${formatZAR(car.price)} <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 400;">(Est. ${formatZAR(car.monthly)} p/m)</span>
+                    </p>
+                    <h4 style="font-size: 0.9rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 10px;">Key Highlights & Extras:</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px;">
+                        ${car.features.map(f => `<div style="font-size: 0.88rem;"><i class="fa-solid fa-circle-check" style="color: var(--accent-emerald); margin-right: 8px;"></i>${f}</div>`).join("")}
+                    </div>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button onclick="applyForCar(${car.id}); closeCarModal();" class="btn btn-gold" style="flex: 1;">
+                            <i class="fa-solid fa-file-signature"></i> Apply For Finance
+                        </button>
+                        <a href="https://wa.me/27000000000?text=${waMessage}" target="_blank" rel="noopener" class="btn btn-whatsapp" style="flex: 1;">
+                            <i class="fa-brands fa-whatsapp"></i> Enquire on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            `;
+            carModal.classList.add("open");
+        }
+
+        function closeCarModal() {
+            carModal.classList.remove("open");
+        }
+
+        document.getElementById("closeModalBtn").addEventListener("click", closeCarModal);
+        carModal.addEventListener("click", (e) => { if (e.target === carModal) closeCarModal(); });
+
+        // 5. Connect Vehicle Card directly to Finance Calculator & Form
+        function applyForCar(id) {
+            const car = vehicles.find(v => v.id === id);
+            if (!car) return;
+
+            document.getElementById("finVehicle").value = `${car.year} ${car.make} ${car.model} (${formatZAR(car.price)})`;
+            const calcPrice = document.getElementById("calcPrice");
+            calcPrice.value = car.price;
+            updateFinanceCalculator();
+
+            document.getElementById("finance").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // 6. Interactive Finance Calculator
+        const calcPrice = document.getElementById("calcPrice");
+        const calcDeposit = document.getElementById("calcDeposit");
+        const calcTerm = document.getElementById("calcTerm");
+        const calcRate = document.getElementById("calcRate");
+
+        function updateFinanceCalculator() {
+            const P = Number(calcPrice.value);
+            const D = Math.min(Number(calcDeposit.value), P * 0.8);
+            const months = Number(calcTerm.value);
+            const annualRate = Number(calcRate.value) / 100;
+            const monthlyRate = annualRate / 12;
+
+            const principal = P - D;
+            const payment = principal * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+
+            const depositPct = Math.round((D / P) * 100);
+            document.getElementById("calcPriceLabel").textContent = formatZAR(P);
+            document.getElementById("calcDepositLabel").textContent = `${formatZAR(D)} (${depositPct}%)`;
+            document.getElementById("calcTermLabel").textContent = `${months} Months`;
+            document.getElementById("calcRateLabel").textContent = `${Number(calcRate.value).toFixed(2)}%`;
+            document.getElementById("monthlyResult").textContent = `${formatZAR(Math.round(payment))} p/m`;
+        }
+
+        [calcPrice, calcDeposit, calcTerm, calcRate].forEach(slider => {
+            slider.addEventListener("input", updateFinanceCalculator);
+        });
+        updateFinanceCalculator();
+
+        // 7. Finance Application Form Submit
+        document.getElementById("financeForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            document.getElementById("financeSuccess").style.display = "block";
+            this.reset();
+        });
+
+        // 8. Mobile Navigation & Scroll Reveal
+        document.getElementById("mobileToggle").addEventListener("click", () => {
+            document.getElementById("navLinks").classList.toggle("show");
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
