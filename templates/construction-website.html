@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>MONOLITH BUILDERS &amp; TRADES | Brutalist &amp; Structural Construction</title>
+    <meta name="description" content="High-impact structural building, commercial fit-outs, residential renovations, and civil trades. Filter projects, inspect credentials, and calculate a live project quote.">
+    <meta name="keywords" content="construction builders, structural masonry, commercial construction, home renovation, civil trades, quote calculator, licensed contractor">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yourconstructionsite.co.za/">
+
+    <!-- Open Graph / Social SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MONOLITH BUILDERS &amp; TRADES | Form Follows Function">
+    <meta property="og:description" content="Geometric project gallery, verified contractor credentials, trade breakdowns, and instant quote estimator.">
+    <meta property="og:image" content="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:98,cw:1576,ch:1182,q:80,w:1576/okt38NjZykdYkADKNfTRuk.jpg">
+
+    <!-- Schema.org GeneralContractor JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "GeneralContractor",
+      "name": "Monolith Builders & Trades",
+      "image": "https://cdn.mos.cms.futurecdn.net/v2/t:0,l:98,cw:1576,ch:1182,q:80,w:1576/okt38NjZykdYkADKNfTRuk.jpg",
+      "telephone": "+27000000000",
+      "email": "tenders@yourconstructionsite.co.za",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "14 Bauhaus Industrial Way",
+        "addressLocality": "Your City",
+        "addressRegion": "Your Province",
+        "postalCode": "0900",
+        "addressCountry": "ZA"
+      },
+      "openingHours": "Mo-Fr 07:00-17:30, Sa 08:00-13:00"
+    }
+    </script>
+
+    <!-- Google Fonts: Space Grotesk (Geometric Display) & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ================= BAUHAUS / BRUTALIST THEME TOKENS ================= */
+        :root {
+            --paper: #EAE6DC;
+            --paper-alt: #DFD9CA;
+            --surface: #F7F5F0;
+            --ink: #0E0E10;
+            --ink-muted: #3F4148;
+            --bauhaus-red: #D92B2B;
+            --bauhaus-blue: #1648D8;
+            --bauhaus-yellow: #F2B705;
+            --bauhaus-green: #147A43;
+            --border-hard: 2px solid #0E0E10;
+            --shadow-hard: 6px 6px 0px #0E0E10;
+            --shadow-hard-lg: 10px 10px 0px #0E0E10;
+            --shadow-hover: 2px 2px 0px #0E0E10;
+            --transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        body.ink-mode {
+            --paper: #111215;
+            --paper-alt: #181A1F;
+            --surface: #1E2128;
+            --ink: #F5F4F0;
+            --ink-muted: #B4B7C0;
+            --border-hard: 2px solid #F5F4F0;
+            --shadow-hard: 6px 6px 0px #F2B705;
+            --shadow-hard-lg: 10px 10px 0px #D92B2B;
+            --shadow-hover: 2px 2px 0px #F2B705;
+        }
+
+        /* ================= RESET & BASE ================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--paper);
+            color: var(--ink);
+            line-height: 1.55;
+            overflow-x: hidden;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        h1, h2, h3, h4, .geo-font {
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ================= GEOMETRIC ANIMATIONS ================= */
+        @keyframes blockShift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(6px, -6px); }
+        }
+
+        @keyframes marqueeTape {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================= BRUTALIST BUTTONS & CONTROLS ================= */
+        .b-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 22px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            border: var(--border-hard);
+            box-shadow: var(--shadow-hard);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .b-btn:hover {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .b-btn-red {
+            background: var(--bauhaus-red);
+            color: #FFFFFF;
+        }
+
+        .b-btn-blue {
+            background: var(--bauhaus-blue);
+            color: #FFFFFF;
+        }
+
+        .b-btn-yellow {
+            background: var(--bauhaus-yellow);
+            color: #0E0E10;
+        }
+
+        .b-btn-surface {
+            background: var(--surface);
+            color: var(--ink);
+        }
+
+        .mode-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            background: var(--surface);
+            color: var(--ink);
+            border: var(--border-hard);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mode-btn:hover {
+            background: var(--bauhaus-yellow);
+            color: #0E0E10;
+        }
+
+        /* ================= HEADER & MARQUEE TAPE ================= */
+        .tape-bar {
+            background: var(--bauhaus-yellow);
+            color: #0E0E10;
+            border-bottom: var(--border-hard);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 7px 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .tape-track {
+            display: inline-flex;
+            gap: 36px;
+            animation: marqueeTape 22s linear infinite;
+        }
+
+        header.b-header {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            background: var(--paper);
+            border-bottom: var(--border-hard);
+        }
+
+        .header-row {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            min-height: 74px;
+        }
+
+        .b-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 18px 10px 0;
+            border-right: var(--border-hard);
+        }
+
+        .b-logo-shapes {
+            display: grid;
+            grid-template-columns: 16px 16px;
+            gap: 2px;
+        }
+
+        .b-logo-shapes i:nth-child(1) { width: 16px; height: 16px; background: var(--bauhaus-red); display: block; border: 2px solid var(--ink); }
+        .b-logo-shapes i:nth-child(2) { width: 16px; height: 16px; background: var(--bauhaus-blue); border-radius: 50%; display: block; border: 2px solid var(--ink); }
+        .b-logo-shapes i:nth-child(3) { width: 16px; height: 16px; background: var(--bauhaus-yellow); display: block; border: 2px solid var(--ink); }
+        .b-logo-shapes i:nth-child(4) { width: 16px; height: 16px; background: var(--ink); display: block; border: 2px solid var(--ink); }
+
+        .b-logo strong {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            line-height: 1;
+        }
+
+        .b-logo small {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-muted);
+            margin-top: 2px;
+        }
+
+        .b-nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0 18px;
+        }
+
+        .b-nav a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.84rem;
+            text-transform: uppercase;
+            padding: 6px 2px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .b-nav a:hover {
+            border-bottom-color: var(--bauhaus-red);
+            color: var(--bauhaus-red);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--surface);
+            color: var(--ink);
+            border: var(--border-hard);
+            padding: 8px 12px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        /* ================= BRUTALIST SPLIT HERO ================= */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            border-bottom: var(--border-hard);
+        }
+
+        .hero-left {
+            padding: 56px 36px 56px 0;
+            border-right: var(--border-hard);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bauhaus-blue);
+            color: #fff;
+            border: var(--border-hard);
+            padding: 5px 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 22px;
+        }
+
+        .hero-left h1 {
+            font-size: clamp(2.6rem, 5.2vw, 4.5rem);
+            line-height: 0.98;
+            margin-bottom: 20px;
+        }
+
+        .hero-left h1 .red-word {
+            color: var(--bauhaus-red);
+            display: inline-block;
+            border-bottom: 5px solid var(--bauhaus-yellow);
+        }
+
+        .hero-left p {
+            font-size: 1.02rem;
+            color: var(--ink-muted);
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: var(--border-hard);
+            padding-top: 20px;
+            gap: 16px;
+        }
+
+        .kpi-box strong {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            line-height: 1.05;
+        }
+
+        .kpi-box span {
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+        }
+
+        .hero-right {
+            background: var(--paper-alt);
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .geo-frame {
+            border: var(--border-hard);
+            background: var(--surface);
+            box-shadow: var(--shadow-hard-lg);
+            animation: blockShift 5s ease-in-out infinite;
+        }
+
+        .geo-frame img {
+            height: 280px;
+            object-fit: cover;
+            border-bottom: var(--border-hard);
+        }
+
+        .geo-caption {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .color-blocks {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            height: 22px;
+            border: var(--border-hard);
+        }
+
+        .color-blocks div:nth-child(1) { background: var(--bauhaus-red); }
+        .color-blocks div:nth-child(2) { background: var(--bauhaus-blue); }
+        .color-blocks div:nth-child(3) { background: var(--bauhaus-yellow); }
+
+        /* ================= SECTION HEADERS & GRIDS ================= */
+        .sec-pad {
+            padding: 76px 0;
+            border-bottom: var(--border-hard);
+        }
+
+        .sec-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-bottom: 24px;
+            margin-bottom: 36px;
+            border-bottom: var(--border-hard);
+        }
+
+        .sec-header h2 {
+            font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+            line-height: 1.02;
+        }
+
+        .sec-header .idx {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 5px 11px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* ================= SERVICE BREAKDOWNS ================= */
+        .trades-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: var(--border-hard);
+            border-left: var(--border-hard);
+        }
+
+        .trade-cell {
+            background: var(--surface);
+            border-right: var(--border-hard);
+            border-bottom: var(--border-hard);
+            padding: 28px;
+            transition: var(--transition);
+        }
+
+        .trade-cell:hover {
+            background: var(--paper-alt);
+        }
+
+        .trade-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .trade-ico {
+            width: 46px;
+            height: 46px;
+            border: var(--border-hard);
+            background: var(--bauhaus-yellow);
+            color: #0E0E10;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            box-shadow: 3px 3px 0px var(--ink);
+        }
+
+        .trade-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--ink-muted);
+        }
+
+        .trade-cell h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .trade-cell p {
+            font-size: 0.9rem;
+            color: var(--ink-muted);
+            margin-bottom: 14px;
+        }
+
+        .trade-list {
+            list-style: none;
+            font-size: 0.84rem;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .trade-list li::before {
+            content: "■ ";
+            color: var(--bauhaus-red);
+        }
+
+        /* ================= PROJECT GALLERY ================= */
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .flt-btn {
+            padding: 9px 16px;
+            background: var(--surface);
+            color: var(--ink);
+            border: var(--border-hard);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .flt-btn.active {
+            background: var(--bauhaus-blue);
+            color: #FFFFFF;
+            box-shadow: 4px 4px 0px var(--ink);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .proj-box {
+            background: var(--surface);
+            border: var(--border-hard);
+            box-shadow: var(--shadow-hard);
+            transition: var(--transition);
+        }
+
+        .proj-box:hover {
+            transform: translate(3px, 3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .proj-img-wrap {
+            position: relative;
+            height: 245px;
+            overflow: hidden;
+            border-bottom: var(--border-hard);
+        }
+
+        .proj-img-wrap img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .proj-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--bauhaus-yellow);
+            color: #0E0E10;
+            border: var(--border-hard);
+            padding: 4px 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .proj-content {
+            padding: 20px;
+        }
+
+        .proj-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .proj-content p {
+            font-size: 0.88rem;
+            color: var(--ink-muted);
+            margin-bottom: 14px;
+        }
+
+        .proj-foot {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: var(--border-hard);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* ================= CREDENTIALS & WORKFLOW ================= */
+        .cred-sec {
+            background: var(--paper-alt);
+        }
+
+        .cred-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+
+        .cred-item {
+            background: var(--surface);
+            border: var(--border-hard);
+            box-shadow: 5px 5px 0px var(--bauhaus-blue);
+            padding: 22px;
+        }
+
+        .cred-item .tag {
+            display: inline-block;
+            background: var(--bauhaus-red);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            margin-bottom: 10px;
+        }
+
+        .cred-item h3 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .cred-item p {
+            font-size: 0.85rem;
+            color: var(--ink-muted);
+        }
+
+        .steps-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: var(--border-hard);
+            background: var(--surface);
+        }
+
+        .step-block {
+            padding: 20px;
+            border-right: var(--border-hard);
+        }
+
+        .step-block:last-child {
+            border-right: none;
+        }
+
+        .step-block strong {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            color: var(--bauhaus-blue);
+        }
+
+        .step-block span {
+            font-size: 0.84rem;
+            color: var(--ink-muted);
+        }
+
+        /* ================= CALCULATOR & QUOTE REQUEST ================= */
+        .calc-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .b-panel {
+            background: var(--surface);
+            border: var(--border-hard);
+            box-shadow: var(--shadow-hard);
+            padding: 28px;
+        }
+
+        .field-group {
+            margin-bottom: 18px;
+        }
+
+        .field-group label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .b-input {
+            width: 100%;
+            padding: 11px 13px;
+            background: var(--paper);
+            color: var(--ink);
+            border: var(--border-hard);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .trade-checks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .chk-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 11px;
+            background: var(--paper);
+            border: var(--border-hard);
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .chk-box input {
+            accent-color: var(--bauhaus-red);
+        }
+
+        .quote-readout {
+            margin-top: 20px;
+            background: var(--ink);
+            color: var(--paper);
+            border: var(--border-hard);
+            padding: 20px;
+        }
+
+        .quote-readout small {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--bauhaus-yellow);
+        }
+
+        .quote-readout h3 {
+            font-size: 2.1rem;
+            color: #fff;
+            margin: 4px 0;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .alert-ok {
+            display: none;
+            margin-top: 16px;
+            padding: 14px;
+            background: var(--bauhaus-green);
+            color: #fff;
+            border: var(--border-hard);
+            font-weight: 700;
+            font-size: 0.86rem;
+        }
+
+        /* ================= FOOTER ================= */
+        footer.b-footer {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 52px 0 26px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 32px;
+            padding-bottom: 34px;
+            border-bottom: 2px solid rgba(255,255,255,0.16);
+        }
+
+        .foot-grid h4 {
+            color: var(--bauhaus-yellow);
+            margin-bottom: 12px;
+            font-size: 0.92rem;
+        }
+
+        .foot-grid ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.88rem;
+        }
+
+        .foot-bottom {
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.78rem;
+            opacity: 0.75;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .hero-grid, .calc-split, .trades-grid, .cred-cards, .steps-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero-left {
+                border-right: none;
+                border-bottom: var(--border-hard);
+                padding: 44px 0;
+            }
+            .step-block {
+                border-bottom: var(--border-hard);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .b-nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: inline-flex;
+            }
+            .b-nav.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 74px;
+                left: 0;
+                right: 0;
+                margin: 0;
+                background: var(--surface);
+                border-bottom: var(--border-hard);
+                padding: 20px;
+            }
+            .hero-grid, .calc-split, .trades-grid, .gallery-grid, .cred-cards, .steps-bar, .trade-checks, .form-grid-2, .foot-grid {
+                grid-template-columns: 1fr;
+            }
+            .b-logo {
+                border-right: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bauhaus Hazard / Spec Tape -->
+    <div class="tape-bar" aria-hidden="true">
+        <div class="tape-track">
+            <span>■ STRUCTURAL MASONRY &amp; CONCRETE</span>
+            <span>● COMMERCIAL &amp; RESIDENTIAL BUILDS</span>
+            <span>▲ LICENSED ELECTRICAL &amp; PLUMBING</span>
+            <span>■ TRANSPARENT BOQ QUOTES</span>
+            <span>■ STRUCTURAL MASONRY &amp; CONCRETE</span>
+            <span>● COMMERCIAL &amp; RESIDENTIAL BUILDS</span>
+            <span>▲ LICENSED ELECTRICAL &amp; PLUMBING</span>
+            <span>■ TRANSPARENT BOQ QUOTES</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="b-header">
+        <div class="container header-row">
+            <a href="#" class="b-logo">
+                <div class="b-logo-shapes" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i>
+                </div>
+                <div>
+                    <strong>MONOLITH</strong>
+                    <small>Builders &amp; Trades</small>
+                </div>
+            </a>
+
+            <nav aria-label="Primary Navigation">
+                <ul class="b-nav" id="bNav">
+                    <li><a href="#trades">Trades</a></li>
+                    <li><a href="#gallery">Projects</a></li>
+                    <li><a href="#credentials">Credentials</a></li>
+                    <li><a href="#estimator">Quote Calc</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button type="button" class="mode-btn" id="modeBtn" aria-label="Toggle Light and Dark Ink Mode">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                    <span id="modeText">Dark Ink</span>
+                </button>
+                <a href="#estimator" class="b-btn b-btn-red" style="padding: 9px 15px; font-size: 0.78rem;">Get Quote</a>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Split Hero -->
+        <section class="hero-grid container">
+            <div class="hero-left reveal">
+                <div>
+                    <div class="hero-tag">
+                        <i class="fa-solid fa-cubes"></i>
+                        <span>Bauhaus Discipline • Heavy &amp; Light Construction</span>
+                    </div>
+                    <h1>Raw Strength. <span class="red-word">Sharp</span> Execution.</h1>
+                    <p>We build structural shells, full residential homes, commercial spaces, and civil works with clean geometry, disciplined site supervision, and straight-talking estimates.</p>
+
+                    <div class="hero-btns">
+                        <a href="#estimator" class="b-btn b-btn-yellow">
+                            <i class="fa-solid fa-calculator"></i> Calculate Build Cost
+                        </a>
+                        <a href="#gallery" class="b-btn b-btn-surface">
+                            <i class="fa-solid fa-border-all"></i> View Project Grid
+                        </a>
+                    </div>
+                </div>
+
+                <div class="kpi-strip">
+                    <div class="kpi-box">
+                        <strong>14+ YRS</strong>
+                        <span>Site Experience</span>
+                    </div>
+                    <div class="kpi-box">
+                        <strong>185+</strong>
+                        <span>Builds Completed</span>
+                    </div>
+                    <div class="kpi-box">
+                        <strong>100%</strong>
+                        <span>Code &amp; Safety Focus</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right reveal">
+                <div class="color-blocks" aria-hidden="true">
+                    <div></div><div></div><div></div>
+                </div>
+                <div class="geo-frame">
+                    <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:98,cw:1576,ch:1182,q:80,w:1576/okt38NjZykdYkADKNfTRuk.jpg" alt="Architectural concrete structure with clean circular geometry">
+                    <div class="geo-caption">
+                        <div>
+                            <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--bauhaus-blue);">Featured Discipline</span>
+                            <h2 style="font-size: 1.15rem;">Structural Concrete &amp; Formwork</h2>
+                        </div>
+                        <span style="background: var(--bauhaus-yellow); color: #0E0E10; border: 2px solid #0E0E10; padding: 4px 9px; font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 700;">SANS SPEC</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Breakdowns -->
+        <section id="trades" class="sec-pad">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <div>
+                        <span class="idx">01 // SERVICE BREAKDOWNS</span>
+                        <h2>Core Building &amp; Trade Divisions</h2>
+                    </div>
+                    <p style="max-width: 380px; color: var(--ink-muted); font-size: 0.92rem;">Organized trade teams covering every phase from soil compaction to final finishes.</p>
+                </div>
+
+                <div class="trades-grid">
+                    <article class="trade-cell reveal">
+                        <div class="trade-top">
+                            <div class="trade-ico"><i class="fa-solid fa-trowel-bricks"></i></div>
+                            <span class="trade-num">TR-01</span>
+                        </div>
+                        <h3>Foundations &amp; Masonry</h3>
+                        <p>Trenches, reinforced footings, slabs, brickwork, and load-bearing walls.</p>
+                        <ul class="trade-list">
+                            <li>Strip &amp; raft concrete foundations</li>
+                            <li>Block &amp; face-brick walling</li>
+                            <li>Lintels, beams &amp; curing control</li>
+                        </ul>
+                    </article>
+
+                    <article class="trade-cell reveal">
+                        <div class="trade-top">
+                            <div class="trade-ico" style="background: var(--bauhaus-blue); color: #fff;"><i class="fa-solid fa-layer-group"></i></div>
+                            <span class="trade-num">TR-02</span>
+                        </div>
+                        <h3>Roofing &amp; Waterproofing</h3>
+                        <p>Trusses, metal/tile roofs, flat slab waterproofing, and stormwater runoff.</p>
+                        <ul class="trade-list">
+                            <li>Timber &amp; steel roof structures</li>
+                            <li>Torch-on &amp; membrane sealing</li>
+                            <li>Gutters, downpipes &amp; flashing</li>
+                        </ul>
+                    </article>
+
+                    <article class="trade-cell reveal">
+                        <div class="trade-top">
+                            <div class="trade-ico" style="background: var(--bauhaus-red); color: #fff;"><i class="fa-solid fa-bolt"></i></div>
+                            <span class="trade-num">TR-03</span>
+                        </div>
+                        <h3>Electrical &amp; Power Ready</h3>
+                        <p>DB boards, circuit cabling, lighting grids, and backup power prep.</p>
+                        <ul class="trade-list">
+                            <li>DB upgrades &amp; earthing</li>
+                            <li>Dedicated appliance circuits</li>
+                            <li>Inverter &amp; generator changeover</li>
+                        </ul>
+                    </article>
+
+                    <article class="trade-cell reveal">
+                        <div class="trade-top">
+                            <div class="trade-ico" style="background: var(--bauhaus-red); color: #fff;"><i class="fa-solid fa-faucet"></i></div>
+                            <span class="trade-num">TR-04</span>
+                        </div>
+                        <h3>Plumbing &amp; Drainage</h3>
+                        <p>Supply lines, sanitaryware fitment, sewer trenches, and pressure testing.</p>
+                        <ul class="trade-list">
+                            <li>Hot &amp; cold water supply lines</li>
+                            <li>Drainage, gullies &amp; soakaways</li>
+                            <li>Geysers, mixers &amp; fixtures</li>
+                        </ul>
+                    </article>
+
+                    <article class="trade-cell reveal">
+                        <div class="trade-top">
+                            <div class="trade-ico"><i class="fa-solid fa-border-style"></i></div>
+                            <span class="trade-num">TR-05</span>
+                        </div>
+                        <h3>Tiling, Plaster &amp; Paint</h3>
+                        <p>Plastering, ceilings, precision tiling, and durable interior/exterior coats.</p>
+                        <ul class="trade-list">
+                            <li>Cement &amp; rhino plaster work</li>
+                            <li>Floor &amp; wall tile installation</li>
+                            <li>Primer, undercoat &amp; topcoats</li>
+                        </ul>
+                    </article>
+
+                    <article class="trade-cell reveal">
+                        <div class="trade-top">
+                            <div class="trade-ico" style="background: var(--bauhaus-blue); color: #fff;"><i class="fa-solid fa-road"></i></div>
+                            <span class="trade-num">TR-06</span>
+                        </div>
+                        <h3>Civils, Paving &amp; Boundary</h3>
+                        <p>Compacted sub-bases, paving aprons, retaining walls, and boundary fencing.</p>
+                        <ul class="trade-list">
+                            <li>Layer compaction &amp; paving</li>
+                            <li>Retaining &amp; perimeter walls</li>
+                            <li>Site clearing &amp; spoil haulage</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Gallery -->
+        <section id="gallery" class="sec-pad">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <div>
+                        <span class="idx">02 // PROJECT GALLERY</span>
+                        <h2>Selected Build Archive</h2>
+                    </div>
+                    <p style="max-width: 380px; color: var(--ink-muted); font-size: 0.92rem;">Filter completed work across commercial structures, renovations, and civil trades.</p>
+                </div>
+
+                <div class="filter-row reveal" role="tablist" aria-label="Filter projects">
+                    <button type="button" class="flt-btn active" data-filter="all">All [04]</button>
+                    <button type="button" class="flt-btn" data-filter="commercial">Commercial</button>
+                    <button type="button" class="flt-btn" data-filter="residential">Residential &amp; Finishes</button>
+                    <button type="button" class="flt-btn" data-filter="civils">Civils &amp; Paving</button>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <article class="proj-box reveal" data-cat="commercial">
+                        <div class="proj-img-wrap">
+                            <span class="proj-badge">Commercial</span>
+                            <img src="https://sogadesignstudio.com/wp-content/uploads/2026/06/glass-facade-design-commercial-soga-01-scaled.jpg" alt="Multi-storey commercial building with geometric facade and glazing" loading="lazy">
+                        </div>
+                        <div class="proj-content">
+                            <h3>Multi-Level Commercial Facade &amp; Bay</h3>
+                            <p>Structural frame, architectural facade louvers, and forecourt civil works.</p>
+                            <div class="proj-foot">
+                                <span><i class="fa-solid fa-expand"></i> 640 m²</span>
+                                <span><i class="fa-solid fa-clock"></i> 18 Weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="proj-box reveal" data-cat="civils">
+                        <div class="proj-img-wrap">
+                            <span class="proj-badge" style="background: var(--bauhaus-blue); color: #fff;">Civils &amp; Paving</span>
+                            <img src="https://workinroads.org/wp-content/uploads/2023/03/Work-IN-Roads-Graphics-26.jpg" alt="Road paving machinery and crew laying surfacing on site" loading="lazy">
+                        </div>
+                        <div class="proj-content">
+                            <h3>Access Surfacing &amp; Heavy Yard Works</h3>
+                            <p>Sub-grade preparation, compaction, surface laying, and drainage alignment.</p>
+                            <div class="proj-foot">
+                                <span><i class="fa-solid fa-expand"></i> 1,100 m²</span>
+                                <span><i class="fa-solid fa-clock"></i> 5 Weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="proj-box reveal" data-cat="residential">
+                        <div class="proj-img-wrap">
+                            <span class="proj-badge" style="background: var(--bauhaus-red); color: #fff;">Residential &amp; Finishes</span>
+                            <img src="https://storage.googleapis.com/stateless-www-sadecor-co-za/2026/08/773832df-italtile_home_renovation_in_progress-scaled.jpg" alt="Interior home renovation with tiling materials, ladders, and work in progress" loading="lazy">
+                        </div>
+                        <div class="proj-content">
+                            <h3>Interior Strip-Out, Tiling &amp; Fit-Out</h3>
+                            <p>Floor leveling, porcelain tile installation, ceiling work, and electrical/plumbing tie-ins.</p>
+                            <div class="proj-foot">
+                                <span><i class="fa-solid fa-expand"></i> 165 m²</span>
+                                <span><i class="fa-solid fa-clock"></i> 7 Weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="proj-box reveal" data-cat="civils">
+                        <div class="proj-img-wrap">
+                            <span class="proj-badge">Structural Concrete</span>
+                            <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:98,cw:1576,ch:1182,q:80,w:1576/okt38NjZykdYkADKNfTRuk.jpg" alt="Curved architectural concrete deck supported by columns" loading="lazy">
+                        </div>
+                        <div class="proj-content">
+                            <h3>Cast-In-Place Concrete Deck &amp; Columns</h3>
+                            <p>Precision shuttering, steel reinforcement, and smooth architectural concrete finish.</p>
+                            <div class="proj-foot">
+                                <span><i class="fa-solid fa-expand"></i> 310 m²</span>
+                                <span><i class="fa-solid fa-clock"></i> 10 Weeks</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Credentials & Process -->
+        <section id="credentials" class="sec-pad cred-sec">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <div>
+                        <span class="idx" style="background: var(--bauhaus-red); color: #fff;">03 // CREDENTIALS &amp; PROCESS</span>
+                        <h2>Verified Contractor Standards</h2>
+                    </div>
+                    <p style="max-width: 380px; color: var(--ink-muted); font-size: 0.92rem;">Documentation, compliance, and a clear 4-stage build sequence from brief to handover.</p>
+                </div>
+
+                <div class="cred-cards">
+                    <div class="cred-item reveal">
+                        <span class="tag">01 // REGISTRATION</span>
+                        <h3>NHBRC &amp; CIDB Ready</h3>
+                        <p>Active registration documentation and grading details supplied for residential and tender work.</p>
+                    </div>
+                    <div class="cred-item reveal">
+                        <span class="tag">02 // COMPLIANCE</span>
+                        <h3>COID &amp; Site Safety</h3>
+                        <p>Letter of Good Standing, PPE enforcement, and site liability cover on active builds.</p>
+                    </div>
+                    <div class="cred-item reveal">
+                        <span class="tag">03 // CERTIFICATION</span>
+                        <h3>Trade CoCs Issued</h3>
+                        <p>Electrical and plumbing Certificates of Compliance upon completion of regulated installations.</p>
+                    </div>
+                    <div class="cred-item reveal">
+                        <span class="tag">04 // ACCOUNTABILITY</span>
+                        <h3>Itemized BOQs &amp; Warranty</h3>
+                        <p>Clear material/labour schedules, milestone progress checks, and workmanship guarantee.</p>
+                    </div>
+                </div>
+
+                <div class="steps-bar reveal">
+                    <div class="step-block">
+                        <strong>STEP 01 // SITE SURVEY</strong>
+                        <span>Measure site, review plans or scope, and check ground access.</span>
+                    </div>
+                    <div class="step-block">
+                        <strong>STEP 02 // BOQ QUOTATION</strong>
+                        <span>Deliver transparent pricing, material specs, and build schedule.</span>
+                    </div>
+                    <div class="step-block">
+                        <strong>STEP 03 // SITE EXECUTION</strong>
+                        <span>Supervise masonry, trades, and deliveries with weekly updates.</span>
+                    </div>
+                    <div class="step-block">
+                        <strong>STEP 04 // HANDOVER</strong>
+                        <span>Complete snag walk-through, issue CoCs, and hand over keys.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Calculator & Form -->
+        <section id="estimator" class="sec-pad">
+            <div class="container">
+                <div class="sec-header reveal">
+                    <div>
+                        <span class="idx">04 // QUOTE CALCULATOR &amp; BRIEF</span>
+                        <h2>Estimate &amp; Request Quote</h2>
+                    </div>
+                    <p style="max-width: 380px; color: var(--ink-muted); font-size: 0.92rem;">Adjust scope, square meters, and add-on trades for an instant ballpark figure.</p>
+                </div>
+
+                <div class="calc-split">
+                    <div class="b-panel reveal">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 18px;">Live Cost Calculator</h3>
+
+                        <div class="field-group">
+                            <label for="scopeSelect">
+                                <span>Build / Trade Scope</span>
+                                <span id="unitRateLabel" style="color: var(--bauhaus-red);">R6,800 / m²</span>
+                            </label>
+                            <select id="scopeSelect" class="b-input">
+                                <option value="6800">Turnkey New Build (Standard Spec)</option>
+                                <option value="9200">Architectural / High-Spec Build</option>
+                                <option value="4900">Structural Extension / Remodel</option>
+                                <option value="2400">Interior Renovation &amp; Tiling</option>
+                                <option value="1350">Paving, Concrete &amp; Site Civils</option>
+                            </select>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="areaSlider">
+                                <span>Area (Square Meters)</span>
+                                <span id="areaLabel" style="color: var(--bauhaus-blue);">140 m²</span>
+                            </label>
+                            <input type="range" id="areaSlider" min="20" max="600" step="10" value="140" style="width: 100%; accent-color: var(--bauhaus-red);">
+                        </div>
+
+                        <div class="field-group">
+                            <label><span>Add-On Trade Packages</span></label>
+                            <div class="trade-checks">
+                                <label class="chk-box">
+                                    <input type="checkbox" class="addon-opt" value="28000" checked>
+                                    <span>Electrical DB + CoC (+R28k)</span>
+                                </label>
+                                <label class="chk-box">
+                                    <input type="checkbox" class="addon-opt" value="24000">
+                                    <span>Plumbing &amp; Geyser (+R24k)</span>
+                                </label>
+                                <label class="chk-box">
+                                    <input type="checkbox" class="addon-opt" value="35000">
+                                    <span>Roof &amp; Waterproofing (+R35k)</span>
+                                </label>
+                                <label class="chk-box">
+                                    <input type="checkbox" class="addon-opt" value="18000">
+                                    <span>Site Prep &amp; Rubble (+R18k)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="quote-readout">
+                            <small>Estimated Project Total (±12%)</small>
+                            <h3 id="calcTotal">R980,000</h3>
+                            <p id="calcBand" style="font-size: 0.8rem; color: #D4D7DF;">Range: R862,400 – R1,097,600 • Ballpark estimate before formal BOQ</p>
+                        </div>
+                    </div>
+
+                    <div class="b-panel reveal">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 6px;">Submit Quote / Site Visit Brief</h3>
+                        <p style="font-size: 0.88rem; color: var(--ink-muted); margin-bottom: 18px;">Send your contact details and site location for an accurate site walk and written quote.</p>
+
+                        <form id="briefForm">
+                            <div class="form-grid-2">
+                                <div class="field-group">
+                                    <label for="cName">Full Name *</label>
+                                    <input type="text" id="cName" class="b-input" required placeholder="Your name or business">
+                                </div>
+                                <div class="field-group">
+                                    <label for="cPhone">Phone / WhatsApp *</label>
+                                    <input type="tel" id="cPhone" class="b-input" required placeholder="+27 ××× ××× ×××">
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="field-group">
+                                    <label for="cSite">Site Location *</label>
+                                    <input type="text" id="cSite" class="b-input" required placeholder="Town, suburb, or stand #">
+                                </div>
+                                <div class="field-group">
+                                    <label for="cStart">Start Timeframe</label>
+                                    <select id="cStart" class="b-input">
+                                        <option value="ASAP (Within 2 weeks)">ASAP (Within 2 weeks)</option>
+                                        <option value="Within 1 month">Within 1 month</option>
+                                        <option value="1–3 months">1–3 months</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field-group">
+                                <label for="cNotes">Scope &amp; Requirements</label>
+                                <textarea id="cNotes" rows="3" class="b-input" placeholder="Describe building plans, square meters, trades needed, or site conditions..."></textarea>
+                            </div>
+
+                            <button type="submit" class="b-btn b-btn-blue" style="width: 100%; padding: 14px;">
+                                <i class="fa-solid fa-square-check"></i> Submit Quote Request
+                            </button>
+                        </form>
+
+                        <div class="alert-ok" id="briefOk">
+                            <i class="fa-solid fa-check"></i> Quote brief received! Our estimating desk will follow up with your site assessment details.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="b-footer">
+        <div class="container">
+            <div class="foot-grid">
+                <div>
+                    <h4 style="font-size: 1.15rem; color: #fff;">MONOLITH BUILDERS &amp; TRADES</h4>
+                    <p style="font-size: 0.88rem; max-width: 340px;">Structural builders and trade specialists delivering residential, commercial, and civil works with clear specs and dependable execution.</p>
+                </div>
+
+                <div>
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#trades">Service Breakdowns</a></li>
+                        <li><a href="#gallery">Project Gallery</a></li>
+                        <li><a href="#credentials">Credentials &amp; Steps</a></li>
+                        <li><a href="#estimator">Quote Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>Direct Contact</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-phone" style="color: var(--bauhaus-yellow); width: 18px;"></i> +27 ××× ××× ×××</li>
+                        <li><i class="fa-solid fa-envelope" style="color: var(--bauhaus-yellow); width: 18px;"></i> tenders@yourconstructionsite.co.za</li>
+                        <li><i class="fa-solid fa-location-dot" style="color: var(--bauhaus-yellow); width: 18px;"></i> 14 Bauhaus Industrial Way</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="foot-bottom">
+                <span>&copy; 2026 Monolith Builders &amp; Trades. All rights reserved.</span>
+                <span>Indicative calculator figures subject to formal Bill of Quantities.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Light Paper / Dark Ink Toggle
+        const modeBtn = document.getElementById("modeBtn");
+        const modeText = document.getElementById("modeText");
+
+        function applyInkMode(isDark) {
+            document.body.classList.toggle("ink-mode", isDark);
+            modeText.textContent = isDark ? "Light Paper" : "Dark Ink";
+            localStorage.setItem("monolith_ink_mode", isDark ? "1" : "0");
+        }
+        applyInkMode(localStorage.getItem("monolith_ink_mode") === "1");
+        modeBtn.addEventListener("click", () => {
+            applyInkMode(!document.body.classList.contains("ink-mode"));
+        });
+
+        // 2. Mobile Menu Toggle
+        const menuToggle = document.getElementById("menuToggle");
+        const bNav = document.getElementById("bNav");
+        menuToggle.addEventListener("click", () => bNav.classList.toggle("open"));
+
+        // 3. Project Gallery Filter
+        const fltBtns = document.querySelectorAll(".flt-btn");
+        const projBoxes = document.querySelectorAll(".proj-box");
+
+        fltBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                fltBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                const cat = btn.dataset.filter;
+                projBoxes.forEach(box => {
+                    box.style.display = (cat === "all" || box.dataset.cat === cat) ? "" : "none";
+                });
+            });
+        });
+
+        // 4. Live Quote Calculator
+        const scopeSelect = document.getElementById("scopeSelect");
+        const areaSlider = document.getElementById("areaSlider");
+        const addonOpts = document.querySelectorAll(".addon-opt");
+        const unitRateLabel = document.getElementById("unitRateLabel");
+        const areaLabel = document.getElementById("areaLabel");
+        const calcTotal = document.getElementById("calcTotal");
+        const calcBand = document.getElementById("calcBand");
+
+        const fmtZAR = (n) => "R" + Math.round(n).toLocaleString("en-ZA");
+
+        function updateQuote() {
+            const rate = Number(scopeSelect.value);
+            const area = Number(areaSlider.value);
+            let extras = 0;
+            addonOpts.forEach(box => {
+                if (box.checked) extras += Number(box.value);
+            });
+
+            const total = (rate * area) + extras;
+            const minBand = total * 0.88;
+            const maxBand = total * 1.12;
+
+            unitRateLabel.textContent = `${fmtZAR(rate)} / m²`;
+            areaLabel.textContent = `${area} m²`;
+            calcTotal.textContent = fmtZAR(total);
+            calcBand.textContent = `Range: ${fmtZAR(minBand)} – ${fmtZAR(maxBand)} • Ballpark estimate before formal BOQ`;
+        }
+
+        [scopeSelect, areaSlider, ...addonOpts].forEach(input => {
+            input.addEventListener("input", updateQuote);
+            input.addEventListener("change", updateQuote);
+        });
+        updateQuote();
+
+        // 5. Quote Brief Form
+        document.getElementById("briefForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            document.getElementById("briefOk").style.display = "block";
+            this.reset();
+            updateQuote();
+        });
+
+        // 6. Scroll Reveal
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("in-view");
+                }
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    </script>
+</body>
+</html>
