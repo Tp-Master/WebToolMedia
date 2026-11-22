@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YOU BUSINESS NAME HERE — Corporate advisory, operations systems, leadership team profiles, Google listing reviews, and instant WhatsApp proposal requests.">
+    <title>YOU BUSINESS NAME HERE | Corporate Strategy, Operations &amp; Advisory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        serif: ['Fraunces', 'serif'],
+                    },
+                    colors: {
+                        alabaster: '#FBF9F5',
+                        alabasterDeep: '#F1ECE1',
+                        plum: '#1D1426',
+                        plumSoft: '#2E213C',
+                        limeAccent: '#84CC16',
+                        limeDeep: '#65A30D',
+                        inkPlum: '#18111F',
+                    },
+                    animation: {
+                        'breathe': 'breathe 6s ease-in-out infinite',
+                        'marquee': 'marquee 22s linear infinite',
+                    },
+                    keyframes: {
+                        breathe: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FBF9F5;
+            color: #18111F;
+            overflow-x: hidden;
+        }
+        #topMeter {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: linear-gradient(90deg, #1D1426, #84CC16);
+            z-index: 70;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .pill-btn {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.25s ease;
+        }
+        .pill-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+        }
+        .pill-btn:active {
+            transform: scale(0.97);
+        }
+        .surface-card {
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .surface-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 38px -16px rgba(29, 20, 38, 0.16);
+            border-color: rgba(101, 163, 13, 0.65);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-limeAccent selection:text-plum">
+
+    <div id="topMeter"></div>
+
+    <!-- Floating Pill Navigation -->
+    <header class="sticky top-3 z-50 px-4">
+        <div class="max-w-6xl mx-auto bg-plum/95 backdrop-blur-md text-white rounded-full px-5 py-3 shadow-lg border border-white/10 flex items-center justify-between gap-4">
+            <a href="#" class="flex items-center gap-2.5 shrink-0">
+                <span class="w-9 h-9 rounded-full bg-limeAccent text-plum flex items-center justify-center font-serif font-extrabold text-lg">
+                    Y
+                </span>
+                <span class="font-serif font-bold text-sm sm:text-base tracking-tight">YOU BUSINESS NAME HERE</span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-1 bg-white/5 p-1 rounded-full text-xs font-semibold">
+                <a href="#services" class="px-4 py-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Services</a>
+                <a href="#team" class="px-4 py-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Leadership</a>
+                <a href="#reviews" class="px-4 py-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Google Reviews</a>
+                <a href="#proposal-desk" class="px-4 py-2 rounded-full text-white/80 hover:text-white hover:bg-white/10 transition">Consultation</a>
+            </nav>
+
+            <div class="flex items-center gap-2.5 shrink-0">
+                <button type="button" id="openQuickBriefBtn" class="pill-btn hidden sm:inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-4 py-2.5 rounded-full">
+                    <i class="fa-solid fa-bolt text-limeAccent"></i> Quick Scope
+                </button>
+                <a href="#proposal-desk" class="pill-btn inline-flex items-center gap-2 bg-limeAccent hover:bg-limeDeep text-plum text-xs font-extrabold px-4 py-2.5 rounded-full">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> Proposal
+                </a>
+                <button type="button" id="mobileToggle" class="lg:hidden w-9 h-9 rounded-full bg-white/10 text-white flex items-center justify-center" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Pill Dropdown -->
+        <div id="mobileDrawer" class="hidden lg:hidden max-w-6xl mx-auto mt-2 bg-plum text-white rounded-3xl p-5 border border-white/10 shadow-xl space-y-2 text-sm font-semibold">
+            <a href="#services" class="block py-2 px-3 rounded-xl hover:bg-white/10">Services</a>
+            <a href="#team" class="block py-2 px-3 rounded-xl hover:bg-white/10">Leadership</a>
+            <a href="#reviews" class="block py-2 px-3 rounded-xl hover:bg-white/10">Google Reviews</a>
+            <a href="#proposal-desk" class="block py-2 px-3 rounded-xl hover:bg-white/10">Consultation &amp; WhatsApp</a>
+            <button type="button" id="mobileQuickBrief" class="w-full text-left py-2.5 px-3 rounded-xl bg-white/10 text-limeAccent font-bold">
+                <i class="fa-solid fa-bolt mr-2"></i>Open Quick Scope Estimator
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Centered Editorial Hero + Interactive Scope Bar -->
+        <section class="pt-12 pb-16 lg:pt-16 lg:pb-20">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="text-center max-w-4xl mx-auto space-y-5">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-alabasterDeep border border-plum/10 text-xs font-bold text-plum">
+                        <span class="w-2 h-2 rounded-full bg-limeDeep animate-ping"></span>
+                        <span>YOU BUSINESS NAME HERE • +27××××××××× • youremailhere@gmail.com</span>
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-extrabold text-plum leading-[1.03] tracking-tight">
+                        Built for <span class="underline decoration-limeAccent decoration-4 underline-offset-8">Decisive</span> Corporate Momentum.
+                    </h1>
+
+                    <p class="text-plum/75 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                        We structure operations, strengthen governance, and align commercial teams so <strong class="text-plum">YOU BUSINESS NAME HERE</strong> clients execute faster with fewer blind spots.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-3 pt-2">
+                        <a href="#proposal-desk" class="pill-btn bg-plum hover:bg-plumSoft text-white px-7 py-3.5 rounded-full font-bold text-sm inline-flex items-center gap-2.5 shadow-md">
+                            <span>Book Strategy Consultation</span>
+                            <i class="fa-solid fa-arrow-right text-limeAccent"></i>
+                        </a>
+                        <button type="button" id="heroEstimatorBtn" class="pill-btn bg-limeAccent hover:bg-limeDeep text-plum px-7 py-3.5 rounded-full font-extrabold text-sm inline-flex items-center gap-2.5 shadow-md">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span>Interactive Scope Builder</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reordered Hero Visual Strip: 3-Column Bento Snapshot -->
+                <div class="grid md:grid-cols-3 gap-5 mt-12">
+                    <div class="surface-card bg-white border border-plum/10 rounded-3xl p-6 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-limeDeep">01 / Track Record</span>
+                            <p class="font-serif text-4xl font-extrabold text-plum mt-2"><span class="kpi" data-target="160">0</span>+</p>
+                            <p class="text-sm text-plum/70 mt-1">Corporate mandates, audits, and growth systems delivered.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-plum/10 flex items-center justify-between text-xs font-bold text-plum">
+                            <span>Client Retention</span>
+                            <span class="px-2.5 py-1 rounded-full bg-limeAccent/25 text-plum">96%</span>
+                        </div>
+                    </div>
+
+                    <div class="animate-breathe surface-card bg-plum text-white rounded-3xl p-6 flex flex-col justify-between shadow-xl">
+                        <div class="rounded-2xl overflow-hidden h-36 mb-4">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80" alt="Executive team reviewing corporate roadmap" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-serif text-xl font-bold text-white">Executive Alignment</p>
+                                <p class="text-xs text-white/70">Weekly KPI cadence &amp; clear ownership</p>
+                            </div>
+                            <a href="#services" class="w-10 h-10 rounded-full bg-limeAccent text-plum flex items-center justify-center font-bold hover:rotate-45 transition">
+                                <i class="fa-solid fa-arrow-up-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="surface-card bg-white border border-plum/10 rounded-3xl p-6 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-plum/60">02 / Google Rating</span>
+                            <div class="flex items-center gap-2 mt-2">
+                                <p class="font-serif text-4xl font-extrabold text-plum">4.9</p>
+                                <span class="text-amber-500 text-sm">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                            </div>
+                            <p class="text-sm text-plum/70 mt-1">Verified client reviews across strategy, SOPs, and governance.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-plum/10 flex items-center justify-between text-xs font-bold text-plum">
+                            <span>Google Business Profile</span>
+                            <a href="#reviews" class="text-limeDeep hover:underline">Read Reviews →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Continuous Capabilities Ticker -->
+        <div class="bg-plum text-white py-3.5 border-y border-white/10 overflow-hidden">
+            <div class="flex whitespace-nowrap animate-marquee text-xs font-bold uppercase tracking-[0.2em] text-limeAccent">
+                <span class="mx-6">• CORPORATE STRATEGY</span>
+                <span class="mx-6 text-white/80">• OPERATIONAL SOP DESIGN</span>
+                <span class="mx-6">• GOVERNANCE &amp; COMPLIANCE</span>
+                <span class="mx-6 text-white/80">• MARGIN &amp; CASH CLARITY</span>
+                <span class="mx-6">• LEADERSHIP COACHING</span>
+                <span class="mx-6 text-white/80">• COMMERCIAL EXPANSION</span>
+                <span class="mx-6">• CORPORATE STRATEGY</span>
+                <span class="mx-6 text-white/80">• OPERATIONAL SOP DESIGN</span>
+                <span class="mx-6">• GOVERNANCE &amp; COMPLIANCE</span>
+                <span class="mx-6 text-white/80">• MARGIN &amp; CASH CLARITY</span>
+            </div>
+        </div>
+
+        <!-- Services Section (Different Section Order: Services First) -->
+        <section id="services" class="py-20 lg:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-limeDeep">What We Deliver</span>
+                        <h2 class="font-serif text-3xl sm:text-5xl font-extrabold text-plum mt-1">Corporate Services</h2>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2" id="serviceFilterBar">
+                        <button type="button" data-cat="all" class="filter-pill px-4 py-2 rounded-full text-xs font-extrabold bg-plum text-white transition">All Services</button>
+                        <button type="button" data-cat="strategy" class="filter-pill px-4 py-2 rounded-full text-xs font-bold bg-alabasterDeep text-plum hover:bg-limeAccent/40 transition">Strategy</button>
+                        <button type="button" data-cat="operations" class="filter-pill px-4 py-2 rounded-full text-xs font-bold bg-alabasterDeep text-plum hover:bg-limeAccent/40 transition">Operations</button>
+                        <button type="button" data-cat="governance" class="filter-pill px-4 py-2 rounded-full text-xs font-bold bg-alabasterDeep text-plum hover:bg-limeAccent/40 transition">Governance</button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="svc-box surface-card bg-white border border-plum/10 rounded-3xl p-7 reveal" data-category="strategy">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-11 h-11 rounded-2xl bg-plum text-limeAccent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-compass"></i>
+                            </span>
+                            <span class="text-[11px] font-bold uppercase text-plum/50">01 / Strategy</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-plum mb-2">Strategy &amp; Growth Planning</h3>
+                        <p class="text-plum/70 text-sm leading-relaxed mb-5">Commercial roadmaps, market entry models, pricing architecture, and quarterly KPI alignment.</p>
+                        <button type="button" onclick="prefillProposal('Strategy & Growth Planning')" class="text-xs font-extrabold text-plum hover:text-limeDeep inline-flex items-center gap-1.5">
+                            <span>Request Scope</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="svc-box surface-card bg-white border border-plum/10 rounded-3xl p-7 reveal" data-category="operations">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-11 h-11 rounded-2xl bg-limeAccent text-plum flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-gears"></i>
+                            </span>
+                            <span class="text-[11px] font-bold uppercase text-plum/50">02 / Operations</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-plum mb-2">Process &amp; SOP Engineering</h3>
+                        <p class="text-plum/70 text-sm leading-relaxed mb-5">Eliminating workflow bottlenecks, documenting standard procedures, and speeding up branch delivery.</p>
+                        <button type="button" onclick="prefillProposal('Process & SOP Engineering')" class="text-xs font-extrabold text-plum hover:text-limeDeep inline-flex items-center gap-1.5">
+                            <span>Request Scope</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="svc-box surface-card bg-white border border-plum/10 rounded-3xl p-7 reveal" data-category="governance">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-11 h-11 rounded-2xl bg-plum text-limeAccent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </span>
+                            <span class="text-[11px] font-bold uppercase text-plum/50">03 / Governance</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-plum mb-2">Risk, Controls &amp; Compliance</h3>
+                        <p class="text-plum/70 text-sm leading-relaxed mb-5">Audit readiness, internal control frameworks, policy governance, and commercial tender preparation.</p>
+                        <button type="button" onclick="prefillProposal('Risk, Controls & Compliance')" class="text-xs font-extrabold text-plum hover:text-limeDeep inline-flex items-center gap-1.5">
+                            <span>Request Scope</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="svc-box surface-card bg-white border border-plum/10 rounded-3xl p-7 reveal" data-category="governance">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-11 h-11 rounded-2xl bg-limeAccent text-plum flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </span>
+                            <span class="text-[11px] font-bold uppercase text-plum/50">04 / Finance</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-plum mb-2">Margin &amp; Cash-Flow Clarity</h3>
+                        <p class="text-plum/70 text-sm leading-relaxed mb-5">Unit-cost diagnostics, budget discipline, working-capital visibility, and contract margin modeling.</p>
+                        <button type="button" onclick="prefillProposal('Margin & Cash-Flow Clarity')" class="text-xs font-extrabold text-plum hover:text-limeDeep inline-flex items-center gap-1.5">
+                            <span>Request Scope</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="svc-box surface-card bg-white border border-plum/10 rounded-3xl p-7 reveal" data-category="operations">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-11 h-11 rounded-2xl bg-plum text-limeAccent flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-users-gear"></i>
+                            </span>
+                            <span class="text-[11px] font-bold uppercase text-plum/50">05 / Leadership</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-plum mb-2">Leadership &amp; Team Alignment</h3>
+                        <p class="text-plum/70 text-sm leading-relaxed mb-5">Clear role accountability, weekly management scorecards, and practical department coaching.</p>
+                        <button type="button" onclick="prefillProposal('Leadership & Team Alignment')" class="text-xs font-extrabold text-plum hover:text-limeDeep inline-flex items-center gap-1.5">
+                            <span>Request Scope</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="svc-box surface-card bg-white border border-plum/10 rounded-3xl p-7 reveal" data-category="strategy">
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="w-11 h-11 rounded-2xl bg-limeAccent text-plum flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-globe"></i>
+                            </span>
+                            <span class="text-[11px] font-bold uppercase text-plum/50">06 / Commercial</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-plum mb-2">Commercial &amp; Digital Systems</h3>
+                        <p class="text-plum/70 text-sm leading-relaxed mb-5">B2B pipeline workflows, corporate web architecture, and clear search visibility for buyers.</p>
+                        <button type="button" onclick="prefillProposal('Commercial & Digital Systems')" class="text-xs font-extrabold text-plum hover:text-limeDeep inline-flex items-center gap-1.5">
+                            <span>Request Scope</span> <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Profiles Section (Placed 2nd in Main Flow) -->
+        <section id="team" class="py-20 lg:py-24 bg-alabasterDeep border-y border-plum/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                    <span class="text-xs font-bold uppercase tracking-widest text-limeDeep">People Behind The Work</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-extrabold text-plum mt-1">Leadership &amp; Practice Team</h2>
+                    <p class="text-plum/70 text-sm sm:text-base mt-2">Hands-on corporate practitioners leading strategy, operations, finance, and delivery.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="surface-card bg-white border border-plum/10 rounded-3xl p-6 reveal">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Kagiso Molefe" class="w-full h-48 object-cover rounded-2xl mb-4">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-limeDeep">Managing Director</span>
+                        <h3 class="font-serif text-xl font-bold text-plum mt-0.5">Kagiso Molefe</h3>
+                        <p class="text-plum/70 text-sm mt-2">Leads corporate strategy, growth planning, and executive alignment.</p>
+                    </div>
+
+                    <div class="surface-card bg-white border border-plum/10 rounded-3xl p-6 reveal">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Naledi Khumalo" class="w-full h-48 object-cover rounded-2xl mb-4">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-plum/60">Head of Operations</span>
+                        <h3 class="font-serif text-xl font-bold text-plum mt-0.5">Naledi Khumalo</h3>
+                        <p class="text-plum/70 text-sm mt-2">Drives SOP systems, workflow speed, and operational consistency.</p>
+                    </div>
+
+                    <div class="surface-card bg-white border border-plum/10 rounded-3xl p-6 reveal">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Pieter van der Merwe" class="w-full h-48 object-cover rounded-2xl mb-4">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-limeDeep">Risk &amp; Finance Lead</span>
+                        <h3 class="font-serif text-xl font-bold text-plum mt-0.5">Pieter van der Merwe</h3>
+                        <p class="text-plum/70 text-sm mt-2">Oversees financial modeling, governance controls, and audit readiness.</p>
+                    </div>
+
+                    <div class="surface-card bg-white border border-plum/10 rounded-3xl p-6 reveal">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Thandiwe Dlamini" class="w-full h-48 object-cover rounded-2xl mb-4">
+                        <span class="text-[11px] font-extrabold uppercase tracking-wider text-plum/60">Commercial Systems</span>
+                        <h3 class="font-serif text-xl font-bold text-plum mt-0.5">Thandiwe Dlamini</h3>
+                        <p class="text-plum/70 text-sm mt-2">Builds B2B lead pipelines, reporting views, and growth systems.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Google Listing Testimonials Section (Placed 3rd in Main Flow) -->
+        <section id="reviews" class="py-20 lg:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 reveal">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-limeDeep">Google Listing Proof</span>
+                        <h2 class="font-serif text-3xl sm:text-5xl font-extrabold text-plum mt-1">Client Reviews on Google</h2>
+                    </div>
+
+                    <div class="bg-plum text-white rounded-2xl px-6 py-4 flex items-center gap-4 shadow-md">
+                        <div class="w-11 h-11 rounded-xl bg-limeAccent text-plum flex items-center justify-center text-xl font-bold">
+                            <i class="fa-brands fa-google"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-serif text-2xl font-extrabold text-white">4.9 / 5</span>
+                                <span class="text-limeAccent text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                            </div>
+                            <p class="text-xs text-white/75">84 Reviews on Google Listing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <article class="surface-card bg-white border border-plum/10 rounded-3xl p-7 flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-amber-500 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                                <span class="text-[11px] font-bold text-plum/60 flex items-center gap-1.5">
+                                    <i class="fa-brands fa-google text-limeDeep"></i> Google Listing
+                                </span>
+                            </div>
+                            <p class="text-plum/80 text-sm leading-relaxed mb-6">
+                                "They brought immediate structure to our operations. Within weeks we had clearer accountability, faster turnaround times, and practical SOPs our managers actually use."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-plum/10">
+                            <p class="text-sm font-bold text-plum">Bongani Mthembu</p>
+                            <p class="text-xs text-plum/60">Operations Director • Google Review</p>
+                        </div>
+                    </article>
+
+                    <article class="surface-card bg-white border border-plum/10 rounded-3xl p-7 flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-amber-500 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                                <span class="text-[11px] font-bold text-plum/60 flex items-center gap-1.5">
+                                    <i class="fa-brands fa-google text-limeDeep"></i> Google Listing
+                                </span>
+                            </div>
+                            <p class="text-plum/80 text-sm leading-relaxed mb-6">
+                                "Straightforward commercial guidance without filler. Their governance and margin review helped us tighten operations and step into larger contracts smoothly."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-plum/10">
+                            <p class="text-sm font-bold text-plum">Chantel Botha</p>
+                            <p class="text-xs text-plum/60">Managing Partner • Google Review</p>
+                        </div>
+                    </article>
+
+                    <article class="surface-card bg-white border border-plum/10 rounded-3xl p-7 flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-amber-500 text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                                <span class="text-[11px] font-bold text-plum/60 flex items-center gap-1.5">
+                                    <i class="fa-brands fa-google text-limeDeep"></i> Google Listing
+                                </span>
+                            </div>
+                            <p class="text-plum/80 text-sm leading-relaxed mb-6">
+                                "Reliable communication, thorough preparation, and consistent follow-through. Every milestone landed on schedule and supported our commercial goals."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-plum/10">
+                            <p class="text-sm font-bold text-plum">Rohan Govender</p>
+                            <p class="text-xs text-plum/60">Commercial Lead • Google Review</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consultation & WhatsApp Proposal Desk -->
+        <section id="proposal-desk" class="py-20 lg:py-24 bg-alabasterDeep border-t border-plum/10">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+                <div class="grid lg:grid-cols-12 gap-8">
+
+                    <!-- Consultation Request Form -->
+                    <div class="lg:col-span-6 bg-white border border-plum/10 rounded-3xl p-8 reveal">
+                        <span class="text-xs font-bold uppercase tracking-widest text-limeDeep">Book A Briefing</span>
+                        <h3 class="font-serif text-3xl font-extrabold text-plum mt-1 mb-2">Schedule Consultation</h3>
+                        <p class="text-xs text-plum/70 mb-6">Submit your details below for a structured discovery session with YOU BUSINESS NAME HERE.</p>
+
+                        <form id="consultForm" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-plum uppercase mb-1.5">Full Name *</label>
+                                    <input type="text" id="conName" required placeholder="Your Name" class="w-full bg-alabaster border border-plum/15 rounded-2xl px-4 py-3 text-sm text-plum focus:outline-none focus:border-limeDeep">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-plum uppercase mb-1.5">Email Address *</label>
+                                    <input type="email" id="conEmail" required placeholder="youremailhere@gmail.com" class="w-full bg-alabaster border border-plum/15 rounded-2xl px-4 py-3 text-sm text-plum focus:outline-none focus:border-limeDeep">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-plum uppercase mb-1.5">Company Name *</label>
+                                    <input type="text" id="conCompany" required placeholder="Client Organization" class="w-full bg-alabaster border border-plum/15 rounded-2xl px-4 py-3 text-sm text-plum focus:outline-none focus:border-limeDeep">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-plum uppercase mb-1.5">Primary Service *</label>
+                                    <select id="conService" class="w-full bg-alabaster border border-plum/15 rounded-2xl px-4 py-3 text-sm text-plum focus:outline-none focus:border-limeDeep">
+                                        <option value="Strategy & Growth Planning">Strategy &amp; Growth Planning</option>
+                                        <option value="Process & SOP Engineering">Process &amp; SOP Engineering</option>
+                                        <option value="Risk, Controls & Compliance">Risk, Controls &amp; Compliance</option>
+                                        <option value="Margin & Cash-Flow Clarity">Margin &amp; Cash-Flow Clarity</option>
+                                        <option value="Leadership & Team Alignment">Leadership &amp; Team Alignment</option>
+                                        <option value="Commercial & Digital Systems">Commercial &amp; Digital Systems</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-plum uppercase mb-1.5">Objectives &amp; Timeline</label>
+                                <textarea id="conNotes" rows="3" placeholder="Share your goals, operational challenges, and target start date..." class="w-full bg-alabaster border border-plum/15 rounded-2xl px-4 py-3 text-sm text-plum focus:outline-none focus:border-limeDeep"></textarea>
+                            </div>
+
+                            <button type="submit" class="pill-btn w-full bg-plum hover:bg-plumSoft text-white font-bold py-4 rounded-full transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-calendar-check text-limeAccent"></i> Confirm Consultation Request
+                            </button>
+                        </form>
+
+                        <div id="consultMsg" class="hidden mt-4 p-4 rounded-2xl bg-limeAccent/20 border border-limeDeep/40 text-plum text-sm font-bold">
+                            <i class="fa-solid fa-circle-check text-limeDeep mr-2"></i>Consultation request logged! We will follow up via email or +27×××××××××.
+                        </div>
+                    </div>
+
+                    <!-- Direct WhatsApp Proposal Generator -->
+                    <div class="lg:col-span-6 bg-plum text-white rounded-3xl p-8 shadow-xl reveal">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="w-11 h-11 rounded-2xl bg-limeAccent text-plum flex items-center justify-center text-xl font-bold">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-widest text-limeAccent">Instant WhatsApp Desk</span>
+                                <h3 class="font-serif text-3xl font-extrabold text-white leading-tight">Send Proposal Brief</h3>
+                            </div>
+                        </div>
+
+                        <form id="waProposalForm" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-white/75 uppercase mb-1.5">Your Name *</label>
+                                    <input type="text" id="waSender" required placeholder="Your Name" class="w-full bg-white/10 border border-white/15 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-limeAccent">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-white/75 uppercase mb-1.5">Organization *</label>
+                                    <input type="text" id="waOrg" required placeholder="Company Name" class="w-full bg-white/10 border border-white/15 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-limeAccent">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-white/75 uppercase mb-1.5">Service Track</label>
+                                    <select id="waTrack" class="w-full bg-plumSoft border border-white/15 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-limeAccent">
+                                        <option value="Strategy & Growth Planning">Strategy &amp; Growth Planning</option>
+                                        <option value="Process & SOP Engineering">Process &amp; SOP Engineering</option>
+                                        <option value="Risk, Controls & Compliance">Risk, Controls &amp; Compliance</option>
+                                        <option value="Margin & Cash-Flow Clarity">Margin &amp; Cash-Flow Clarity</option>
+                                        <option value="Leadership & Team Alignment">Leadership &amp; Team Alignment</option>
+                                        <option value="Commercial & Digital Systems">Commercial &amp; Digital Systems</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-white/75 uppercase mb-1.5">Estimated Budget</label>
+                                    <input type="text" id="waBudget" placeholder="e.g. R45,000+" class="w-full bg-white/10 border border-white/15 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-limeAccent">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-white/75 uppercase mb-1.5">Scope Summary *</label>
+                                <textarea id="waBrief" required rows="3" placeholder="Summarize what you need scoped or quoted..." class="w-full bg-white/10 border border-white/15 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-limeAccent"></textarea>
+                            </div>
+
+                            <button type="submit" class="pill-btn w-full bg-limeAccent hover:bg-limeDeep text-plum font-extrabold py-4 rounded-full transition flex items-center justify-center gap-2 text-base">
+                                <i class="fa-brands fa-whatsapp text-xl"></i> Launch WhatsApp Proposal
+                            </button>
+                        </form>
+
+                        <p class="text-[11px] text-white/60 text-center mt-4">
+                            Formats your brief for <span class="text-limeAccent font-semibold">YOU BUSINESS NAME HERE</span> • <span class="text-white font-semibold">+27×××××××××</span> • <span class="text-white font-semibold">youremailhere@gmail.com</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Scope Estimator Modal -->
+    <div id="quickModal" class="fixed inset-0 z-70 hidden bg-plum/70 backdrop-blur-xs items-center justify-center p-4">
+        <div class="bg-white text-plum rounded-3xl max-w-lg w-full p-7 shadow-2xl border border-plum/10 space-y-5">
+            <div class="flex items-center justify-between border-b border-plum/10 pb-4">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-limeDeep">Interactive Scope Builder</span>
+                    <h3 class="font-serif text-2xl font-extrabold text-plum">Estimate Engagement Track</h3>
+                </div>
+                <button type="button" id="closeQuickModal" class="w-9 h-9 rounded-full bg-alabasterDeep text-plum flex items-center justify-center hover:bg-plum hover:text-white transition" aria-label="Close Modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3">
+                <label class="block text-xs font-bold uppercase text-plum/75">Select Focus Area</label>
+                <select id="estFocus" class="w-full bg-alabaster border border-plum/15 rounded-2xl px-4 py-3 text-sm font-semibold">
+                    <option value="Strategy & Growth Planning" data-weeks="4–6 Weeks" data-cadence="Bi-weekly Executive Sessions">Strategy &amp; Growth Planning</option>
+                    <option value="Process & SOP Engineering" data-weeks="3–5 Weeks" data-cadence="Weekly Workflow Audits">Process &amp; SOP Engineering</option>
+                    <option value="Risk, Controls & Compliance" data-weeks="4–8 Weeks" data-cadence="Milestone Control Reviews">Risk, Controls &amp; Compliance</option>
+                    <option value="Margin & Cash-Flow Clarity" data-weeks="2–4 Weeks" data-cadence="Weekly Financial Check-Ins">Margin &amp; Cash-Flow Clarity</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 bg-alabasterDeep rounded-2xl p-4">
+                <div>
+                    <p class="text-[11px] font-bold uppercase text-plum/60">Typical Window</p>
+                    <p id="estWeeks" class="font-serif text-xl font-extrabold text-plum mt-0.5">4–6 Weeks</p>
+                </div>
+                <div>
+                    <p class="text-[11px] font-bold uppercase text-plum/60">Review Rhythm</p>
+                    <p id="estCadence" class="text-xs font-bold text-limeDeep mt-1.5">Bi-weekly Executive Sessions</p>
+                </div>
+            </div>
+
+            <button type="button" id="applyScopeBtn" class="pill-btn w-full bg-limeAccent hover:bg-limeDeep text-plum font-extrabold py-3.5 rounded-full text-sm">
+                Send This Scope to Proposal Desk →
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-plum text-white/80 pt-16 pb-8 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="grid md:grid-cols-3 gap-10 pb-12 border-b border-white/10">
+                <div>
+                    <span class="font-serif font-bold text-2xl text-white block mb-3">YOU BUSINESS NAME HERE</span>
+                    <p class="text-sm leading-relaxed text-white/65">
+                        Corporate strategy, operational SOP engineering, governance support, and commercial growth advisory.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-white mb-4">Sections</h4>
+                    <ul class="space-y-2 text-sm text-white/70">
+                        <li><a href="#services" class="hover:text-limeAccent transition">Corporate Services</a></li>
+                        <li><a href="#team" class="hover:text-limeAccent transition">Leadership Team</a></li>
+                        <li><a href="#reviews" class="hover:text-limeAccent transition">Google Reviews</a></li>
+                        <li><a href="#proposal-desk" class="hover:text-limeAccent transition">Consultation &amp; WhatsApp</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-lg text-white mb-4">Contact Details</h4>
+                    <ul class="space-y-2.5 text-sm text-white/75">
+                        <li><i class="fa-solid fa-phone text-limeAccent mr-2"></i>+27×××××××××</li>
+                        <li><i class="fa-solid fa-envelope text-limeAccent mr-2"></i>youremailhere@gmail.com</li>
+                        <li><i class="fa-solid fa-location-dot text-limeAccent mr-2"></i>YOU BUSINESS NAME HERE</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-white/50">
+                <p>&copy; 2026 YOU BUSINESS NAME HERE. All Rights Reserved.</p>
+                <p class="mt-2 sm:mt-0">+27××××××××× • youremailhere@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Action Pill -->
+    <a href="#proposal-desk" aria-label="Proposal Desk" class="pill-btn fixed bottom-6 right-6 z-50 w-14 h-14 bg-limeAccent hover:bg-limeDeep text-plum rounded-full shadow-2xl flex items-center justify-center text-2xl font-bold">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // 1. Mobile Drawer Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        mobileToggle.addEventListener('click', () => mobileDrawer.classList.toggle('hidden'));
+
+        // 2. Top Scroll Progress Meter
+        const topMeter = document.getElementById('topMeter');
+        window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            topMeter.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : '0%';
+        });
+
+        // 3. Staggered Scroll Reveal
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach((el, i) => {
+            el.style.transitionDelay = `${(i % 3) * 75}ms`;
+        });
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // 4. KPI Counters
+        const kpis = document.querySelectorAll('.kpi');
+        let kpiRan = false;
+        const kpiObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !kpiRan) {
+                    kpiRan = true;
+                    kpis.forEach(el => {
+                        const target = Number(el.dataset.target);
+                        let cur = 0;
+                        const step = Math.max(1, Math.ceil(target / 36));
+                        const timer = setInterval(() => {
+                            cur += step;
+                            if (cur >= target) {
+                                el.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                el.textContent = cur;
+                            }
+                        }, 28);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+        kpis.forEach(el => kpiObserver.observe(el));
+
+        // 5. Service Category Filter Pills
+        const filterPills = document.querySelectorAll('.filter-pill');
+        const svcBoxes = document.querySelectorAll('.svc-box');
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                filterPills.forEach(p => {
+                    p.classList.remove('bg-plum', 'text-white', 'font-extrabold');
+                    p.classList.add('bg-alabasterDeep', 'text-plum', 'font-bold');
+                });
+                pill.classList.remove('bg-alabasterDeep', 'text-plum', 'font-bold');
+                pill.classList.add('bg-plum', 'text-white', 'font-extrabold');
+
+                const cat = pill.dataset.cat;
+                svcBoxes.forEach(box => {
+                    box.style.display = (cat === 'all' || box.dataset.category === cat) ? '' : 'none';
+                });
+            });
+        });
+
+        // 6. Quick Scope Modal Logic
+        const quickModal = document.getElementById('quickModal');
+        const openQuickBriefBtn = document.getElementById('openQuickBriefBtn');
+        const heroEstimatorBtn = document.getElementById('heroEstimatorBtn');
+        const mobileQuickBrief = document.getElementById('mobileQuickBrief');
+        const closeQuickModal = document.getElementById('closeQuickModal');
+        const estFocus = document.getElementById('estFocus');
+        const estWeeks = document.getElementById('estWeeks');
+        const estCadence = document.getElementById('estCadence');
+        const applyScopeBtn = document.getElementById('applyScopeBtn');
+
+        function openModal() {
+            quickModal.classList.remove('hidden');
+            quickModal.classList.add('flex');
+        }
+        function closeModal() {
+            quickModal.classList.add('hidden');
+            quickModal.classList.remove('flex');
+        }
+
+        [openQuickBriefBtn, heroEstimatorBtn, mobileQuickBrief].forEach(btn => {
+            if (btn) btn.addEventListener('click', openModal);
+        });
+        closeQuickModal.addEventListener('click', closeModal);
+        quickModal.addEventListener('click', (e) => {
+            if (e.target === quickModal) closeModal();
+        });
+
+        estFocus.addEventListener('change', () => {
+            const opt = estFocus.options[estFocus.selectedIndex];
+            estWeeks.textContent = opt.dataset.weeks;
+            estCadence.textContent = opt.dataset.cadence;
+        });
+
+        applyScopeBtn.addEventListener('click', () => {
+            const opt = estFocus.options[estFocus.selectedIndex];
+            prefillProposal(opt.value, `Estimated window: ${opt.dataset.weeks} (${opt.dataset.cadence}).`);
+            closeModal();
+            document.getElementById('proposal-desk').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function prefillProposal(serviceName, extraNote = '') {
+            const conService = document.getElementById('conService');
+            const waTrack = document.getElementById('waTrack');
+            const conNotes = document.getElementById('conNotes');
+            const waBrief = document.getElementById('waBrief');
+
+            if (conService) conService.value = serviceName;
+            if (waTrack) waTrack.value = serviceName;
+            if (extraNote) {
+                conNotes.value = extraNote;
+                waBrief.value = extraNote;
+            }
+            document.getElementById('proposal-desk').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 7. Consultation Form Submit
+        document.getElementById('consultForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('consultMsg').classList.remove('hidden');
+            this.reset();
+        });
+
+        // 8. WhatsApp Proposal Form Submit
+        document.getElementById('waProposalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const businessWhatsAppNumber = "27000000000";
+            const sender = document.getElementById('waSender').value.trim();
+            const org = document.getElementById('waOrg').value.trim();
+            const track = document.getElementById('waTrack').value;
+            const budget = document.getElementById('waBudget').value.trim() || "Not specified";
+            const brief = document.getElementById('waBrief').value.trim();
+
+            const message = `*PROPOSAL REQUEST - YOU BUSINESS NAME HERE*%0A` +
+                            `--------------------------------------------%0A` +
+                            `*Name:* ${encodeURIComponent(sender)}%0A` +
+                            `*Organization:* ${encodeURIComponent(org)}%0A` +
+                            `*Track:* ${encodeURIComponent(track)}%0A` +
+                            `*Budget:* ${encodeURIComponent(budget)}%0A` +
+                            `*Scope:* ${encodeURIComponent(brief)}`;
+
+            window.open(`https://wa.me/${businessWhatsAppNumber}?text=${message}`, '_blank');
+        });
+    </script>
+</body>
+</html>

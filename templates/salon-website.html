@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOU BUSINESS NAME HERE | Women's Beauty, Hair &amp; Wellness Sanctuary</title>
+    <meta name="description" content="YOU BUSINESS NAME HERE — Feminine beauty and wellness salon with 10 full-screen style gallery looks, real appointment booking calendar, pricing list, animated stylist profiles, Google reviews, and Google Maps directions.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "YOU BUSINESS NAME HERE",
+      "telephone": "+27×××××××××",
+      "email": "youremailhere@gmail.com",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "128"
+      }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Nunito+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito Sans', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        display: ['Cinzel', 'serif'],
+                    },
+                    colors: {
+                        velvetGround: '#190C15',
+                        velvetCard: '#261220',
+                        velvetPlum: '#36192E',
+                        blushSilk: '#FFF5F8',
+                        champagne: '#F4C2C2',
+                        roseGold: '#E5989B',
+                        berryRose: '#D45D79',
+                        berryDeep: '#A83E59',
+                        sageMist: '#98C1B4',
+                    },
+                    animation: {
+                        'orb-slow': 'orbSlow 12s ease-in-out infinite',
+                        'orb-reverse': 'orbReverse 15s ease-in-out infinite',
+                        'shimmer-ring': 'shimmerRing 6s linear infinite',
+                        'sparkle-pop': 'sparklePop 2.4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        orbSlow: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '50%': { transform: 'translate(28px, -22px) scale(1.08)' },
+                        },
+                        orbReverse: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '50%': { transform: 'translate(-26px, 24px) scale(1.06)' },
+                        },
+                        shimmerRing: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        },
+                        sparklePop: {
+                            '0%, 100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' },
+                            '50%': { transform: 'scale(1.25) rotate(12deg)', opacity: '0.7' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #190C15;
+            color: #FFF5F8;
+            overflow-x: hidden;
+        }
+
+        .page-bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(circle at 15% 15%, rgba(212, 93, 121, 0.22), transparent 42%),
+                radial-gradient(circle at 85% 20%, rgba(244, 194, 194, 0.16), transparent 40%),
+                radial-gradient(circle at 50% 85%, rgba(152, 193, 180, 0.14), transparent 45%),
+                linear-gradient(160deg, #160A12 0%, #1F0F1A 52%, #140910 100%);
+        }
+        .page-bg-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.07;
+            background-image: radial-gradient(#F4C2C2 1px, transparent 1px);
+            background-size: 26px 26px;
+        }
+
+        #topRibbon {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #D45D79, #F4C2C2, #98C1B4);
+            z-index: 70;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stylist-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease, border-color 0.35s ease;
+        }
+        .stylist-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 1.75rem;
+            padding: 1.5px;
+            background: linear-gradient(135deg, rgba(244, 194, 194, 0.65), rgba(212, 93, 121, 0.15), rgba(152, 193, 180, 0.6));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.45;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+        .stylist-card:hover {
+            transform: translateY(-10px) scale(1.015);
+            box-shadow: 0 26px 50px -15px rgba(212, 93, 121, 0.38), 0 0 28px rgba(244, 194, 194, 0.14);
+            border-color: rgba(244, 194, 194, 0.5);
+        }
+        .stylist-card:hover::before {
+            opacity: 1;
+        }
+        .stylist-portrait-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        .stylist-portrait-wrap::after {
+            content: "";
+            position: absolute;
+            top: -20%;
+            left: -130%;
+            width: 55%;
+            height: 140%;
+            background: linear-gradient(90deg, transparent, rgba(255, 245, 248, 0.38), transparent);
+            transform: skewX(-22deg);
+            transition: left 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+        .stylist-card:hover .stylist-portrait-wrap::after {
+            left: 160%;
+        }
+        .stylist-portrait-wrap img {
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+        }
+        .stylist-card:hover .stylist-portrait-wrap img {
+            transform: scale(1.09);
+            filter: contrast(1.05) saturate(1.12);
+        }
+        .stylist-halo {
+            position: relative;
+        }
+        .stylist-halo::before {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: 9999px;
+            background: conic-gradient(from 0deg, #D45D79, #F4C2C2, #98C1B4, #D45D79);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            animation: shimmerRing 5s linear infinite;
+            z-index: 0;
+        }
+        .stylist-card:hover .stylist-halo::before {
+            opacity: 1;
+        }
+
+        .fem-btn {
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.25s ease;
+        }
+        .fem-btn:hover {
+            transform: translateY(-2px);
+        }
+        .fem-btn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-berryRose selection:text-white">
+
+    <div class="page-bg-layer"></div>
+    <div class="page-bg-pattern"></div>
+    <div class="fixed -top-24 -left-24 w-80 h-80 rounded-full bg-berryRose/20 blur-3xl pointer-events-none -z-1 animate-orb-slow"></div>
+    <div class="fixed top-1/3 -right-24 w-96 h-96 rounded-full bg-champagne/15 blur-3xl pointer-events-none -z-1 animate-orb-reverse"></div>
+
+    <div id="topRibbon"></div>
+
+    <!-- Top Contact Strip -->
+    <div class="bg-black/40 backdrop-blur-sm text-champagne/85 text-xs py-2.5 px-4 border-b border-champagne/10">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center gap-5">
+                <span><i class="fa-solid fa-wand-sparkles text-berryRose mr-1.5"></i>YOU BUSINESS NAME HERE</span>
+                <span class="hidden sm:inline"><i class="fa-regular fa-clock text-sageMist mr-1.5"></i>Tue–Sun: 08:30–18:00</span>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="tel:+27000000000" class="hover:text-white transition"><i class="fa-solid fa-phone-volume text-berryRose mr-1.5"></i>+27×××××××××</a>
+                <a href="mailto:youremailhere@gmail.com" class="hidden md:inline hover:text-white transition"><i class="fa-solid fa-envelope-open-text text-sageMist mr-1.5"></i>youremailhere@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-velvetGround/85 backdrop-blur-lg border-b border-champagne/15">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="#" class="flex items-center gap-3 group">
+                <span class="w-11 h-11 rounded-full bg-gradient-to-br from-berryRose to-roseGold text-white flex items-center justify-center font-display font-bold text-lg shadow-md group-hover:scale-105 transition">
+                    <i class="fa-solid fa-crown text-sm"></i>
+                </span>
+                <div>
+                    <span class="font-display font-bold text-sm sm:text-base tracking-wider text-blushSilk block leading-none">YOU BUSINESS NAME HERE</span>
+                    <span class="text-[11px] font-semibold text-champagne/75 flex items-center gap-1 mt-0.5">
+                        <i class="fa-solid fa-heart text-berryRose text-[10px]"></i> Beauty • Hair • Wellness
+                    </span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-champagne/85">
+                <a href="#stylists" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-user-tie text-xs text-berryRose"></i> Stylists
+                </a>
+                <a href="#booking" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-calendar-days text-xs text-sageMist"></i> Calendar
+                </a>
+                <a href="#pricing" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-gem text-xs text-champagne"></i> Pricing
+                </a>
+                <a href="#gallery" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-camera-retro text-xs text-berryRose"></i> Gallery (10)
+                </a>
+                <a href="#google-reviews" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-google text-xs text-sageMist"></i> Reviews
+                </a>
+                <a href="#google-map" class="hover:text-white transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-map-location-dot text-xs text-champagne"></i> Map
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-2.5">
+                <a href="#booking" class="fem-btn bg-gradient-to-r from-berryRose to-berryDeep hover:opacity-95 text-white px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-md flex items-center gap-2">
+                    <i class="fa-regular fa-calendar-check"></i> Book Now
+                </a>
+                <button type="button" id="menuToggle" class="lg:hidden w-10 h-10 rounded-full bg-velvetCard border border-champagne/20 text-champagne flex items-center justify-center" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden lg:hidden bg-velvetCard border-b border-champagne/15 px-4 py-4 space-y-2.5 text-sm font-semibold text-champagne">
+            <a href="#stylists" class="block py-1.5 hover:text-white"><i class="fa-solid fa-user-tie text-berryRose mr-2"></i>Stylists</a>
+            <a href="#booking" class="block py-1.5 hover:text-white"><i class="fa-solid fa-calendar-days text-sageMist mr-2"></i>Appointment Calendar</a>
+            <a href="#pricing" class="block py-1.5 hover:text-white"><i class="fa-solid fa-gem text-champagne mr-2"></i>Pricing List</a>
+            <a href="#gallery" class="block py-1.5 hover:text-white"><i class="fa-solid fa-camera-retro text-berryRose mr-2"></i>Style &amp; Glow Gallery (10)</a>
+            <a href="#google-reviews" class="block py-1.5 hover:text-white"><i class="fa-brands fa-google text-sageMist mr-2"></i>Google Reviews</a>
+            <a href="#google-map" class="block py-1.5 hover:text-white"><i class="fa-solid fa-map-location-dot text-champagne mr-2"></i>Google Map</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="pt-14 pb-20 lg:pt-20 lg:pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-velvetCard/90 border border-champagne/25 text-xs font-bold text-champagne">
+                            <i class="fa-solid fa-sparkles text-berryRose animate-sparkle-pop"></i>
+                            <span>FEMININE HAIR, SKIN &amp; WELLNESS LOUNGE</span>
+                        </div>
+
+                        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-blushSilk leading-[0.98] tracking-tight">
+                            Soft <span class="italic text-champagne">Elegance</span>, Radiant Glow &amp; Calm Care.
+                        </h1>
+
+                        <p class="text-champagne/80 text-base sm:text-lg max-w-2xl leading-relaxed">
+                            At <strong class="text-white">YOU BUSINESS NAME HERE</strong>, every appointment is crafted for women who love healthy hair, luminous skin, unhurried wellness rituals, and effortless scheduling.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <a href="#booking" class="fem-btn bg-gradient-to-r from-berryRose to-berryDeep text-white px-7 py-4 rounded-full font-bold text-sm shadow-lg flex items-center gap-3">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <span>Reserve Calendar Slot</span>
+                            </a>
+                            <a href="#google-map" class="fem-btn bg-velvetCard/90 hover:bg-velvetPlum text-champagne border border-champagne/25 px-7 py-4 rounded-full font-bold text-sm flex items-center gap-3">
+                                <i class="fa-solid fa-map-location-dot text-sageMist"></i>
+                                <span>Find Us on Google Maps</span>
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-champagne/15 max-w-lg">
+                            <div>
+                                <p class="font-serif text-3xl sm:text-4xl font-bold text-white"><i class="fa-solid fa-heart text-berryRose text-base mr-1.5"></i><span class="num" data-target="2600">0</span>+</p>
+                                <p class="text-xs text-champagne/70 mt-0.5">Women Pampered</p>
+                            </div>
+                            <div>
+                                <p class="font-serif text-3xl sm:text-4xl font-bold text-champagne"><i class="fa-solid fa-camera-retro text-sageMist text-base mr-1.5"></i><span class="num" data-target="10">0</span></p>
+                                <p class="text-xs text-champagne/70 mt-0.5">Full-Screen Looks</p>
+                            </div>
+                            <div>
+                                <p class="font-serif text-3xl sm:text-4xl font-bold text-sageMist"><i class="fa-solid fa-star text-champagne text-base mr-1"></i>4.9</p>
+                                <p class="text-xs text-champagne/70 mt-0.5">Google Rating</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="bg-velvetCard/90 backdrop-blur-md border border-champagne/20 rounded-[2rem] p-6 shadow-2xl">
+                            <div class="rounded-2xl overflow-hidden h-56 mb-5 relative">
+                                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80" alt="Feminine beauty and hair styling lounge" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-velvetGround/90 text-champagne border border-champagne/25 text-[11px] font-bold px-3.5 py-1 rounded-full flex items-center gap-1.5">
+                                    <i class="fa-solid fa-sparkles text-berryRose"></i> Signature Lounge
+                                </span>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-velvetGround/80 border border-champagne/10">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-9 h-9 rounded-full bg-berryRose/20 text-berryRose flex items-center justify-center">
+                                            <i class="fa-solid fa-scissors text-sm"></i>
+                                        </span>
+                                        <div>
+                                            <p class="text-sm font-bold text-white">Silk Press, Trim &amp; Rose Gloss</p>
+                                            <p class="text-xs text-champagne/65">Soft bounce &amp; mirror shine</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-extrabold text-champagne">R640</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-3.5 rounded-2xl bg-velvetGround/80 border border-champagne/10">
+                                    <div class="flex items-center gap-3">
+                                        <span class="w-9 h-9 rounded-full bg-sageMist/20 text-sageMist flex items-center justify-center">
+                                            <i class="fa-solid fa-flower-daffodil text-sm"></i>
+                                        </span>
+                                        <div>
+                                            <p class="text-sm font-bold text-white">Velvet Glow Facial &amp; Neck Massage</p>
+                                            <p class="text-xs text-champagne/65">De-stress &amp; hydrate (75 min)</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm font-extrabold text-sageMist">R720</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated Stylist Profiles Section -->
+        <section id="stylists" class="py-24 border-y border-champagne/15 bg-black/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-berryRose flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-wand-sparkles animate-sparkle-pop"></i> Artistry &amp; Care <i class="fa-solid fa-wand-sparkles animate-sparkle-pop"></i>
+                    </span>
+                    <h2 class="font-serif text-4xl sm:text-6xl font-bold text-white mt-1">Our Stylists &amp; Therapists</h2>
+                    <p class="text-champagne/75 text-sm sm:text-base mt-2">Hover any profile to reveal their aura ring, shine sweep, and instant booking trigger.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+                    <div class="stylist-card bg-velvetCard/95 border border-champagne/15 rounded-[1.75rem] p-6 reveal">
+                        <div class="stylist-portrait-wrap rounded-2xl h-56 mb-5 relative">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&q=80" alt="Amahle Nkosi, Lead Hair Stylist" class="w-full h-full object-cover">
+                            <span class="stylist-halo absolute top-3 right-3 w-10 h-10 rounded-full bg-velvetGround/90 flex items-center justify-center text-berryRose shadow-lg">
+                                <i class="fa-solid fa-scissors relative z-10 text-sm"></i>
+                            </span>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-berryRose flex items-center gap-1.5">
+                            <i class="fa-solid fa-crown text-[10px]"></i> Lead Hair Stylist
+                        </span>
+                        <h3 class="font-serif text-2xl font-bold text-white mt-0.5">Amahle Nkosi</h3>
+                        <p class="text-champagne/75 text-xs leading-relaxed mt-2">
+                            Signature silk presses, soft feminine layers, and healthy color glosses.
+                        </p>
+                        <button type="button" onclick="pickStylist('Amahle Nkosi')" class="fem-btn mt-5 w-full py-2.5 px-4 rounded-full bg-velvetGround hover:bg-berryRose text-champagne hover:text-white border border-champagne/20 text-xs font-bold flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-calendar-plus"></i> Book With Amahle
+                        </button>
+                    </div>
+
+                    <div class="stylist-card bg-velvetCard/95 border border-champagne/15 rounded-[1.75rem] p-6 reveal">
+                        <div class="stylist-portrait-wrap rounded-2xl h-56 mb-5 relative">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80" alt="Zanele Dube, Senior Facial & Skin Specialist" class="w-full h-full object-cover">
+                            <span class="stylist-halo absolute top-3 right-3 w-10 h-10 rounded-full bg-velvetGround/90 flex items-center justify-center text-sageMist shadow-lg">
+                                <i class="fa-solid fa-sparkles relative z-10 text-sm"></i>
+                            </span>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-sageMist flex items-center gap-1.5">
+                            <i class="fa-solid fa-spa text-[10px]"></i> Skin &amp; Glow Specialist
+                        </span>
+                        <h3 class="font-serif text-2xl font-bold text-white mt-0.5">Zanele Dube</h3>
+                        <p class="text-champagne/75 text-xs leading-relaxed mt-2">
+                            Dewy hydration facials, gentle barrier repair, and radiant skin rituals.
+                        </p>
+                        <button type="button" onclick="pickStylist('Zanele Dube')" class="fem-btn mt-5 w-full py-2.5 px-4 rounded-full bg-velvetGround hover:bg-berryRose text-champagne hover:text-white border border-champagne/20 text-xs font-bold flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-calendar-plus"></i> Book With Zanele
+                        </button>
+                    </div>
+
+                    <div class="stylist-card bg-velvetCard/95 border border-champagne/15 rounded-[1.75rem] p-6 reveal">
+                        <div class="stylist-portrait-wrap rounded-2xl h-56 mb-5 relative">
+                            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=500&q=80" alt="Lerato Mabasa, Holistic Wellness Therapist" class="w-full h-full object-cover">
+                            <span class="stylist-halo absolute top-3 right-3 w-10 h-10 rounded-full bg-velvetGround/90 flex items-center justify-center text-champagne shadow-lg">
+                                <i class="fa-solid fa-leaf relative z-10 text-sm"></i>
+                            </span>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-champagne flex items-center gap-1.5">
+                            <i class="fa-solid fa-heart text-[10px] text-berryRose"></i> Wellness Therapist
+                        </span>
+                        <h3 class="font-serif text-2xl font-bold text-white mt-0.5">Lerato Mabasa</h3>
+                        <p class="text-champagne/75 text-xs leading-relaxed mt-2">
+                            Soothing aromatherapy massage, stress relief, and restorative calm.
+                        </p>
+                        <button type="button" onclick="pickStylist('Lerato Mabasa')" class="fem-btn mt-5 w-full py-2.5 px-4 rounded-full bg-velvetGround hover:bg-berryRose text-champagne hover:text-white border border-champagne/20 text-xs font-bold flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-calendar-plus"></i> Book With Lerato
+                        </button>
+                    </div>
+
+                    <div class="stylist-card bg-velvetCard/95 border border-champagne/15 rounded-[1.75rem] p-6 reveal">
+                        <div class="stylist-portrait-wrap rounded-2xl h-56 mb-5 relative">
+                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=500&q=80" alt="Claire Pretorius, Nail & Bridal Finish Artist" class="w-full h-full object-cover">
+                            <span class="stylist-halo absolute top-3 right-3 w-10 h-10 rounded-full bg-velvetGround/90 flex items-center justify-center text-berryRose shadow-lg">
+                                <i class="fa-solid fa-gem relative z-10 text-sm"></i>
+                            </span>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-sageMist flex items-center gap-1.5">
+                            <i class="fa-solid fa-star text-[10px] text-champagne"></i> Nail &amp; Finish Artist
+                        </span>
+                        <h3 class="font-serif text-2xl font-bold text-white mt-0.5">Claire Pretorius</h3>
+                        <p class="text-champagne/75 text-xs leading-relaxed mt-2">
+                            Delicate spa manicures, soft bridal waves, and refined finishing touches.
+                        </p>
+                        <button type="button" onclick="pickStylist('Claire Pretorius')" class="fem-btn mt-5 w-full py-2.5 px-4 rounded-full bg-velvetGround hover:bg-berryRose text-champagne hover:text-white border border-champagne/20 text-xs font-bold flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-calendar-plus"></i> Book With Claire
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Interactive Calendar + Booking Section -->
+        <section id="booking" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-sageMist flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-calendar-days"></i> Live Appointment Calendar
+                    </span>
+                    <h2 class="font-serif text-4xl sm:text-6xl font-bold text-white mt-1">Book Your Visit</h2>
+                    <p class="text-champagne/75 text-sm sm:text-base mt-2">Navigate months on the real calendar grid, pick a date and time, and reserve your session.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-6 bg-velvetCard/95 border border-champagne/20 rounded-[2rem] p-6 sm:p-8 shadow-xl reveal">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 id="calMonthTitle" class="font-serif text-3xl font-bold text-white">Month Year</h3>
+                            <div class="flex items-center gap-2">
+                                <button type="button" id="prevMonthBtn" class="fem-btn w-10 h-10 rounded-full bg-velvetGround hover:bg-berryRose text-champagne hover:text-white border border-champagne/20 flex items-center justify-center" aria-label="Previous Month">
+                                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                                </button>
+                                <button type="button" id="nextMonthBtn" class="fem-btn w-10 h-10 rounded-full bg-velvetGround hover:bg-berryRose text-champagne hover:text-white border border-champagne/20 flex items-center justify-center" aria-label="Next Month">
+                                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-7 gap-1.5 text-center text-[11px] font-bold uppercase tracking-wider text-champagne/60 mb-2">
+                            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                        </div>
+
+                        <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1.5 text-center text-sm font-semibold"></div>
+
+                        <div class="mt-6 pt-6 border-t border-champagne/15">
+                            <span class="block text-xs font-bold uppercase tracking-wider text-champagne/80 mb-3">
+                                <i class="fa-regular fa-clock text-berryRose mr-1.5"></i>Select Time Slot
+                            </span>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="realTimeSlots">
+                                <button type="button" data-t="09:00 AM" class="r-slot py-2.5 px-2 rounded-xl text-xs font-bold bg-berryRose text-white transition">09:00 AM</button>
+                                <button type="button" data-t="11:00 AM" class="r-slot py-2.5 px-2 rounded-xl text-xs font-bold bg-velvetGround text-champagne border border-champagne/15 hover:border-berryRose transition">11:00 AM</button>
+                                <button type="button" data-t="01:30 PM" class="r-slot py-2.5 px-2 rounded-xl text-xs font-bold bg-velvetGround text-champagne border border-champagne/15 hover:border-berryRose transition">01:30 PM</button>
+                                <button type="button" data-t="03:45 PM" class="r-slot py-2.5 px-2 rounded-xl text-xs font-bold bg-velvetGround text-champagne border border-champagne/15 hover:border-berryRose transition">03:45 PM</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 p-4 rounded-2xl bg-velvetGround/90 border border-champagne/15 flex items-center justify-between text-xs">
+                            <span class="text-champagne/70 flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-check text-sageMist"></i> Selected Date &amp; Time:
+                            </span>
+                            <span id="chosenDateTimeLabel" class="font-bold text-white"></span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 bg-velvetCard/95 border border-champagne/20 rounded-[2rem] p-6 sm:p-8 shadow-xl reveal">
+                        <h3 class="font-serif text-3xl font-bold text-white mb-1">
+                            <i class="fa-solid fa-heart text-berryRose text-xl mr-2"></i>Complete Reservation
+                        </h3>
+                        <p class="text-xs text-champagne/70 mb-6">
+                            Booking with <strong class="text-white">YOU BUSINESS NAME HERE</strong> • <span class="text-champagne">+27×××××××××</span> • <span class="text-sageMist">youremailhere@gmail.com</span>
+                        </p>
+
+                        <form id="realBookingForm" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-champagne uppercase mb-1.5">
+                                        <i class="fa-regular fa-user text-berryRose mr-1"></i> Your Name *
+                                    </label>
+                                    <input type="text" id="rName" required placeholder="Your Full Name" class="w-full bg-velvetGround border border-champagne/20 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-berryRose">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-champagne uppercase mb-1.5">
+                                        <i class="fa-solid fa-phone text-sageMist mr-1"></i> Phone / WhatsApp *
+                                    </label>
+                                    <input type="tel" id="rPhone" required placeholder="+27×××××××××" class="w-full bg-velvetGround border border-champagne/20 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-berryRose">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-champagne uppercase mb-1.5">
+                                        <i class="fa-solid fa-sparkles text-berryRose mr-1"></i> Treatment *
+                                    </label>
+                                    <select id="rService" class="w-full bg-velvetGround border border-champagne/20 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-berryRose">
+                                        <option value="Silk Press, Trim & Rose Gloss (R640)">Silk Press, Trim &amp; Rose Gloss (R640)</option>
+                                        <option value="Velvet Glow Facial & Neck Massage (R720)">Velvet Glow Facial &amp; Neck Massage (R720)</option>
+                                        <option value="Precision Cut & Blowout (R480)">Precision Cut &amp; Blowout (R480)</option>
+                                        <option value="Botanical Hydration Facial (R650)">Botanical Hydration Facial (R650)</option>
+                                        <option value="Aromatherapy Body & Stress Ritual (R560)">Aromatherapy Body &amp; Stress Ritual (R560)</option>
+                                        <option value="Rosewood Spa Manicure & Pedicure (R590)">Rosewood Spa Manicure &amp; Pedicure (R590)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-champagne uppercase mb-1.5">
+                                        <i class="fa-solid fa-user-tie text-sageMist mr-1"></i> Stylist / Therapist
+                                    </label>
+                                    <select id="rStylist" class="w-full bg-velvetGround border border-champagne/20 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-berryRose">
+                                        <option value="Any Available Specialist">Any Available Specialist</option>
+                                        <option value="Amahle Nkosi">Amahle Nkosi</option>
+                                        <option value="Zanele Dube">Zanele Dube</option>
+                                        <option value="Lerato Mabasa">Lerato Mabasa</option>
+                                        <option value="Claire Pretorius">Claire Pretorius</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-champagne uppercase mb-1.5">
+                                    <i class="fa-regular fa-note-sticky text-champagne mr-1"></i> Beauty Notes
+                                </label>
+                                <textarea id="rNotes" rows="2" placeholder="Hair length, skin preferences, or occasion details..." class="w-full bg-velvetGround border border-champagne/20 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-berryRose"></textarea>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-3 pt-2">
+                                <button type="submit" class="fem-btn bg-gradient-to-r from-berryRose to-berryDeep text-white font-bold py-3.5 px-5 rounded-full text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-calendar-check"></i> Confirm Appointment
+                                </button>
+                                <button type="button" id="waBookBtn" class="fem-btn bg-sageMist/20 hover:bg-sageMist/30 text-sageMist border border-sageMist/40 font-bold py-3.5 px-5 rounded-full text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                    <i class="fa-brands fa-whatsapp text-base"></i> Book via WhatsApp
+                                </button>
+                            </div>
+                        </form>
+
+                        <div id="realBookSuccess" class="hidden mt-4 p-4 rounded-2xl bg-sageMist/15 border border-sageMist/40 text-sageMist text-xs font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-base"></i>
+                            <span>Appointment reserved! We will reach out on +27××××××××× or youremailhere@gmail.com.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing List Section -->
+        <section id="pricing" class="py-24 border-y border-champagne/15 bg-black/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 reveal">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-[0.25em] text-champagne flex items-center gap-2">
+                            <i class="fa-solid fa-gem text-berryRose"></i> Transparent Menu
+                        </span>
+                        <h2 class="font-serif text-4xl sm:text-6xl font-bold text-white mt-1">Salon &amp; Spa Pricing</h2>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" data-p="all" class="p-tab px-4 py-2 rounded-full text-xs font-bold bg-berryRose text-white transition">All Treatments</button>
+                        <button type="button" data-p="hair" class="p-tab px-4 py-2 rounded-full text-xs font-bold bg-velvetCard text-champagne border border-champagne/15 hover:border-berryRose transition">Hair</button>
+                        <button type="button" data-p="skin" class="p-tab px-4 py-2 rounded-full text-xs font-bold bg-velvetCard text-champagne border border-champagne/15 hover:border-berryRose transition">Skin &amp; Wellness</button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5">
+                    <div class="p-card bg-velvetCard/95 border border-champagne/15 rounded-3xl p-6 flex items-center justify-between gap-4 reveal" data-kind="hair">
+                        <div class="flex items-start gap-4">
+                            <span class="w-11 h-11 rounded-2xl bg-berryRose/20 text-berryRose flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-scissors"></i>
+                            </span>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-white">Silk Press, Trim &amp; Rose Gloss</h3>
+                                <p class="text-xs text-champagne/70 mt-1">Nourishing wash, split-end trim, shine glaze &amp; bouncy press • 90 min</p>
+                            </div>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <p class="font-serif text-2xl font-bold text-champagne">R640</p>
+                            <button type="button" onclick="pickTreatment('Silk Press, Trim & Rose Gloss (R640)')" class="text-xs font-bold text-berryRose hover:underline mt-1">Book →</button>
+                        </div>
+                    </div>
+
+                    <div class="p-card bg-velvetCard/95 border border-champagne/15 rounded-3xl p-6 flex items-center justify-between gap-4 reveal" data-kind="skin">
+                        <div class="flex items-start gap-4">
+                            <span class="w-11 h-11 rounded-2xl bg-sageMist/20 text-sageMist flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-sparkles"></i>
+                            </span>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-white">Velvet Glow Facial &amp; Neck Massage</h3>
+                                <p class="text-xs text-champagne/70 mt-1">Dewy hydration mask, gentle exfoliation &amp; shoulder release • 75 min</p>
+                            </div>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <p class="font-serif text-2xl font-bold text-sageMist">R720</p>
+                            <button type="button" onclick="pickTreatment('Velvet Glow Facial & Neck Massage (R720)')" class="text-xs font-bold text-sageMist hover:underline mt-1">Book →</button>
+                        </div>
+                    </div>
+
+                    <div class="p-card bg-velvetCard/95 border border-champagne/15 rounded-3xl p-6 flex items-center justify-between gap-4 reveal" data-kind="hair">
+                        <div class="flex items-start gap-4">
+                            <span class="w-11 h-11 rounded-2xl bg-berryRose/20 text-berryRose flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-wind"></i>
+                            </span>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-white">Precision Cut &amp; Blowout</h3>
+                                <p class="text-xs text-champagne/70 mt-1">Tailored framing cut, moisture bath &amp; voluminous blowout • 60 min</p>
+                            </div>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <p class="font-serif text-2xl font-bold text-champagne">R480</p>
+                            <button type="button" onclick="pickTreatment('Precision Cut & Blowout (R480)')" class="text-xs font-bold text-berryRose hover:underline mt-1">Book →</button>
+                        </div>
+                    </div>
+
+                    <div class="p-card bg-velvetCard/95 border border-champagne/15 rounded-3xl p-6 flex items-center justify-between gap-4 reveal" data-kind="skin">
+                        <div class="flex items-start gap-4">
+                            <span class="w-11 h-11 rounded-2xl bg-sageMist/20 text-sageMist flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-leaf"></i>
+                            </span>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-white">Aromatherapy Body &amp; Stress Ritual</h3>
+                                <p class="text-xs text-champagne/70 mt-1">Warm botanical oils, slow tension relief &amp; calm breathwork • 60 min</p>
+                            </div>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <p class="font-serif text-2xl font-bold text-sageMist">R560</p>
+                            <button type="button" onclick="pickTreatment('Aromatherapy Body & Stress Ritual (R560)')" class="text-xs font-bold text-sageMist hover:underline mt-1">Book →</button>
+                        </div>
+                    </div>
+
+                    <div class="p-card bg-velvetCard/95 border border-champagne/15 rounded-3xl p-6 flex items-center justify-between gap-4 reveal" data-kind="skin">
+                        <div class="flex items-start gap-4">
+                            <span class="w-11 h-11 rounded-2xl bg-berryRose/20 text-berryRose flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-droplet"></i>
+                            </span>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-white">Botanical Hydration Facial</h3>
+                                <p class="text-xs text-champagne/70 mt-1">Plumping botanical serums, cooling globes &amp; glow finish • 55 min</p>
+                            </div>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <p class="font-serif text-2xl font-bold text-champagne">R650</p>
+                            <button type="button" onclick="pickTreatment('Botanical Hydration Facial (R650)')" class="text-xs font-bold text-berryRose hover:underline mt-1">Book →</button>
+                        </div>
+                    </div>
+
+                    <div class="p-card bg-velvetCard/95 border border-champagne/15 rounded-3xl p-6 flex items-center justify-between gap-4 reveal" data-kind="skin">
+                        <div class="flex items-start gap-4">
+                            <span class="w-11 h-11 rounded-2xl bg-sageMist/20 text-sageMist flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-spa"></i>
+                            </span>
+                            <div>
+                                <h3 class="font-serif text-2xl font-bold text-white">Rosewood Spa Manicure &amp; Pedicure</h3>
+                                <p class="text-xs text-champagne/70 mt-1">Sugar scrub, cuticle care, hand &amp; foot massage &amp; polish • 85 min</p>
+                            </div>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <p class="font-serif text-2xl font-bold text-sageMist">R590</p>
+                            <button type="button" onclick="pickTreatment('Rosewood Spa Manicure & Pedicure (R590)')" class="text-xs font-bold text-sageMist hover:underline mt-1">Book →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10 Style & Glow Gallery Section with Full-Screen Viewer -->
+        <section id="gallery" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-[0.25em] text-berryRose flex items-center gap-2">
+                            <i class="fa-solid fa-camera-retro"></i> 10 Curated Looks • Full-Screen Viewer
+                        </span>
+                        <h2 class="font-serif text-4xl sm:text-6xl font-bold text-white mt-1">Style &amp; Glow Gallery</h2>
+                        <p class="text-champagne/75 text-sm sm:text-base mt-2">Click any photo to open full-screen mode, arrow through all 10 looks, or toggle true browser fullscreen.</p>
+                    </div>
+
+                    <button type="button" onclick="openFullscreenGallery(0)" class="fem-btn bg-gradient-to-r from-berryRose to-berryDeep text-white px-6 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg inline-flex items-center gap-2 shrink-0">
+                        <i class="fa-solid fa-expand"></i> Launch Full-Screen Gallery
+                    </button>
+                </div>
+
+                <div id="galleryCardsGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5"></div>
+            </div>
+        </section>
+
+        <!-- Google Listing Reviews Section -->
+        <section id="google-reviews" class="py-24 border-y border-champagne/15 bg-black/20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-[0.25em] text-sageMist flex items-center gap-2">
+                            <i class="fa-brands fa-google"></i> Verified Google Business Listing
+                        </span>
+                        <h2 class="font-serif text-4xl sm:text-6xl font-bold text-white mt-1">Google Listing Reviews</h2>
+                        <p class="text-champagne/75 text-sm sm:text-base mt-2">What guests say about <strong class="text-white">YOU BUSINESS NAME HERE</strong> on Google.</p>
+                    </div>
+
+                    <div class="bg-velvetCard border border-champagne/20 rounded-3xl px-6 py-4 flex items-center gap-4 shadow-lg shrink-0">
+                        <div class="w-12 h-12 rounded-2xl bg-sageMist/20 text-sageMist flex items-center justify-center text-2xl">
+                            <i class="fa-brands fa-google"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-serif text-3xl font-bold text-white">4.9 / 5</span>
+                                <span class="text-champagne text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                            </div>
+                            <p class="text-xs font-semibold text-champagne/75">128 Reviews on Google Listing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <article class="bg-velvetCard/95 border border-champagne/15 rounded-3xl p-7 flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-champagne text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                                <span class="text-[11px] font-bold text-sageMist flex items-center gap-1.5">
+                                    <i class="fa-brands fa-google"></i> Google Listing
+                                </span>
+                            </div>
+                            <p class="text-champagne/85 text-sm leading-relaxed mb-6">
+                                "Such a warm, feminine space! My silk press and botanical gloss came out weightless and glossy, and booking on the calendar took less than a minute."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-champagne/10 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-white flex items-center gap-1.5">
+                                    <i class="fa-solid fa-heart text-berryRose text-xs"></i> Ayanda Sithole
+                                </p>
+                                <p class="text-xs text-champagne/60">Verified Google Review • Hair</p>
+                            </div>
+                            <span class="text-[11px] text-champagne/50">2 weeks ago</span>
+                        </div>
+                    </article>
+
+                    <article class="bg-velvetCard/95 border border-champagne/15 rounded-3xl p-7 flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-champagne text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                                <span class="text-[11px] font-bold text-sageMist flex items-center gap-1.5">
+                                    <i class="fa-brands fa-google"></i> Google Listing
+                                </span>
+                            </div>
+                            <p class="text-champagne/85 text-sm leading-relaxed mb-6">
+                                "The Velvet Glow Facial and neck massage left my skin dewy and my shoulders completely relaxed. Easily my favorite beauty &amp; wellness spot."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-champagne/10 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-white flex items-center gap-1.5">
+                                    <i class="fa-solid fa-heart text-berryRose text-xs"></i> Chantel van Rooyen
+                                </p>
+                                <p class="text-xs text-champagne/60">Verified Google Review • Facial &amp; Spa</p>
+                            </div>
+                            <span class="text-[11px] text-champagne/50">1 month ago</span>
+                        </div>
+                    </article>
+
+                    <article class="bg-velvetCard/95 border border-champagne/15 rounded-3xl p-7 flex flex-col justify-between reveal">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-champagne text-xs">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </span>
+                                <span class="text-[11px] font-bold text-sageMist flex items-center gap-1.5">
+                                    <i class="fa-brands fa-google"></i> Google Listing
+                                </span>
+                            </div>
+                            <p class="text-champagne/85 text-sm leading-relaxed mb-6">
+                                "Clean tools, clear prices, kind stylists, and zero rushing. I checked the style gallery, picked my look, and walked out glowing."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-champagne/10 flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-white flex items-center gap-1.5">
+                                    <i class="fa-solid fa-heart text-berryRose text-xs"></i> Palesa Moloi
+                                </p>
+                                <p class="text-xs text-champagne/60">Verified Google Review • Nails &amp; Styling</p>
+                            </div>
+                            <span class="text-[11px] text-champagne/50">3 weeks ago</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Google Maps Location & Directions Section -->
+        <section id="google-map" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+                    <span class="text-xs font-bold uppercase tracking-[0.25em] text-berryRose flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-map-location-dot"></i> Salon Location &amp; Directions
+                    </span>
+                    <h2 class="font-serif text-4xl sm:text-6xl font-bold text-white mt-1">Find Us on Google Maps</h2>
+                    <p class="text-champagne/75 text-sm sm:text-base mt-2">Search or open <strong class="text-white">YOU BUSINESS NAME HERE</strong> on Google Maps for turn-by-turn directions.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                    <div class="lg:col-span-7 bg-velvetCard/95 border border-champagne/20 rounded-[2rem] overflow-hidden shadow-xl min-h-[380px] reveal">
+                        <iframe
+                            id="salonGoogleMapFrame"
+                            title="Google Maps Location for YOU BUSINESS NAME HERE"
+                            src="https://maps.google.com/maps?q=Ka-Bungeni%2C%20Limpopo%2C%20South%20Africa&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            class="w-full h-full min-h-[380px] border-0"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-velvetCard/95 border border-champagne/20 rounded-[2rem] p-7 sm:p-8 flex flex-col justify-between shadow-xl reveal">
+                        <div class="space-y-5">
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-widest text-sageMist">Salon Address &amp; Hours</span>
+                                <h3 class="font-serif text-3xl font-bold text-white mt-1">YOU BUSINESS NAME HERE</h3>
+                            </div>
+
+                            <div class="space-y-3.5 text-sm text-champagne/85">
+                                <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-velvetGround/80 border border-champagne/10">
+                                    <i class="fa-solid fa-location-dot text-berryRose mt-1"></i>
+                                    <div>
+                                        <p class="font-bold text-white">Salon Address</p>
+                                        <p id="displaySalonAddress" class="text-xs text-champagne/75">Ka-Bungeni, Limpopo, South Africa</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-velvetGround/80 border border-champagne/10">
+                                    <i class="fa-solid fa-phone-volume text-sageMist mt-1"></i>
+                                    <div>
+                                        <p class="font-bold text-white">Phone / WhatsApp</p>
+                                        <p class="text-xs text-champagne/75">+27×××××××××</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-velvetGround/80 border border-champagne/10">
+                                    <i class="fa-solid fa-envelope text-champagne mt-1"></i>
+                                    <div>
+                                        <p class="font-bold text-white">Email</p>
+                                        <p class="text-xs text-champagne/75">youremailhere@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t border-champagne/15 flex flex-col sm:flex-row gap-3">
+                            <a id="openGoogleMapsLink" href="https://www.google.com/maps/search/?api=1&query=Ka-Bungeni%2C+Limpopo%2C+South+Africa" target="_blank" rel="noopener noreferrer" class="fem-btn flex-1 bg-gradient-to-r from-berryRose to-berryDeep text-white font-bold py-3.5 px-5 rounded-full text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps
+                            </a>
+                            <a href="#booking" class="fem-btn bg-velvetGround hover:bg-velvetPlum text-champagne border border-champagne/25 font-bold py-3.5 px-5 rounded-full text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-calendar-check"></i> Book Visit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Full-Screen Gallery Lightbox Modal -->
+    <div id="fullScreenGalleryModal" class="fixed inset-0 z-[80] hidden bg-black/95 backdrop-blur-md flex-col justify-between p-4 sm:p-6">
+        <div class="flex items-center justify-between gap-4 border-b border-white/15 pb-4">
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-berryRose/25 border border-berryRose/50 text-champagne text-xs font-bold">
+                    <i class="fa-solid fa-sparkles text-berryRose mr-1"></i> Look <span id="fsIndexText">1</span> / 10
+                </span>
+                <div>
+                    <h3 id="fsTitle" class="font-serif text-xl sm:text-2xl font-bold text-white leading-none">Look Title</h3>
+                    <p id="fsSubtitle" class="text-xs text-champagne/70 mt-1">Category • Stylist Note</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button type="button" id="toggleNativeFullscreenBtn" class="fem-btn px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-champagne text-xs font-bold flex items-center gap-1.5" title="Toggle Browser Fullscreen">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                    <span class="hidden sm:inline">Fullscreen</span>
+                </button>
+                <button type="button" id="closeFsGalleryBtn" class="fem-btn w-10 h-10 rounded-full bg-berryRose hover:bg-berryDeep text-white flex items-center justify-center text-base" aria-label="Close Full-Screen Gallery">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="relative flex-1 flex items-center justify-center my-4 min-h-0">
+            <button type="button" id="prevLookBtn" class="fem-btn absolute left-2 sm:left-4 z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-velvetCard/90 hover:bg-berryRose text-white border border-champagne/25 flex items-center justify-center shadow-xl" aria-label="Previous Look">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <img id="fsMainImage" src="" alt="" class="max-h-full max-w-full w-auto h-auto object-contain rounded-2xl shadow-2xl border border-champagne/20">
+
+            <button type="button" id="nextLookBtn" class="fem-btn absolute right-2 sm:right-4 z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-velvetCard/90 hover:bg-berryRose text-white border border-champagne/25 flex items-center justify-center shadow-xl" aria-label="Next Look">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="border-t border-white/15 pt-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div id="fsThumbStrip" class="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1"></div>
+            <button type="button" id="fsBookThisLookBtn" class="fem-btn bg-gradient-to-r from-berryRose to-berryDeep text-white px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-wider shrink-0 flex items-center gap-2">
+                <i class="fa-regular fa-calendar-check"></i> Book This Look
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/45 border-t border-champagne/15 py-12 text-champagne/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 text-xs">
+            <div>
+                <p class="font-display font-bold text-base text-white flex items-center gap-2">
+                    <i class="fa-solid fa-crown text-berryRose"></i> YOU BUSINESS NAME HERE
+                </p>
+                <p class="text-champagne/65 mt-1">
+                    <i class="fa-solid fa-phone text-berryRose mr-1.5"></i>+27××××××××× &nbsp;•&nbsp;
+                    <i class="fa-solid fa-envelope text-sageMist mr-1.5"></i>youremailhere@gmail.com
+                </p>
+            </div>
+            <p class="text-champagne/50">&copy; 2026 YOU BUSINESS NAME HERE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Quick Book Button -->
+    <a href="#booking" aria-label="Book Appointment" class="fem-btn fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-berryRose to-berryDeep text-white shadow-2xl flex items-center justify-center text-xl border border-champagne/30">
+        <i class="fa-regular fa-calendar-check"></i>
+    </a>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        const topRibbon = document.getElementById('topRibbon');
+        window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            topRibbon.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : '0%';
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach((el, idx) => {
+            el.style.transitionDelay = `${(idx % 4) * 70}ms`;
+        });
+        const revObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => revObs.observe(el));
+
+        const nums = document.querySelectorAll('.num');
+        let numsDone = false;
+        const numObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !numsDone) {
+                    numsDone = true;
+                    nums.forEach(el => {
+                        const target = Number(el.dataset.target);
+                        let cur = 0;
+                        const step = Math.max(1, Math.ceil(target / 40));
+                        const timer = setInterval(() => {
+                            cur += step;
+                            if (cur >= target) {
+                                el.textContent = target.toLocaleString();
+                                clearInterval(timer);
+                            } else {
+                                el.textContent = cur.toLocaleString();
+                            }
+                        }, 24);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+        nums.forEach(el => numObs.observe(el));
+
+        const pTabs = document.querySelectorAll('.p-tab');
+        const pCards = document.querySelectorAll('.p-card');
+        pTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                pTabs.forEach(t => {
+                    t.classList.remove('bg-berryRose', 'text-white');
+                    t.classList.add('bg-velvetCard', 'text-champagne', 'border', 'border-champagne/15');
+                });
+                tab.classList.remove('bg-velvetCard', 'text-champagne', 'border', 'border-champagne/15');
+                tab.classList.add('bg-berryRose', 'text-white');
+
+                const kind = tab.dataset.p;
+                pCards.forEach(card => {
+                    card.style.display = (kind === 'all' || card.dataset.kind === kind) ? '' : 'none';
+                });
+            });
+        });
+
+        // REAL INTERACTIVE CALENDAR LOGIC
+        const calMonthTitle = document.getElementById('calMonthTitle');
+        const calendarDaysGrid = document.getElementById('calendarDaysGrid');
+        const prevMonthBtn = document.getElementById('prevMonthBtn');
+        const nextMonthBtn = document.getElementById('nextMonthBtn');
+        const chosenDateTimeLabel = document.getElementById('chosenDateTimeLabel');
+
+        const now = new Date();
+        let viewYear = now.getFullYear();
+        let viewMonth = now.getMonth();
+        let selectedDateStr = now.toISOString().split('T')[0];
+        let selectedTimeStr = "09:00 AM";
+
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        function formatIsoDate(y, m, d) {
+            const mm = String(m + 1).padStart(2, '0');
+            const dd = String(d).padStart(2, '0');
+            return `${y}-${mm}-${dd}`;
+        }
+
+        function refreshDateTimeSummary() {
+            chosenDateTimeLabel.textContent = `${selectedDateStr} • ${selectedTimeStr}`;
+        }
+
+        function renderRealCalendar() {
+            calMonthTitle.textContent = `${monthNames[viewMonth]} ${viewYear}`;
+            calendarDaysGrid.innerHTML = "";
+
+            const firstDayOfMonth = new Date(viewYear, viewMonth, 1).getDay();
+            const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+            const todayIso = formatIsoDate(now.getFullYear(), now.getMonth(), now.getDate());
+
+            for (let b = 0; b < firstDayOfMonth; b++) {
+                const spacer = document.createElement('div');
+                spacer.className = "py-2.5";
+                calendarDaysGrid.appendChild(spacer);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const iso = formatIsoDate(viewYear, viewMonth, day);
+                const btn = document.createElement('button');
+                btn.type = "button";
+                btn.textContent = day;
+
+                const isSelected = iso === selectedDateStr;
+                const isToday = iso === todayIso;
+
+                btn.className = `py-2.5 rounded-xl text-xs font-bold transition ${
+                    isSelected
+                        ? "bg-berryRose text-white shadow-md scale-105"
+                        : isToday
+                            ? "bg-sageMist/25 text-sageMist border border-sageMist/50 hover:border-berryRose"
+                            : "bg-velvetGround/80 text-champagne/90 border border-champagne/10 hover:border-berryRose hover:text-white"
+                }`;
+
+                btn.addEventListener('click', () => {
+                    selectedDateStr = iso;
+                    renderRealCalendar();
+                    refreshDateTimeSummary();
+                });
+
+                calendarDaysGrid.appendChild(btn);
+            }
+        }
+
+        prevMonthBtn.addEventListener('click', () => {
+            viewMonth--;
+            if (viewMonth < 0) {
+                viewMonth = 11;
+                viewYear--;
+            }
+            renderRealCalendar();
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            viewMonth++;
+            if (viewMonth > 11) {
+                viewMonth = 0;
+                viewYear++;
+            }
+            renderRealCalendar();
+        });
+
+        const rSlots = document.querySelectorAll('.r-slot');
+        rSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                rSlots.forEach(s => {
+                    s.classList.remove('bg-berryRose', 'text-white');
+                    s.classList.add('bg-velvetGround', 'text-champagne', 'border', 'border-champagne/15');
+                });
+                slot.classList.remove('bg-velvetGround', 'text-champagne', 'border', 'border-champagne/15');
+                slot.classList.add('bg-berryRose', 'text-white');
+                selectedTimeStr = slot.dataset.t;
+                refreshDateTimeSummary();
+            });
+        });
+
+        renderRealCalendar();
+        refreshDateTimeSummary();
+
+        function pickStylist(name) {
+            const sel = document.getElementById('rStylist');
+            for (let i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].value === name) {
+                    sel.selectedIndex = i;
+                    break;
+                }
+            }
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function pickTreatment(label) {
+            const sel = document.getElementById('rService');
+            for (let i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].value === label) {
+                    sel.selectedIndex = i;
+                    break;
+                }
+            }
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('realBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('realBookSuccess').classList.remove('hidden');
+            this.reset();
+        });
+
+        document.getElementById('waBookBtn').addEventListener('click', () => {
+            const salonWhatsApp = "27000000000";
+            const name = document.getElementById('rName').value.trim() || "Guest";
+            const phone = document.getElementById('rPhone').value.trim() || "+27×××××××××";
+            const service = document.getElementById('rService').value;
+            const stylist = document.getElementById('rStylist').value;
+            const notes = document.getElementById('rNotes').value.trim() || "None";
+
+            const text = `*BOOKING - YOU BUSINESS NAME HERE*%0A` +
+                         `-----------------------------------%0A` +
+                         `*Name:* ${encodeURIComponent(name)} (${encodeURIComponent(phone)})%0A` +
+                         `*Date & Time:* ${encodeURIComponent(selectedDateStr)} at ${encodeURIComponent(selectedTimeStr)}%0A` +
+                         `*Treatment:* ${encodeURIComponent(service)}%0A` +
+                         `*Stylist:* ${encodeURIComponent(stylist)}%0A` +
+                         `*Notes:* ${encodeURIComponent(notes)}`;
+
+            window.open(`https://wa.me/${salonWhatsApp}?text=${text}`, '_blank');
+        });
+
+        // 10 STYLE & GLOW GALLERY + FULL-SCREEN VIEWER
+        const galleryLooks = [
+            {
+                title: "Luminous Silk Press",
+                subtitle: "Hair • Gloss & Bounce by Amahle",
+                service: "Silk Press, Trim & Rose Gloss (R640)",
+                img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Dewy Rose Glow",
+                subtitle: "Skin • Hydration Facial by Zanele",
+                service: "Velvet Glow Facial & Neck Massage (R720)",
+                img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Serene Spa Escape",
+                subtitle: "Wellness • Aromatherapy Ritual by Lerato",
+                service: "Aromatherapy Body & Stress Ritual (R560)",
+                img: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Soft Feminine Waves",
+                subtitle: "Hair • Dimensional Styling",
+                service: "Precision Cut & Blowout (R480)",
+                img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Rosewood Spa Nails",
+                subtitle: "Nails • Manicure & Polish by Claire",
+                service: "Rosewood Spa Manicure & Pedicure (R590)",
+                img: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Velvet Color Gloss",
+                subtitle: "Hair • Tone & Shine Treatment",
+                service: "Silk Press, Trim & Rose Gloss (R640)",
+                img: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Botanical Barrier Glow",
+                subtitle: "Skin • Soothing Serum Ritual",
+                service: "Botanical Hydration Facial (R650)",
+                img: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Bouncy Blowout Finish",
+                subtitle: "Hair • Volume & Soft Frame",
+                service: "Precision Cut & Blowout (R480)",
+                img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Calm Candle Sanctuary",
+                subtitle: "Wellness • Deep Relaxation Lounge",
+                service: "Aromatherapy Body & Stress Ritual (R560)",
+                img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1400&q=85"
+            },
+            {
+                title: "Bridal Radiance Edit",
+                subtitle: "Hair & Skin • Event Finish",
+                service: "Velvet Glow Facial & Neck Massage (R720)",
+                img: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1400&q=85"
+            }
+        ];
+
+        const galleryCardsGrid = document.getElementById('galleryCardsGrid');
+        const fsModal = document.getElementById('fullScreenGalleryModal');
+        const fsIndexText = document.getElementById('fsIndexText');
+        const fsTitle = document.getElementById('fsTitle');
+        const fsSubtitle = document.getElementById('fsSubtitle');
+        const fsMainImage = document.getElementById('fsMainImage');
+        const fsThumbStrip = document.getElementById('fsThumbStrip');
+        const fsBookThisLookBtn = document.getElementById('fsBookThisLookBtn');
+        const closeFsGalleryBtn = document.getElementById('closeFsGalleryBtn');
+        const prevLookBtn = document.getElementById('prevLookBtn');
+        const nextLookBtn = document.getElementById('nextLookBtn');
+        const toggleNativeFullscreenBtn = document.getElementById('toggleNativeFullscreenBtn');
+
+        let currentLookIndex = 0;
+
+        galleryLooks.forEach((look, index) => {
+            const card = document.createElement('figure');
+            card.className = "bg-velvetCard/95 border border-champagne/15 rounded-2xl overflow-hidden group cursor-pointer flex flex-col justify-between";
+            card.innerHTML = `
+                <div class="relative h-52 overflow-hidden" onclick="openFullscreenGallery(${index})">
+                    <img src="${look.img}" alt="${look.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <span class="absolute top-2.5 left-2.5 bg-velvetGround/85 text-champagne text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                        #${String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span class="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-berryRose/90 text-white flex items-center justify-center text-xs shadow-md">
+                        <i class="fa-solid fa-expand"></i>
+                    </span>
+                </div>
+                <figcaption class="p-3.5 flex items-center justify-between gap-2">
+                    <div class="min-w-0">
+                        <h3 class="font-serif text-lg font-bold text-white truncate">${look.title}</h3>
+                        <p class="text-[11px] text-champagne/65 truncate">${look.subtitle}</p>
+                    </div>
+                    <button type="button" onclick="openFullscreenGallery(${index})" class="text-[11px] font-bold text-berryRose hover:underline shrink-0">
+                        Full View
+                    </button>
+                </figcaption>
+            `;
+            galleryCardsGrid.appendChild(card);
+        });
+
+        function renderFullscreenLook() {
+            const look = galleryLooks[currentLookIndex];
+            fsIndexText.textContent = currentLookIndex + 1;
+            fsTitle.textContent = look.title;
+            fsSubtitle.textContent = look.subtitle;
+            fsMainImage.src = look.img;
+            fsMainImage.alt = look.title;
+
+            fsThumbStrip.innerHTML = "";
+            galleryLooks.forEach((item, idx) => {
+                const thumbBtn = document.createElement('button');
+                thumbBtn.type = "button";
+                thumbBtn.className = `w-11 h-11 rounded-lg overflow-hidden border-2 shrink-0 transition ${
+                    idx === currentLookIndex ? "border-berryRose scale-105" : "border-white/20 opacity-60 hover:opacity-100"
+                }`;
+                thumbBtn.innerHTML = `<img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">`;
+                thumbBtn.addEventListener('click', () => {
+                    currentLookIndex = idx;
+                    renderFullscreenLook();
+                });
+                fsThumbStrip.appendChild(thumbBtn);
+            });
+        }
+
+        function openFullscreenGallery(index = 0) {
+            currentLookIndex = index;
+            renderFullscreenLook();
+            fsModal.classList.remove('hidden');
+            fsModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreenGallery() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {});
+            }
+            fsModal.classList.add('hidden');
+            fsModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        closeFsGalleryBtn.addEventListener('click', closeFullscreenGallery);
+        prevLookBtn.addEventListener('click', () => {
+            currentLookIndex = (currentLookIndex - 1 + galleryLooks.length) % galleryLooks.length;
+            renderFullscreenLook();
+        });
+        nextLookBtn.addEventListener('click', () => {
+            currentLookIndex = (currentLookIndex + 1) % galleryLooks.length;
+            renderFullscreenLook();
+        });
+
+        fsBookThisLookBtn.addEventListener('click', () => {
+            const look = galleryLooks[currentLookIndex];
+            closeFullscreenGallery();
+            pickTreatment(look.service);
+        });
+
+        toggleNativeFullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                fsModal.requestFullscreen().catch(() => {});
+            } else {
+                document.exitFullscreen().catch(() => {});
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (fsModal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeFullscreenGallery();
+            if (e.key === 'ArrowLeft') {
+                currentLookIndex = (currentLookIndex - 1 + galleryLooks.length) % galleryLooks.length;
+                renderFullscreenLook();
+            }
+            if (e.key === 'ArrowRight') {
+                currentLookIndex = (currentLookIndex + 1) % galleryLooks.length;
+                renderFullscreenLook();
+            }
+        });
+    </script>
+</body>
+</html>
