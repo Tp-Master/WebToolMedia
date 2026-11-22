@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOU BUSINESS NAME HERE | Fitness, Gym &amp; Athletic Performance</title>
+    <meta name="description" content="YOU BUSINESS NAME HERE — Fitness & gym portal with class timetables, membership plans, trainer bios, training zones, member milestones, online booking, 1RM calculator, and Google Maps.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Oswald:wght@600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Work Sans', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        steelBase: '#E9EEF4',
+                        steelCard: '#FFFFFF',
+                        steelLine: '#CBD5E1',
+                        navyInk: '#0F172A',
+                        navySlate: '#1E293B',
+                        cyanSport: '#0284C7',
+                        cyanDark: '#0369A1',
+                        amberHeat: '#EA580C',
+                        jadeTrack: '#0D9488',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #E9EEF4;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+
+        /* Beautiful Gym Background Image + Soft Atmospheric Tint */
+        .gym-photo-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background-image: url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: saturate(0.82) contrast(1.04);
+        }
+
+        .gym-photo-veil {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 88% 12%, rgba(2, 132, 199, 0.16), transparent 40%),
+                radial-gradient(circle at 10% 85%, rgba(234, 88, 12, 0.12), transparent 42%),
+                linear-gradient(180deg, rgba(244, 247, 250, 0.90) 0%, rgba(233, 238, 244, 0.93) 100%);
+        }
+
+        #navyScrollBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #0284C7, #EA580C, #0D9488);
+            z-index: 90;
+        }
+
+        @keyframes badgeBob3d {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        /* 3D Flip-Tilt Entrance + Ken Burns Motion for Strength & Conditioning Floor Images */
+        @keyframes gym3dFlipReveal {
+            0% {
+                opacity: 0;
+                transform: perspective(900px) rotateY(22deg) rotateX(6deg) scale(1.06);
+            }
+            100% {
+                opacity: 1;
+                transform: perspective(900px) rotateY(0deg) rotateX(0deg) scale(1);
+            }
+        }
+
+        @keyframes gymKenBurnsDrift {
+            0% {
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+            50% {
+                transform: scale(1.09) translate3d(-1.5%, -1%, 0);
+            }
+            100% {
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+        }
+
+        .gym-floor-frame {
+            perspective: 1000px;
+        }
+
+        .gym-slide-3d-enter {
+            animation: gym3dFlipReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards, gymKenBurnsDrift 16s ease-in-out 0.65s infinite;
+            transform-style: preserve-3d;
+        }
+
+        .bob-3d {
+            animation: badgeBob3d 3.4s ease-in-out infinite;
+        }
+
+        .tilt-card-3d {
+            perspective: 1100px;
+        }
+        .tilt-card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+        }
+        .tilt-card-3d:hover .tilt-card-inner {
+            transform: rotateX(4deg) rotateY(-4deg) translateY(-7px) translateZ(10px);
+            box-shadow: 0 22px 38px -14px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(2, 132, 199, 0.32);
+            border-color: #0284C7;
+        }
+        .tilt-card-3d:hover .tilt-card-photo {
+            transform: scale(1.07);
+        }
+        .tilt-card-photo {
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Reveal on Scroll */
+        .reveal-block {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-block.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Chamfered Action Button */
+        .kinetic-cta {
+            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+            transition: transform 0.16s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .kinetic-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -8px rgba(15, 23, 42, 0.3);
+        }
+        .kinetic-cta:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyanSport selection:text-white">
+
+    <div class="gym-photo-backdrop" aria-hidden="true"></div>
+    <div class="gym-photo-veil" aria-hidden="true"></div>
+    <div id="navyScrollBar"></div>
+
+    <!-- Two-Tier Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/92 backdrop-blur-md border-b border-steelLine shadow-2xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Top Row -->
+            <div class="h-15 flex items-center justify-between gap-4 border-b border-steelLine/70">
+                <a href="#" class="flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-md bg-navyInk text-white flex items-center justify-center text-sm">
+                        <i class="fa-solid fa-bolt-lightning text-amberHeat"></i>
+                    </span>
+                    <div>
+                        <span class="font-display font-bold text-lg sm:text-xl uppercase tracking-wide text-navyInk block leading-none">YOU BUSINESS NAME HERE</span>
+                        <span class="text-[11px] font-medium text-slate-500">Health • Sport • Gym</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center gap-5 text-xs font-semibold text-slate-600">
+                    <span><i class="fa-solid fa-phone text-cyanSport mr-1"></i>+27×××××××××</span>
+                    <span><i class="fa-solid fa-envelope text-amberHeat mr-1"></i>youremailhere@gmail.com</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <a href="#booking-zone" class="kinetic-cta bg-amberHeat hover:bg-orange-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-2">
+                        Book Session
+                    </a>
+                    <button type="button" id="navyMobileBtn" class="md:hidden w-9 h-9 rounded-md border border-steelLine text-navyInk flex items-center justify-center" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Underline Tab Nav Row -->
+            <nav class="hidden md:flex items-center gap-6 h-11 text-xs font-bold uppercase tracking-wider text-slate-600 overflow-x-auto">
+                <a href="#timetable" class="h-full inline-flex items-center gap-1.5 border-b-2 border-cyanSport text-navyInk shrink-0">
+                    <i class="fa-solid fa-calendar-days text-cyanSport"></i> Timetable
+                </a>
+                <a href="#zones" class="h-full inline-flex items-center gap-1.5 border-b-2 border-transparent hover:border-cyanSport hover:text-navyInk transition shrink-0">
+                    <i class="fa-solid fa-layer-group text-amberHeat"></i> Training Zones
+                </a>
+                <a href="#memberships" class="h-full inline-flex items-center gap-1.5 border-b-2 border-transparent hover:border-cyanSport hover:text-navyInk transition shrink-0">
+                    <i class="fa-solid fa-id-card text-jadeTrack"></i> Memberships
+                </a>
+                <a href="#trainers" class="h-full inline-flex items-center gap-1.5 border-b-2 border-transparent hover:border-cyanSport hover:text-navyInk transition shrink-0">
+                    <i class="fa-solid fa-users text-cyanSport"></i> Trainers
+                </a>
+                <a href="#results" class="h-full inline-flex items-center gap-1.5 border-b-2 border-transparent hover:border-cyanSport hover:text-navyInk transition shrink-0">
+                    <i class="fa-solid fa-trophy text-amberHeat"></i> Results
+                </a>
+                <a href="#booking-zone" class="h-full inline-flex items-center gap-1.5 border-b-2 border-transparent hover:border-cyanSport hover:text-navyInk transition shrink-0">
+                    <i class="fa-solid fa-dumbbell text-jadeTrack"></i> Booking, 1RM &amp; Map
+                </a>
+            </nav>
+        </div>
+
+        <div id="navyMobileDrawer" class="hidden md:hidden bg-white border-t border-steelLine px-4 py-4 space-y-2 text-sm font-semibold">
+            <a href="#timetable" class="block py-1.5 text-navyInk"><i class="fa-solid fa-calendar-days text-cyanSport mr-2"></i>Class Timetable</a>
+            <a href="#zones" class="block py-1.5 text-navyInk"><i class="fa-solid fa-layer-group text-amberHeat mr-2"></i>Training Zones</a>
+            <a href="#memberships" class="block py-1.5 text-navyInk"><i class="fa-solid fa-id-card text-jadeTrack mr-2"></i>Membership Plans</a>
+            <a href="#trainers" class="block py-1.5 text-navyInk"><i class="fa-solid fa-users text-cyanSport mr-2"></i>Trainer Bios</a>
+            <a href="#results" class="block py-1.5 text-navyInk"><i class="fa-solid fa-trophy text-amberHeat mr-2"></i>Member Results</a>
+            <a href="#booking-zone" class="block py-1.5 text-navyInk"><i class="fa-solid fa-dumbbell text-jadeTrack mr-2"></i>Booking, 1RM &amp; Map</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Full-Width Hero with Steady Frame & Swappable Gym Carousel -->
+        <section class="pt-12 pb-16 lg:pt-16 lg:pb-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-5 reveal-block">
+                        <span class="bob-3d inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-navyInk text-white text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-fire text-amberHeat"></i> YOU BUSINESS NAME HERE
+                        </span>
+
+                        <h1 class="font-display text-5xl sm:text-7xl font-bold uppercase text-navyInk leading-[0.98] tracking-tight">
+                            Conditioning, Strength &amp; Sport Performance.
+                        </h1>
+
+                        <p class="text-slate-700 text-sm sm:text-base max-w-2xl leading-relaxed">
+                            Browse daily classes, explore linkable training zones with full-screen galleries, compare membership tiers, meet our coaching lineup, track member progress, book sessions online, test your 1RM, and view our location on the map.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <a href="#timetable" class="kinetic-cta bg-cyanSport hover:bg-cyanDark text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-calendar-days"></i> Class Timetable
+                            </a>
+                            <a href="#zones" class="kinetic-cta bg-navyInk hover:bg-navySlate text-white text-xs font-bold uppercase tracking-wider px-6 py-3.5 inline-flex items-center gap-2">
+                                <i class="fa-solid fa-layer-group text-amberHeat"></i> Training Zones
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-steelLine max-w-md">
+                            <div>
+                                <p class="font-mono text-2xl font-bold text-navyInk">18</p>
+                                <p class="text-xs text-slate-600">Weekly Sessions</p>
+                            </div>
+                            <div>
+                                <p class="font-mono text-2xl font-bold text-cyanSport">4 Zones</p>
+                                <p class="text-xs text-slate-600">Training Floors</p>
+                            </div>
+                            <div>
+                                <p class="font-mono text-2xl font-bold text-amberHeat">3 Tiers</p>
+                                <p class="text-xs text-slate-600">Memberships</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Steady Card Frame with Swappable Gym Floor Photos (Left/Right + Every 30 Seconds) -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white/95 backdrop-blur-xs border border-steelLine rounded-2xl p-4 shadow-xl">
+                            <div class="gym-floor-frame rounded-xl overflow-hidden h-64 relative bg-navyInk">
+                                <img id="gymHeroSlideImg" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80" alt="Strength & Conditioning Floor" class="gym-slide-3d-enter w-full h-full object-cover object-center">
+
+                                <span id="gymHeroSlideBadge" class="absolute bottom-3 left-3 z-10 bg-navyInk/90 text-white text-xs font-bold px-3 py-1 rounded-md">
+                                    <i class="fa-solid fa-dumbbell text-cyanSport mr-1"></i> Strength &amp; Conditioning Floor
+                                </span>
+
+                                <button type="button" id="gymPrevSlideBtn" aria-label="Previous gym image" class="z-10 w-8 h-8 rounded-full bg-navyInk/80 hover:bg-cyanSport text-white flex items-center justify-center absolute left-2.5 top-1/2 -translate-y-1/2 transition">
+                                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                                </button>
+                                <button type="button" id="gymNextSlideBtn" aria-label="Next gym image" class="z-10 w-8 h-8 rounded-full bg-navyInk/80 hover:bg-cyanSport text-white flex items-center justify-center absolute right-2.5 top-1/2 -translate-y-1/2 transition">
+                                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                                </button>
+                            </div>
+
+                            <div class="mt-3 flex items-center justify-between gap-2 px-1">
+                                <div id="gymSlideDots" class="flex items-center gap-1.5"></div>
+                                <span class="font-mono text-[10px] text-slate-500">Auto: 30s</span>
+                            </div>
+
+                            <div class="mt-3 pt-3 border-t border-steelLine flex items-center justify-between gap-3 px-1">
+                                <div>
+                                    <p class="text-[11px] font-bold uppercase tracking-wider text-amberHeat">Direct Line</p>
+                                    <p class="font-mono text-xs font-bold text-navyInk">+27××××××××× • youremailhere@gmail.com</p>
+                                </div>
+                                <a href="#booking-zone" class="kinetic-cta bg-cyanSport text-white text-xs font-bold uppercase px-3.5 py-2">
+                                    Book
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Class Timetable -->
+        <section id="timetable" class="py-16 bg-white/92 backdrop-blur-xs border-y border-steelLine reveal-block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-cyanSport">01 / Weekly Timetable</span>
+                        <h2 class="font-display text-4xl sm:text-5xl font-bold uppercase text-navyInk mt-1">Class Schedule</h2>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2" id="navyDayGroup">
+                        <button type="button" data-nday="Monday" class="nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-navyInk text-white">Monday</button>
+                        <button type="button" data-nday="Tuesday" class="nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-steelBase text-slate-700 border border-steelLine">Tuesday</button>
+                        <button type="button" data-nday="Wednesday" class="nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-steelBase text-slate-700 border border-steelLine">Wednesday</button>
+                        <button type="button" data-nday="Thursday" class="nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-steelBase text-slate-700 border border-steelLine">Thursday</button>
+                        <button type="button" data-nday="Friday" class="nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-steelBase text-slate-700 border border-steelLine">Friday</button>
+                        <button type="button" data-nday="Saturday" class="nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-steelBase text-slate-700 border border-steelLine">Saturday</button>
+                    </div>
+                </div>
+
+                <div id="navyTimetableGrid" class="grid md:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Section 2: Linkable Training Zones with Multi-Photo Galleries & Full-Screen Viewer -->
+        <section id="zones" class="py-16 reveal-block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amberHeat">02 / Facility Spaces</span>
+                        <h2 class="font-display text-4xl sm:text-5xl font-bold uppercase text-navyInk mt-1">Training Zones</h2>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2" id="zoneFilterBar">
+                        <button type="button" data-zone="all" class="zone-filter-btn px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-navyInk text-white">All Zones</button>
+                        <button type="button" data-zone="strength" class="zone-filter-btn px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-white text-slate-700 border border-steelLine">Strength</button>
+                        <button type="button" data-zone="conditioning" class="zone-filter-btn px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-white text-slate-700 border border-steelLine">Conditioning</button>
+                    </div>
+                </div>
+
+                <!-- Direct Zone Links Bar -->
+                <div class="flex flex-wrap items-center gap-2 mb-8 text-xs font-bold">
+                    <span class="text-slate-500 uppercase tracking-wider mr-1">Jump to Zone:</span>
+                    <a href="#zone-barbell-rack" class="px-3 py-1.5 rounded-md bg-white/95 border border-steelLine text-navyInk hover:border-cyanSport hover:text-cyanSport transition">#zone-barbell-rack</a>
+                    <a href="#zone-dumbbell-hall" class="px-3 py-1.5 rounded-md bg-white/95 border border-steelLine text-navyInk hover:border-cyanSport hover:text-cyanSport transition">#zone-dumbbell-hall</a>
+                    <a href="#zone-turf-sled" class="px-3 py-1.5 rounded-md bg-white/95 border border-steelLine text-navyInk hover:border-cyanSport hover:text-cyanSport transition">#zone-turf-sled</a>
+                    <a href="#zone-cardio-deck" class="px-3 py-1.5 rounded-md bg-white/95 border border-steelLine text-navyInk hover:border-cyanSport hover:text-cyanSport transition">#zone-cardio-deck</a>
+                </div>
+
+                <div id="trainingZonesGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Section 3: Membership Signup Plans -->
+        <section id="memberships" class="py-16 bg-white/92 backdrop-blur-xs border-y border-steelLine reveal-block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-jadeTrack">03 / Memberships</span>
+                        <h2 class="font-display text-4xl sm:text-5xl font-bold uppercase text-navyInk mt-1">Membership Plans</h2>
+                    </div>
+
+                    <div class="inline-flex bg-white border border-steelLine rounded-lg p-1 text-xs font-bold">
+                        <button type="button" id="navyBillMonth" class="px-4 py-1.5 rounded-md bg-navyInk text-white transition">Monthly</button>
+                        <button type="button" id="navyBillHalf" class="px-4 py-1.5 rounded-md text-slate-600 hover:text-navyInk transition">6-Month Pass (Save 12%)</button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-7">
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-white border border-steelLine rounded-2xl p-7 flex flex-col justify-between h-full">
+                            <div>
+                                <span class="text-xs font-bold uppercase text-slate-500">Plan 01</span>
+                                <h3 class="font-display text-2xl font-bold uppercase text-navyInk mt-1">Gym Floor Pass</h3>
+                                <p id="nPlan1" class="font-mono text-3xl font-bold text-cyanSport mt-3">R385<span class="text-xs font-sans text-slate-500">/mo</span></p>
+                                <ul class="mt-5 space-y-2.5 text-xs text-slate-600">
+                                    <li><i class="fa-solid fa-check text-jadeTrack mr-2"></i>Full weights, racks &amp; cardio access</li>
+                                    <li><i class="fa-solid fa-check text-jadeTrack mr-2"></i>1 starter movement check</li>
+                                </ul>
+                            </div>
+                            <button type="button" onclick="pickMembership('Membership Signup — Gym Floor Pass')" class="kinetic-cta mt-7 w-full py-3 bg-navyInk hover:bg-navySlate text-white text-xs font-bold uppercase tracking-wider">
+                                Sign Up — Gym Floor
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-navyInk text-white border-2 border-cyanSport rounded-2xl p-7 flex flex-col justify-between h-full shadow-xl">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold uppercase text-cyanSport">Plan 02 • Popular</span>
+                                    <span class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded bg-amberHeat text-white">All-Access</span>
+                                </div>
+                                <h3 class="font-display text-2xl font-bold uppercase text-white mt-1">Classes + Gym Access</h3>
+                                <p id="nPlan2" class="font-mono text-3xl font-bold text-white mt-3">R655<span class="text-xs font-sans text-slate-300">/mo</span></p>
+                                <ul class="mt-5 space-y-2.5 text-xs text-slate-200">
+                                    <li><i class="fa-solid fa-check text-cyanSport mr-2"></i>Unlimited group classes + gym floor</li>
+                                    <li><i class="fa-solid fa-check text-cyanSport mr-2"></i>Strength, HIIT, sport &amp; mobility</li>
+                                </ul>
+                            </div>
+                            <button type="button" onclick="pickMembership('Membership Signup — Classes + Gym Access')" class="kinetic-cta mt-7 w-full py-3 bg-cyanSport hover:bg-cyanDark text-white text-xs font-bold uppercase tracking-wider">
+                                Sign Up — All-Access
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-white border border-steelLine rounded-2xl p-7 flex flex-col justify-between h-full">
+                            <div>
+                                <span class="text-xs font-bold uppercase text-amberHeat">Plan 03 • Coaching</span>
+                                <h3 class="font-display text-2xl font-bold uppercase text-navyInk mt-1">Performance + PT</h3>
+                                <p id="nPlan3" class="font-mono text-3xl font-bold text-amberHeat mt-3">R1,160<span class="text-xs font-sans text-slate-500">/mo</span></p>
+                                <ul class="mt-5 space-y-2.5 text-xs text-slate-600">
+                                    <li><i class="fa-solid fa-check text-jadeTrack mr-2"></i>Unlimited classes + open gym</li>
+                                    <li><i class="fa-solid fa-check text-jadeTrack mr-2"></i>4 private 1-on-1 coaching sessions</li>
+                                </ul>
+                            </div>
+                            <button type="button" onclick="pickMembership('Membership Signup — Performance + PT')" class="kinetic-cta mt-7 w-full py-3 bg-amberHeat hover:bg-orange-700 text-white text-xs font-bold uppercase tracking-wider">
+                                Sign Up — Performance + PT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Trainer Bios -->
+        <section id="trainers" class="py-16 reveal-block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-cyanSport">04 / Coaching Lineup</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold uppercase text-navyInk mt-1">Trainer Bios</h2>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-white/95 border border-steelLine rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+                            <div>
+                                <div class="h-56 overflow-hidden">
+                                    <img src="https://media.istockphoto.com/id/1162195270/photo/young-african-american-man-sitting-and-lifting-a-dumbbell-with-the-rack-at-gym.jpg?s=612x612&w=0&k=20&c=93FRvwMBcoHRyTNRVchRpvVIqA5ZCWiyjAkU9PrmrTo=" alt="Black strength coach lifting dumbbell in gym" class="tilt-card-photo w-full h-full object-cover object-top">
+                                </div>
+                                <div class="p-6">
+                                    <span class="text-[11px] font-bold uppercase tracking-wider text-cyanSport">Strength &amp; Lifting</span>
+                                    <h3 class="font-display text-2xl font-bold uppercase text-navyInk mt-0.5">Tshepo Radebe</h3>
+                                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                        Guides compound lifts, upper/lower strength splits, and safe load progression.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="px-6 pb-6">
+                                <button type="button" onclick="pickCoachSession('1-on-1 Strength Session — Tshepo Radebe')" class="kinetic-cta w-full py-2.5 bg-navyInk text-white text-xs font-bold uppercase tracking-wider">
+                                    Book With Tshepo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-white/95 border border-steelLine rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+                            <div>
+                                <div class="h-56 overflow-hidden">
+                                    <img src="https://media.istockphoto.com/id/1434733373/photo/strong-woman-doing-fitness-training-for-exercise-at-gym-weights-for-cardio-workout-and.jpg?s=612x612&w=0&k=20&c=ScC5qJ-ZrXRWu-s3_IkUql6-Xrs7T5AFAHmcOJc7gIY=" alt="Strong Black female trainer performing dumbbell workout" class="tilt-card-photo w-full h-full object-cover object-top">
+                                </div>
+                                <div class="p-6">
+                                    <span class="text-[11px] font-bold uppercase tracking-wider text-amberHeat">Conditioning &amp; HIIT</span>
+                                    <h3 class="font-display text-2xl font-bold uppercase text-navyInk mt-0.5">Nomvula Zulu</h3>
+                                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                        Runs high-tempo conditioning blocks, work-capacity circuits, and core endurance sessions.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="px-6 pb-6">
+                                <button type="button" onclick="pickCoachSession('Conditioning Session — Nomvula Zulu')" class="kinetic-cta w-full py-2.5 bg-navyInk text-white text-xs font-bold uppercase tracking-wider">
+                                    Book With Nomvula
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-white/95 border border-steelLine rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+                            <div>
+                                <div class="h-56 overflow-hidden">
+                                    <img src="https://media.istockphoto.com/id/2215301619/photo/determined-black-woman-pushing-sled-in-gym-with-supportive-male-trainer.jpg?s=612x612&w=0&k=20&c=h3smAndwfX19srfoeqwLZkHudrsHzEBDQ5_Uln-L-8w=" alt="Black coach assisting woman pushing training sled in gym" class="tilt-card-photo w-full h-full object-cover object-top">
+                                </div>
+                                <div class="p-6">
+                                    <span class="text-[11px] font-bold uppercase tracking-wider text-jadeTrack">Sport &amp; Sled Power</span>
+                                    <h3 class="font-display text-2xl font-bold uppercase text-navyInk mt-0.5">Sibusiso Mthembu</h3>
+                                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                                        Focuses on sled drive, explosive sport movement, and athletic conditioning.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="px-6 pb-6">
+                                <button type="button" onclick="pickCoachSession('Sport & Sled Session — Sibusiso Mthembu')" class="kinetic-cta w-full py-2.5 bg-navyInk text-white text-xs font-bold uppercase tracking-wider">
+                                    Book With Sibusiso
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Member Results & Training Milestones -->
+        <section id="results" class="py-16 bg-white/92 backdrop-blur-xs border-y border-steelLine reveal-block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-jadeTrack">05 / Community Progress</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold uppercase text-navyInk mt-1">Member Milestones</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-7">
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-steelBase border border-steelLine rounded-2xl p-6 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-3.5">
+                                    <img src="https://media.istockphoto.com/id/1434733373/photo/strong-woman-doing-fitness-training-for-exercise-at-gym-weights-for-cardio-workout-and.jpg?s=612x612&w=0&k=20&c=ScC5qJ-ZrXRWu-s3_IkUql6-Xrs7T5AFAHmcOJc7gIY=" alt="Lerato M. member portrait in gym" class="w-14 h-14 rounded-full object-cover object-top border-2 border-cyanSport">
+                                    <div>
+                                        <h3 class="font-display text-xl font-bold uppercase text-navyInk">Lerato M.</h3>
+                                        <span class="font-mono text-xs font-bold text-cyanSport">+25kg Dumbbell Row • 12 Wks</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 mt-4 leading-relaxed">
+                                    "Consistent morning classes and structured lifting helped me build real upper-body strength and daily stamina."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-steelBase border border-steelLine rounded-2xl p-6 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-3.5">
+                                    <img src="https://media.istockphoto.com/id/1162195270/photo/young-african-american-man-sitting-and-lifting-a-dumbbell-with-the-rack-at-gym.jpg?s=612x612&w=0&k=20&c=93FRvwMBcoHRyTNRVchRpvVIqA5ZCWiyjAkU9PrmrTo=" alt="Karabo T. member portrait in gym" class="w-14 h-14 rounded-full object-cover object-top border-2 border-amberHeat">
+                                    <div>
+                                        <h3 class="font-display text-xl font-bold uppercase text-navyInk">Karabo T.</h3>
+                                        <span class="font-mono text-xs font-bold text-amberHeat">4x/Wk Attendance • 16 Wks</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 mt-4 leading-relaxed">
+                                    "Having a clear timetable and coach feedback kept me on track for football pre-season conditioning."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tilt-card-3d">
+                        <div class="tilt-card-inner bg-steelBase border border-steelLine rounded-2xl p-6 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-3.5">
+                                    <img src="https://media.istockphoto.com/id/2215301619/photo/determined-black-woman-pushing-sled-in-gym-with-supportive-male-trainer.jpg?s=612x612&w=0&k=20&c=h3smAndwfX19srfoeqwLZkHudrsHzEBDQ5_Uln-L-8w=" alt="Zinhle K. member portrait in gym" class="w-14 h-14 rounded-full object-cover object-top border-2 border-jadeTrack">
+                                    <div>
+                                        <h3 class="font-display text-xl font-bold uppercase text-navyInk">Zinhle K.</h3>
+                                        <span class="font-mono text-xs font-bold text-jadeTrack">Sled &amp; HIIT Milestone • 10 Wks</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 mt-4 leading-relaxed">
+                                    "The sled lane and group sessions push me every week without feeling overwhelming."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Online Booking, 1RM Estimator & Google Map -->
+        <section id="booking-zone" class="py-16 reveal-block">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="mb-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-cyanSport">06 / Online Booking, Strength Tool &amp; Map</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold uppercase text-navyInk mt-1">Book Online, Check 1RM &amp; Locate Us</h2>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-7 items-stretch">
+                    <!-- Online Booking Form -->
+                    <div class="lg:col-span-6 bg-white/95 border border-steelLine rounded-2xl p-6 sm:p-7 shadow-xs">
+                        <h3 class="font-display text-2xl font-bold uppercase text-navyInk flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-check text-cyanSport"></i> Online Booking Form
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-0.5">
+                            <strong class="text-navyInk">YOU BUSINESS NAME HERE</strong> • +27××××××××× • youremailhere@gmail.com
+                        </p>
+
+                        <form id="navyBookingForm" class="mt-4 space-y-3.5">
+                            <div class="grid sm:grid-cols-2 gap-3.5">
+                                <input type="text" id="nbName" required placeholder="Your Name" class="w-full bg-steelBase border border-steelLine rounded-lg px-3.5 py-2.5 text-sm text-navyInk focus:outline-none focus:border-cyanSport">
+                                <input type="tel" id="nbPhone" required placeholder="Phone / WhatsApp (+27...)" class="w-full bg-steelBase border border-steelLine rounded-lg px-3.5 py-2.5 text-sm text-navyInk focus:outline-none focus:border-cyanSport">
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-3.5">
+                                <select id="nbOption" class="w-full bg-steelBase border border-steelLine rounded-lg px-3.5 py-2.5 text-sm font-semibold text-navyInk focus:outline-none focus:border-cyanSport">
+                                    <option value="Group Class Booking">Group Class Booking</option>
+                                    <option value="1-on-1 Trainer Session">1-on-1 Trainer Session</option>
+                                    <option value="Free Trial Pass">Free Trial Pass</option>
+                                    <option value="Membership Signup — Gym Floor Pass">Membership Signup — Gym Floor Pass</option>
+                                    <option value="Membership Signup — Classes + Gym Access">Membership Signup — Classes + Gym Access</option>
+                                    <option value="Membership Signup — Performance + PT">Membership Signup — Performance + PT</option>
+                                </select>
+                                <input type="text" id="nbSlot" placeholder="Preferred day &amp; time" class="w-full bg-steelBase border border-steelLine rounded-lg px-3.5 py-2.5 text-sm text-navyInk focus:outline-none focus:border-cyanSport">
+                            </div>
+
+                            <div class="flex flex-wrap gap-3 pt-1">
+                                <button type="submit" class="kinetic-cta bg-cyanSport hover:bg-cyanDark text-white text-xs font-bold uppercase tracking-wider px-5 py-3 inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-check"></i> Confirm Booking
+                                </button>
+                                <button type="button" id="nbWaBtn" class="kinetic-cta bg-navyInk hover:bg-navySlate text-white text-xs font-bold uppercase tracking-wider px-5 py-3 inline-flex items-center gap-2">
+                                    <i class="fa-brands fa-whatsapp text-jadeTrack text-sm"></i> WhatsApp
+                                </button>
+                            </div>
+                        </form>
+
+                        <div id="nbConfirmBox" class="hidden mt-4 p-3 rounded-lg bg-jadeTrack/15 border border-jadeTrack/35 text-jadeTrack text-xs font-bold">
+                            Booking request received! Call +27××××××××× or email youremailhere@gmail.com.
+                        </div>
+                    </div>
+
+                    <!-- One-Rep Max (1RM) Strength Estimator -->
+                    <div class="lg:col-span-6 bg-white/95 border border-steelLine rounded-2xl p-6 sm:p-7 shadow-xs flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display text-2xl font-bold uppercase text-navyInk flex items-center gap-2">
+                                    <i class="fa-solid fa-weight-hanging text-amberHeat"></i> 1RM Strength Estimator
+                                </h3>
+                                <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-steelBase text-navyInk">KG</span>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1">Working Weight (kg)</label>
+                                    <input type="number" id="rmWeight" value="80" min="10" max="500" step="2.5" class="w-full bg-steelBase border border-steelLine rounded-lg px-3.5 py-2.5 font-mono text-sm text-navyInk focus:outline-none focus:border-cyanSport">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1">Reps Completed (1–12)</label>
+                                    <input type="number" id="rmReps" value="5" min="1" max="12" step="1" class="w-full bg-steelBase border border-steelLine rounded-lg px-3.5 py-2.5 font-mono text-sm text-navyInk focus:outline-none focus:border-cyanSport">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-steelLine grid grid-cols-3 gap-3 text-center">
+                            <div class="p-3 rounded-xl bg-navyInk text-white">
+                                <p class="text-[10px] uppercase text-slate-300 font-bold">Est. 1RM</p>
+                                <p id="rmOneOut" class="font-mono text-xl font-bold text-cyanSport mt-0.5">93 kg</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-steelBase border border-steelLine">
+                                <p class="text-[10px] uppercase text-slate-500 font-bold">85% Strength</p>
+                                <p id="rm85Out" class="font-mono text-xl font-bold text-navyInk mt-0.5">79 kg</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-steelBase border border-steelLine">
+                                <p class="text-[10px] uppercase text-slate-500 font-bold">70% Volume</p>
+                                <p id="rm70Out" class="font-mono text-xl font-bold text-amberHeat mt-0.5">65 kg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map View -->
+                <div class="bg-white/95 border border-steelLine rounded-2xl overflow-hidden shadow-xs">
+                    <div class="px-6 py-4 border-b border-steelLine flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-cyanSport">
+                                <i class="fa-solid fa-map-location-dot mr-1"></i> Google Maps Location
+                            </span>
+                            <h3 id="navyMapLabel" class="font-display text-lg font-bold uppercase text-navyInk">Ka-Bungeni, Limpopo</h3>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button type="button" onclick="setGymMapPlace('Ka-Bungeni, Limpopo')" class="px-3 py-1.5 rounded-md bg-steelBase hover:bg-navyInk hover:text-white text-xs font-bold text-navyInk transition">Ka-Bungeni</button>
+                            <button type="button" onclick="setGymMapPlace('Polokwane, Limpopo')" class="px-3 py-1.5 rounded-md bg-steelBase hover:bg-navyInk hover:text-white text-xs font-bold text-navyInk transition">Polokwane</button>
+                            <a id="navyMapExt" href="https://www.google.com/maps/search/?api=1&query=Ka-Bungeni%2C+Limpopo" target="_blank" rel="noopener noreferrer" class="kinetic-cta bg-amberHeat text-white text-xs font-bold uppercase px-3.5 py-2 inline-flex items-center gap-1">
+                                <span>Open Map</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <iframe
+                        id="navyMapIframe"
+                        title="Gym Google Map View"
+                        src="https://maps.google.com/maps?q=Ka-Bungeni%2C%20Limpopo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        class="w-full h-72 border-0"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Full-Screen Training Zone Image Modal -->
+    <div id="zoneFullscreenModal" class="fixed inset-0 z-100 hidden bg-navyInk/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-8" role="dialog" aria-modal="true" aria-labelledby="zoneFsTitle">
+        <div class="flex items-center justify-between gap-4 text-white max-w-6xl w-full mx-auto">
+            <div>
+                <p id="zoneFsCounter" class="font-mono text-xs text-cyanSport font-bold"></p>
+                <h3 id="zoneFsTitle" class="font-display text-2xl sm:text-3xl font-bold uppercase"></h3>
+            </div>
+            <button type="button" id="zoneFsCloseBtn" aria-label="Close full screen image" class="w-10 h-10 rounded-full bg-white/10 hover:bg-amberHeat text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div class="relative flex-1 flex items-center justify-center max-w-6xl w-full mx-auto my-4">
+            <button type="button" id="zoneFsPrevBtn" aria-label="Previous zone photo" class="w-11 h-11 rounded-full bg-white/15 hover:bg-cyanSport text-white flex items-center justify-center absolute left-2 sm:left-4 z-10 transition">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <img id="zoneFsImg" src="" alt="" class="max-h-[75vh] max-w-full rounded-xl object-contain shadow-2xl border border-white/15">
+
+            <button type="button" id="zoneFsNextBtn" aria-label="Next zone photo" class="w-11 h-11 rounded-full bg-white/15 hover:bg-cyanSport text-white flex items-center justify-center absolute right-2 sm:right-4 z-10 transition">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="text-center text-xs text-slate-300 max-w-6xl w-full mx-auto">
+            <p id="zoneFsCaption"></p>
+        </div>
+    </div>
+
+    <!-- Multi-Column Dark Navy Footer -->
+    <footer class="bg-navyInk text-slate-300 pt-14 pb-8 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-white/10">
+                <div>
+                    <p class="font-display font-bold text-xl uppercase text-white">YOU BUSINESS NAME HERE</p>
+                    <p class="text-slate-400 mt-2 leading-relaxed">
+                        Strength, conditioning, group classes, and sport coaching under one roof.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="font-bold uppercase tracking-wider text-white mb-3">Sections</p>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#timetable" class="hover:text-cyanSport transition">Class Timetable</a></li>
+                        <li><a href="#zones" class="hover:text-cyanSport transition">Training Zones</a></li>
+                        <li><a href="#memberships" class="hover:text-cyanSport transition">Membership Plans</a></li>
+                        <li><a href="#trainers" class="hover:text-cyanSport transition">Trainer Bios</a></li>
+                        <li><a href="#results" class="hover:text-cyanSport transition">Member Milestones</a></li>
+                        <li><a href="#booking-zone" class="hover:text-cyanSport transition">Online Booking &amp; Map</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="font-bold uppercase tracking-wider text-white mb-3">Training Hours</p>
+                    <ul class="space-y-2 text-slate-400 font-mono">
+                        <li>Mon – Fri: 05:00 – 20:30</li>
+                        <li>Saturday: 07:00 – 14:00</li>
+                        <li>Sunday: Closed</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="font-bold uppercase tracking-wider text-white mb-3">Contact</p>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><i class="fa-solid fa-phone text-cyanSport mr-2"></i>+27×××××××××</li>
+                        <li><i class="fa-solid fa-envelope text-amberHeat mr-2"></i>youremailhere@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-slate-500">
+                <p>&copy; 2026 YOU BUSINESS NAME HERE. All Rights Reserved.</p>
+                <p>Health • Sport • Gym</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll bar
+        const navyScrollBar = document.getElementById('navyScrollBar');
+        window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            navyScrollBar.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : '0%';
+        });
+
+        // Reveal on scroll
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('in-view');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-block').forEach(el => revealObserver.observe(el));
+
+        // Mobile drawer
+        const navyMobileBtn = document.getElementById('navyMobileBtn');
+        const navyMobileDrawer = document.getElementById('navyMobileDrawer');
+        navyMobileBtn.addEventListener('click', () => navyMobileDrawer.classList.toggle('hidden'));
+
+        // Gym Floor Image Carousel (3D Flip-Tilt Entrance + Ken Burns Motion, Left/Right + Every 30s)
+        const gymFloorSlides = [
+            {
+                url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
+                caption: "Strength & Conditioning Floor",
+                alt: "Gym training floor with racks, weights, and workout stations"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=900&q=80",
+                caption: "Cardio & Athletic Hall",
+                alt: "Modern gym interior with treadmills and workout floor"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1571902943202-507ec263e3c5?auto=format&fit=crop&w=900&q=80",
+                caption: "Free Weights & Barbell Zone",
+                alt: "Gym lifting area with barbells, plates, and racks"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80",
+                caption: "Functional & Turf Bay",
+                alt: "Gym training floor with functional equipment and weights"
+            }
+        ];
+
+        let activeGymSlide = 0;
+        let autoSlideTimer = null;
+
+        const gymHeroSlideImg = document.getElementById('gymHeroSlideImg');
+        const gymHeroSlideBadge = document.getElementById('gymHeroSlideBadge');
+        const gymSlideDots = document.getElementById('gymSlideDots');
+        const gymPrevSlideBtn = document.getElementById('gymPrevSlideBtn');
+        const gymNextSlideBtn = document.getElementById('gymNextSlideBtn');
+
+        function renderGymSlideDots() {
+            gymSlideDots.innerHTML = "";
+            gymFloorSlides.forEach((_, idx) => {
+                const dot = document.createElement("button");
+                dot.type = "button";
+                dot.ariaLabel = `Go to gym image ${idx + 1}`;
+                dot.className = `h-2 rounded-full transition-all ${idx === activeGymSlide ? 'w-5 bg-cyanSport' : 'w-2 bg-slate-300 hover:bg-slate-400'}`;
+                dot.addEventListener("click", () => {
+                    showGymSlide(idx);
+                    restart30sTimer();
+                });
+                gymSlideDots.appendChild(dot);
+            });
+        }
+
+        function showGymSlide(index) {
+            activeGymSlide = (index + gymFloorSlides.length) % gymFloorSlides.length;
+            const slide = gymFloorSlides[activeGymSlide];
+            gymHeroSlideImg.classList.remove("gym-slide-3d-enter");
+            void gymHeroSlideImg.offsetWidth;
+            gymHeroSlideImg.src = slide.url;
+            gymHeroSlideImg.alt = slide.alt;
+            gymHeroSlideImg.classList.add("gym-slide-3d-enter");
+            gymHeroSlideBadge.innerHTML = `<i class="fa-solid fa-dumbbell text-cyanSport mr-1"></i> ${slide.caption}`;
+            renderGymSlideDots();
+        }
+
+        function restart30sTimer() {
+            clearInterval(autoSlideTimer);
+            autoSlideTimer = setInterval(() => {
+                showGymSlide(activeGymSlide + 1);
+            }, 30000);
+        }
+
+        gymPrevSlideBtn.addEventListener("click", () => {
+            showGymSlide(activeGymSlide - 1);
+            restart30sTimer();
+        });
+
+        gymNextSlideBtn.addEventListener("click", () => {
+            showGymSlide(activeGymSlide + 1);
+            restart30sTimer();
+        });
+
+        showGymSlide(0);
+        restart30sTimer();
+
+        // Linkable Training Zones with Multiple Images & Full-Screen Modal
+        const gymZones = [
+            {
+                id: "zone-barbell-rack",
+                title: "Power & Barbell Rack Zone",
+                cat: "strength",
+                desc: "Squat racks, Olympic barbells, calibrated plates, and lifting platforms.",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1571902943202-507ec263e3c5?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Olympic Lifting Platforms & Power Racks"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Barbell Strength & Compound Lift Bay"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Heavy Plates & Rack Stations"
+                    }
+                ]
+            },
+            {
+                id: "zone-dumbbell-hall",
+                title: "Dumbbell & Bench Hall",
+                cat: "strength",
+                desc: "Full dumbbell pairs, adjustable benches, cables, and hypertrophy stations.",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Main Dumbbell & Hypertrophy Floor"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Adjustable Benches & Free Weight Racks"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Strength Equipment & Training Floor"
+                    }
+                ]
+            },
+            {
+                id: "zone-turf-sled",
+                title: "Turf & Sled Conditioning",
+                cat: "conditioning",
+                desc: "Sprint turf lane, push/pull sleds, kettlebells, and agility markers.",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Functional Conditioning & Turf Area"
+                    },
+                    {
+                        url: "https://media.istockphoto.com/id/2215301619/photo/determined-black-woman-pushing-sled-in-gym-with-supportive-male-trainer.jpg?s=612x612&w=0&k=20&c=h3smAndwfX19srfoeqwLZkHudrsHzEBDQ5_Uln-L-8w=",
+                        caption: "Sled Drive & Coach-Guided Power Drills"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Athletic Conditioning & Agility Session"
+                    }
+                ]
+            },
+            {
+                id: "zone-cardio-deck",
+                title: "Cardio & Engine Deck",
+                cat: "conditioning",
+                desc: "Treadmills, rowers, bikes, and interval stations for aerobic capacity.",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Cardio & Interval Training Deck"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Treadmills & Aerobic Conditioning Row"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=85",
+                        caption: "Group Studio & Endurance Floor"
+                    }
+                ]
+            }
+        ];
+
+        const zonePhotoIndex = gymZones.map(() => 0);
+        let activeZoneFilter = "all";
+        const zoneFilterBtns = document.querySelectorAll('.zone-filter-btn');
+        const trainingZonesGrid = document.getElementById('trainingZonesGrid');
+
+        zoneFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                activeZoneFilter = btn.dataset.zone;
+                zoneFilterBtns.forEach(b => {
+                    b.className = "zone-filter-btn px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-white text-slate-700 border border-steelLine";
+                });
+                btn.className = "zone-filter-btn px-3.5 py-1.5 rounded-md text-xs font-bold uppercase bg-navyInk text-white";
+                renderZones();
+            });
+        });
+
+        function cycleZoneCardPhoto(zoneIdx, delta) {
+            const total = gymZones[zoneIdx].photos.length;
+            zonePhotoIndex[zoneIdx] = (zonePhotoIndex[zoneIdx] + delta + total) % total;
+            renderZones();
+        }
+
+        function renderZones() {
+            trainingZonesGrid.innerHTML = "";
+            gymZones.forEach((z, zIdx) => {
+                if (activeZoneFilter !== "all" && z.cat !== activeZoneFilter) return;
+                const pIdx = zonePhotoIndex[zIdx];
+                const currentPhoto = z.photos[pIdx];
+
+                const wrap = document.createElement("div");
+                wrap.id = z.id;
+                wrap.className = "tilt-card-3d scroll-mt-28";
+                wrap.innerHTML = `
+                    <div class="tilt-card-inner bg-white/95 border border-steelLine rounded-2xl overflow-hidden flex flex-col justify-between h-full">
+                        <div>
+                            <div class="h-44 overflow-hidden relative bg-navyInk">
+                                <img src="${currentPhoto.url}" alt="${currentPhoto.caption}" onclick="openZoneFullscreen(${zIdx}, ${pIdx})" class="tilt-card-photo w-full h-full object-cover cursor-zoom-in">
+
+                                <button type="button" onclick="cycleZoneCardPhoto(${zIdx}, -1)" aria-label="Previous photo in ${z.title}" class="w-7 h-7 rounded-full bg-navyInk/80 hover:bg-cyanSport text-white flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 transition">
+                                    <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                                </button>
+                                <button type="button" onclick="cycleZoneCardPhoto(${zIdx}, 1)" aria-label="Next photo in ${z.title}" class="w-7 h-7 rounded-full bg-navyInk/80 hover:bg-cyanSport text-white flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 transition">
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+
+                                <button type="button" onclick="openZoneFullscreen(${zIdx}, ${pIdx})" aria-label="View ${z.title} in full screen" class="px-2.5 py-1 rounded bg-navyInk/85 hover:bg-amberHeat text-white text-[10px] font-bold uppercase tracking-wider absolute top-2.5 right-2.5 inline-flex items-center gap-1 transition">
+                                    <i class="fa-solid fa-expand"></i> Full Screen
+                                </button>
+
+                                <span class="px-2 py-0.5 rounded bg-navyInk/85 text-white font-mono text-[10px] font-bold absolute bottom-2.5 right-2.5">
+                                    ${pIdx + 1}/${z.photos.length}
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-cyanSport">${z.cat}</span>
+                                    <a href="#${z.id}" class="font-mono text-[10px] text-slate-400 hover:text-cyanSport">#${z.id}</a>
+                                </div>
+                                <h3 class="font-display text-xl font-bold uppercase text-navyInk mt-0.5">${z.title}</h3>
+                                <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">${z.desc}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5 flex gap-2">
+                            <button type="button" onclick="openZoneFullscreen(${zIdx}, ${pIdx})" class="kinetic-cta flex-1 py-2 bg-navyInk hover:bg-navySlate text-white text-xs font-bold uppercase tracking-wider inline-flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-expand text-[10px]"></i> Gallery
+                            </button>
+                            <button type="button" onclick="pickCoachSession('Zone Trial — ${z.title}')" class="kinetic-cta flex-1 py-2 bg-steelBase hover:bg-cyanSport hover:text-white text-navyInk text-xs font-bold uppercase tracking-wider">
+                                Try Zone
+                            </button>
+                        </div>
+                    </div>
+                `;
+                trainingZonesGrid.appendChild(wrap);
+            });
+        }
+        renderZones();
+
+        // Full-Screen Zone Gallery Modal
+        const zoneFullscreenModal = document.getElementById('zoneFullscreenModal');
+        const zoneFsImg = document.getElementById('zoneFsImg');
+        const zoneFsTitle = document.getElementById('zoneFsTitle');
+        const zoneFsCaption = document.getElementById('zoneFsCaption');
+        const zoneFsCounter = document.getElementById('zoneFsCounter');
+        const zoneFsCloseBtn = document.getElementById('zoneFsCloseBtn');
+        const zoneFsPrevBtn = document.getElementById('zoneFsPrevBtn');
+        const zoneFsNextBtn = document.getElementById('zoneFsNextBtn');
+
+        let fsZoneIdx = 0;
+        let fsPhotoIdx = 0;
+
+        function updateFullscreenSlide() {
+            const zone = gymZones[fsZoneIdx];
+            const photo = zone.photos[fsPhotoIdx];
+            zoneFsTitle.textContent = zone.title;
+            zoneFsCounter.textContent = `PHOTO ${fsPhotoIdx + 1} OF ${zone.photos.length} • #${zone.id}`;
+            zoneFsImg.src = photo.url;
+            zoneFsImg.alt = photo.caption;
+            zoneFsCaption.textContent = photo.caption;
+        }
+
+        function openZoneFullscreen(zIdx, pIdx = 0) {
+            fsZoneIdx = zIdx;
+            fsPhotoIdx = pIdx;
+            updateFullscreenSlide();
+            zoneFullscreenModal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeZoneFullscreen() {
+            zoneFullscreenModal.classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+
+        zoneFsCloseBtn.addEventListener("click", closeZoneFullscreen);
+        zoneFsPrevBtn.addEventListener("click", () => {
+            const total = gymZones[fsZoneIdx].photos.length;
+            fsPhotoIdx = (fsPhotoIdx - 1 + total) % total;
+            updateFullscreenSlide();
+        });
+        zoneFsNextBtn.addEventListener("click", () => {
+            const total = gymZones[fsZoneIdx].photos.length;
+            fsPhotoIdx = (fsPhotoIdx + 1) % total;
+            updateFullscreenSlide();
+        });
+        zoneFullscreenModal.addEventListener("click", (e) => {
+            if (e.target === zoneFullscreenModal) closeZoneFullscreen();
+        });
+        document.addEventListener("keydown", (e) => {
+            if (zoneFullscreenModal.classList.contains("hidden")) return;
+            if (e.key === "Escape") closeZoneFullscreen();
+            if (e.key === "ArrowLeft") zoneFsPrevBtn.click();
+            if (e.key === "ArrowRight") zoneFsNextBtn.click();
+        });
+
+        // Timetable data
+        const navySchedule = {
+            Monday: [
+                { time: "05:30", title: "Barbell & Strength", coach: "Tshepo Radebe", focus: "Strength" },
+                { time: "17:30", title: "HIIT & Sled Power", coach: "Sibusiso Mthembu", focus: "Conditioning" },
+                { time: "18:30", title: "Core & Conditioning", coach: "Nomvula Zulu", focus: "Cardio" }
+            ],
+            Tuesday: [
+                { time: "06:00", title: "Cardio & Circuit", coach: "Nomvula Zulu", focus: "HIIT" },
+                { time: "17:00", title: "Lower Body Strength", coach: "Tshepo Radebe", focus: "Strength" },
+                { time: "18:15", title: "Sport Speed & Drive", coach: "Sibusiso Mthembu", focus: "Sport" }
+            ],
+            Wednesday: [
+                { time: "05:30", title: "HIIT & Sled Power", coach: "Sibusiso Mthembu", focus: "Conditioning" },
+                { time: "17:30", title: "Upper Body Strength", coach: "Tshepo Radebe", focus: "Strength" },
+                { time: "18:30", title: "Engine & Endurance", coach: "Nomvula Zulu", focus: "Cardio" }
+            ],
+            Thursday: [
+                { time: "06:00", title: "Engine & Endurance", coach: "Nomvula Zulu", focus: "Cardio" },
+                { time: "17:00", title: "Sport Speed & Drive", coach: "Sibusiso Mthembu", focus: "Sport" },
+                { time: "18:15", title: "Full Body Lift", coach: "Tshepo Radebe", focus: "Strength" }
+            ],
+            Friday: [
+                { time: "05:30", title: "Friday Conditioning", coach: "Nomvula Zulu", focus: "Conditioning" },
+                { time: "16:30", title: "Strength & Power", coach: "Tshepo Radebe", focus: "Strength" },
+                { time: "17:30", title: "Team Sled & Core", coach: "Sibusiso Mthembu", focus: "Sport" }
+            ],
+            Saturday: [
+                { time: "07:30", title: "Saturday Club Session", coach: "Sibusiso Mthembu", focus: "All Levels" },
+                { time: "08:45", title: "Strength & Conditioning", coach: "Tshepo Radebe", focus: "Strength" },
+                { time: "10:00", title: "MetCon & Core", coach: "Nomvula Zulu", focus: "Cardio" }
+            ]
+        };
+
+        let curNavyDay = "Monday";
+        const ndayBtns = document.querySelectorAll('.nday-btn');
+        const navyTimetableGrid = document.getElementById('navyTimetableGrid');
+
+        ndayBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                curNavyDay = btn.dataset.nday;
+                ndayBtns.forEach(b => {
+                    b.className = "nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-steelBase text-slate-700 border border-steelLine";
+                });
+                btn.className = "nday-btn px-3.5 py-2 rounded-md text-xs font-bold uppercase bg-navyInk text-white";
+                renderNavyTimetable();
+            });
+        });
+
+        function renderNavyTimetable() {
+            const list = navySchedule[curNavyDay] || [];
+            navyTimetableGrid.innerHTML = "";
+            list.forEach(item => {
+                const wrap = document.createElement("div");
+                wrap.className = "tilt-card-3d";
+                wrap.innerHTML = `
+                    <div class="tilt-card-inner bg-steelBase border border-steelLine rounded-xl p-5 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-sm font-bold text-cyanSport">${item.time}</span>
+                                <span class="text-[11px] font-bold uppercase px-2.5 py-0.5 rounded bg-white border border-steelLine text-amberHeat">${item.focus}</span>
+                            </div>
+                            <h4 class="font-display text-2xl font-bold uppercase text-navyInk mt-2">${item.title}</h4>
+                            <p class="text-xs text-slate-600 mt-1"><i class="fa-solid fa-user-check text-jadeTrack mr-1.5"></i>${item.coach}</p>
+                        </div>
+                        <button type="button" onclick="pickCoachSession('${curNavyDay} ${item.time} — ${item.title} (${item.coach}')" class="kinetic-cta mt-4 w-full py-2.5 bg-navyInk text-white text-xs font-bold uppercase tracking-wider">
+                            Book Class
+                        </button>
+                    </div>
+                `;
+                navyTimetableGrid.appendChild(wrap);
+            });
+        }
+        renderNavyTimetable();
+
+        // Membership billing toggle
+        const navyBillMonth = document.getElementById('navyBillMonth');
+        const navyBillHalf = document.getElementById('navyBillHalf');
+        const nPlan1 = document.getElementById('nPlan1');
+        const nPlan2 = document.getElementById('nPlan2');
+        const nPlan3 = document.getElementById('nPlan3');
+
+        navyBillMonth.addEventListener('click', () => {
+            navyBillMonth.className = "px-4 py-1.5 rounded-md bg-navyInk text-white transition";
+            navyBillHalf.className = "px-4 py-1.5 rounded-md text-slate-600 hover:text-navyInk transition";
+            nPlan1.innerHTML = `R385<span class="text-xs font-sans text-slate-500">/mo</span>`;
+            nPlan2.innerHTML = `R655<span class="text-xs font-sans text-slate-300">/mo</span>`;
+            nPlan3.innerHTML = `R1,160<span class="text-xs font-sans text-slate-500">/mo</span>`;
+        });
+
+        navyBillHalf.addEventListener('click', () => {
+            navyBillHalf.className = "px-4 py-1.5 rounded-md bg-navyInk text-white transition";
+            navyBillMonth.className = "px-4 py-1.5 rounded-md text-slate-600 hover:text-navyInk transition";
+            nPlan1.innerHTML = `R339<span class="text-xs font-sans text-slate-500">/mo</span>`;
+            nPlan2.innerHTML = `R576<span class="text-xs font-sans text-slate-300">/mo</span>`;
+            nPlan3.innerHTML = `R1,021<span class="text-xs font-sans text-slate-500">/mo</span>`;
+        });
+
+        // Sync booking actions
+        const nbOption = document.getElementById('nbOption');
+        const nbSlot = document.getElementById('nbSlot');
+
+        function pickMembership(optVal) {
+            nbOption.value = optVal;
+            nbSlot.value = "Membership signup inquiry";
+            document.getElementById('booking-zone').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function pickCoachSession(label) {
+            nbOption.value = "Group Class Booking";
+            nbSlot.value = label;
+            document.getElementById('booking-zone').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const navyBookingForm = document.getElementById('navyBookingForm');
+        const nbConfirmBox = document.getElementById('nbConfirmBox');
+        const nbWaBtn = document.getElementById('nbWaBtn');
+
+        navyBookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            nbConfirmBox.classList.remove('hidden');
+            navyBookingForm.reset();
+        });
+
+        nbWaBtn.addEventListener('click', () => {
+            const wa = "27000000000";
+            const name = document.getElementById('nbName').value.trim() || "Member";
+            const phone = document.getElementById('nbPhone').value.trim() || "+27×××××××××";
+            const opt = nbOption.value;
+            const slot = nbSlot.value.trim() || "Flexible";
+            const msg = `*GYM BOOKING - YOU BUSINESS NAME HERE*%0A` +
+                        `*Option:* ${encodeURIComponent(opt)}%0A` +
+                        `*Name:* ${encodeURIComponent(name)} (${encodeURIComponent(phone)})%0A` +
+                        `*Slot:* ${encodeURIComponent(slot)}`;
+            window.open(`https://wa.me/${wa}?text=${msg}`, "_blank");
+        });
+
+        // 1RM Estimator (Epley formula)
+        const rmWeight = document.getElementById('rmWeight');
+        const rmReps = document.getElementById('rmReps');
+        const rmOneOut = document.getElementById('rmOneOut');
+        const rm85Out = document.getElementById('rm85Out');
+        const rm70Out = document.getElementById('rm70Out');
+
+        function calcOneRm() {
+            const w = Math.max(1, Number(rmWeight.value) || 0);
+            const r = Math.min(12, Math.max(1, Number(rmReps.value) || 1));
+            const oneRm = r === 1 ? Math.round(w) : Math.round(w * (1 + r / 30));
+            rmOneOut.textContent = `${oneRm} kg`;
+            rm85Out.textContent = `${Math.round(oneRm * 0.85)} kg`;
+            rm70Out.textContent = `${Math.round(oneRm * 0.70)} kg`;
+        }
+        rmWeight.addEventListener('input', calcOneRm);
+        rmReps.addEventListener('input', calcOneRm);
+        calcOneRm();
+
+        // Google Map switcher
+        const navyMapIframe = document.getElementById('navyMapIframe');
+        const navyMapLabel = document.getElementById('navyMapLabel');
+        const navyMapExt = document.getElementById('navyMapExt');
+
+        function setGymMapPlace(locName) {
+            const enc = encodeURIComponent(locName);
+            navyMapIframe.src = `https://maps.google.com/maps?q=${enc}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+            navyMapLabel.textContent = locName;
+            navyMapExt.href = `https://www.google.com/maps/search/?api=1&query=${enc}`;
+        }
+    </script>
+</body>
+</html>
