@@ -1,0 +1,3033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apex Corporate Group — Enterprise advisory, strategic operations, capital governance, and institutional transformation for ambitious organizations." />
+  <title>Apex Corporate Group | Institutional Advisory &amp; Strategic Operations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       APEX CORPORATE GROUP — CUSTOM DESIGN SYSTEM & TOKENS
+       Edit these CSS custom properties to adapt brand palette, typography,
+       and spacing across the entire template.
+       ========================================================================== */
+    :root {
+      /* Brand Palette */
+      --navy-950: #071120;
+      --navy-900: #0c1b33;
+      --navy-800: #132849;
+      --navy-700: #1d3b68;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-300: #cbd5e1;
+
+      /* Surfaces & Neutrals */
+      --white: #ffffff;
+      --warm-grey-50: #f9f8f6;
+      --warm-grey-100: #f2f0ec;
+      --warm-grey-200: #e5e1d8;
+      --hairline: rgba(12, 27, 51, 0.12);
+      --hairline-light: rgba(255, 255, 255, 0.14);
+
+      /* Restrained Gold Accent */
+      --gold-600: #9a7428;
+      --gold-500: #b88b35;
+      --gold-400: #cfa34b;
+      --gold-soft: rgba(184, 139, 53, 0.14);
+
+      /* Semantic Status */
+      --success: #156947;
+      --success-bg: #ecfdf5;
+      --error: #b91c1c;
+      --error-bg: #fef2f2;
+
+      /* Typography */
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+      /* Rhythm & Radii */
+      --container-max: 1320px;
+      --section-pad: clamp(4.5rem, 8vw, 8.5rem);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 14px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --shadow-elevated: 0 24px 60px -15px rgba(7, 17, 32, 0.16);
+      --shadow-card: 0 12px 32px -10px rgba(7, 17, 32, 0.08);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--navy-900);
+      background-color: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold-500);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 2.75rem);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Shared Typography Helpers */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-600);
+    }
+
+    .eyebrow--light {
+      color: var(--gold-400);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .display-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      color: var(--navy-900);
+    }
+
+    .display-title--light {
+      color: var(--white);
+    }
+
+    .lead-copy {
+      font-size: clamp(1rem, 1.25vw, 1.15rem);
+      color: var(--slate-600);
+      line-height: 1.72;
+    }
+
+    .lead-copy--light {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.9rem 1.65rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border-radius: var(--radius-sm);
+      transition: transform 0.25s var(--ease-out), background-color 0.25s var(--ease-out), border-color 0.25s var(--ease-out), color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn--gold {
+      background-color: var(--gold-500);
+      color: var(--navy-950);
+      border: 1px solid var(--gold-500);
+    }
+
+    .btn--gold:hover {
+      background-color: var(--gold-400);
+      border-color: var(--gold-400);
+      box-shadow: 0 10px 24px -6px rgba(207, 163, 75, 0.42);
+    }
+
+    .btn--navy {
+      background-color: var(--navy-900);
+      color: var(--white);
+      border: 1px solid var(--navy-900);
+    }
+
+    .btn--navy:hover {
+      background-color: var(--navy-800);
+      border-color: var(--navy-800);
+    }
+
+    .btn--outline-light {
+      background-color: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.34);
+    }
+
+    .btn--outline-light:hover {
+      border-color: var(--white);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn--outline-dark {
+      background-color: transparent;
+      color: var(--navy-900);
+      border: 1px solid var(--navy-900);
+    }
+
+    .btn--outline-dark:hover {
+      background-color: var(--navy-900);
+      color: var(--white);
+    }
+
+    .btn--sm {
+      padding: 0.62rem 1.15rem;
+      font-size: 0.8125rem;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGATION
+       ========================================================================== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: background-color 0.35s var(--ease-out), border-color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), padding 0.35s var(--ease-out);
+      padding-block: 1.15rem;
+      background-color: rgba(7, 17, 32, 0.68);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--hairline-light);
+    }
+
+    .site-header.is-scrolled {
+      padding-block: 0.85rem;
+      background-color: rgba(255, 255, 255, 0.96);
+      border-bottom-color: var(--hairline);
+      box-shadow: 0 8px 28px -12px rgba(7, 17, 32, 0.12);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--white);
+      transition: color 0.3s var(--ease-out);
+      flex-shrink: 0;
+    }
+
+    .site-header.is-scrolled .brand-logo {
+      color: var(--navy-900);
+    }
+
+    .brand-logo__mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold-500);
+      border-radius: var(--radius-sm);
+      background: rgba(184, 139, 53, 0.12);
+      color: var(--gold-400);
+    }
+
+    .site-header.is-scrolled .brand-logo__mark {
+      background: var(--navy-900);
+      color: var(--gold-400);
+      border-color: var(--navy-900);
+    }
+
+    .brand-logo__text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-logo__name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-logo__sub {
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-top: 0.15rem;
+    }
+
+    .site-header.is-scrolled .brand-logo__sub {
+      color: var(--gold-600);
+    }
+
+    .nav-desktop {
+      display: none;
+      align-items: center;
+      gap: 1.65rem;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.45rem;
+    }
+
+    .nav-link {
+      position: relative;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+      padding-block: 0.35rem;
+      transition: color 0.25s var(--ease-out);
+    }
+
+    .site-header.is-scrolled .nav-link {
+      color: var(--slate-700);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1.5px;
+      background-color: var(--gold-500);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .nav-link:hover,
+    .nav-link.is-active {
+      color: var(--gold-400);
+    }
+
+    .site-header.is-scrolled .nav-link:hover,
+    .site-header.is-scrolled .nav-link.is-active {
+      color: var(--navy-900);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.is-active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .burger-btn {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 42px;
+      height: 42px;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      color: var(--white);
+    }
+
+    .site-header.is-scrolled .burger-btn {
+      color: var(--navy-900);
+    }
+
+    .burger-line {
+      width: 100%;
+      height: 2px;
+      background-color: currentColor;
+      transition: transform 0.3s var(--ease-out), opacity 0.25s var(--ease-out);
+    }
+
+    .burger-btn[aria-expanded="true"] .burger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .burger-btn[aria-expanded="true"] .burger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .burger-btn[aria-expanded="true"] .burger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (min-width: 1080px) {
+      .nav-desktop {
+        display: flex;
+      }
+      .burger-btn {
+        display: none;
+      }
+    }
+
+    /* Mobile Drawer Navigation */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background-color: var(--navy-950);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5.5rem 1.75rem 2.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-12px);
+      transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out), visibility 0.35s;
+    }
+
+    .mobile-drawer.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .mobile-nav-link {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      padding-block: 0.35rem;
+      border-bottom: 1px solid var(--hairline-light);
+      color: var(--white);
+      transition: color 0.2s var(--ease-out), padding-left 0.25s var(--ease-out);
+    }
+
+    .mobile-nav-link:hover {
+      color: var(--gold-400);
+      padding-left: 0.5rem;
+    }
+
+    .mobile-drawer__cta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION (Architectural Split with Floating Proof Rail)
+       ========================================================================== */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      background-color: var(--navy-950);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr;
+      padding-top: 5.25rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 1024px) {
+      .hero {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        align-items: stretch;
+      }
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
+    }
+
+    @media (min-width: 1024px) {
+      .hero__content {
+        padding-left: max(2.75rem, calc((100vw - var(--container-max)) / 2 + 2.75rem));
+        padding-right: 3rem;
+      }
+    }
+
+    .hero__badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.85rem, 5.2vw, 4.75rem);
+      font-weight: 600;
+      line-height: 1.03;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      max-width: 16ch;
+      margin-bottom: 1.45rem;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--gold-400);
+      font-weight: 500;
+    }
+
+    .hero__desc {
+      font-size: clamp(1rem, 1.2vw, 1.125rem);
+      line-height: 1.72;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 52ch;
+      margin-bottom: 2.15rem;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .hero__credibility {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      padding-top: 1.65rem;
+      border-top: 1px solid var(--hairline-light);
+      max-width: 560px;
+    }
+
+    .cred-item__num {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    .cred-item__num span {
+      color: var(--gold-400);
+    }
+
+    .cred-item__label {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: 0.25rem;
+    }
+
+    .hero__visual {
+      position: relative;
+      min-height: 380px;
+      overflow: hidden;
+    }
+
+    .hero__visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 17, 32, 0.22) 0%, rgba(7, 17, 32, 0.65) 100%);
+      pointer-events: none;
+    }
+
+    @media (min-width: 1024px) {
+      .hero__visual::after {
+        background: linear-gradient(90deg, var(--navy-950) 0%, rgba(7, 17, 32, 0.15) 28%, rgba(7, 17, 32, 0.45) 100%);
+      }
+    }
+
+    .hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero__floating-card {
+      position: absolute;
+      left: 1.5rem;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      z-index: 3;
+      background: rgba(12, 27, 51, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(207, 163, 75, 0.35);
+      border-radius: var(--radius-md);
+      padding: 1.15rem 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (min-width: 1024px) {
+      .hero__floating-card {
+        left: 2rem;
+        right: 2rem;
+        bottom: 2.25rem;
+      }
+    }
+
+    .hero__floating-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .hero__floating-meta {
+      font-size: 0.75rem;
+      color: var(--gold-400);
+      margin-top: 0.15rem;
+    }
+
+    .hero__floating-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy-950);
+      background-color: var(--gold-400);
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       4. COMPANY INTRODUCTION (Editorial Asymmetric Grid)
+       ========================================================================== */
+    .about-section {
+      padding-block: var(--section-pad);
+      background-color: var(--warm-grey-50);
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 4.5rem;
+        align-items: center;
+      }
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-visual__frame {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-elevated);
+      aspect-ratio: 4 / 5;
+    }
+
+    .about-visual__frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-stamp {
+      position: relative;
+      margin-top: -2.25rem;
+      margin-left: 1.25rem;
+      margin-right: 1.25rem;
+      background-color: var(--navy-900);
+      color: var(--white);
+      padding: 1.4rem 1.6rem;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--gold-500);
+      box-shadow: var(--shadow-card);
+      z-index: 2;
+    }
+
+    @media (min-width: 640px) {
+      .about-stamp {
+        position: absolute;
+        bottom: -1.75rem;
+        right: -1.5rem;
+        left: auto;
+        margin: 0;
+        max-width: 280px;
+      }
+    }
+
+    .about-stamp__years {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--gold-400);
+    }
+
+    .about-stamp__caption {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.82);
+      margin-top: 0.35rem;
+      line-height: 1.45;
+    }
+
+    .about-content h2 {
+      font-size: clamp(2.15rem, 3.6vw, 3.15rem);
+      margin-top: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-content p + p {
+      margin-top: 1rem;
+    }
+
+    .mv-strip {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--hairline);
+    }
+
+    @media (min-width: 640px) {
+      .mv-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .mv-box {
+      background-color: var(--white);
+      padding: 1.35rem 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--hairline);
+    }
+
+    .mv-box__label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-600);
+      margin-bottom: 0.45rem;
+    }
+
+    .mv-box__text {
+      font-size: 0.9rem;
+      color: var(--slate-700);
+      line-height: 1.6;
+    }
+
+    .about-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .mini-metric {
+      background: var(--warm-grey-100);
+      padding: 1rem 1.15rem;
+      border-radius: var(--radius-sm);
+      border-bottom: 2px solid var(--navy-900);
+    }
+
+    .mini-metric__val {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.1;
+    }
+
+    .mini-metric__lbl {
+      font-size: 0.75rem;
+      color: var(--slate-600);
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================================================
+       5. SERVICES (Editorial Split Ledger — Non-Card Layout)
+       ========================================================================== */
+    .services-section {
+      padding-block: var(--section-pad);
+      background-color: var(--white);
+    }
+
+    .section-header-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: end;
+      margin-bottom: 3.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    @media (min-width: 900px) {
+      .section-header-split {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 3rem;
+      }
+    }
+
+    .section-header-split h2 {
+      font-size: clamp(2.15rem, 3.6vw, 3.1rem);
+      margin-top: 0.65rem;
+    }
+
+    .service-ledger {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem 2rem;
+      align-items: center;
+      padding-block: 2rem;
+      border-bottom: 1px solid var(--hairline);
+      transition: background-color 0.3s var(--ease-out), padding-inline 0.3s var(--ease-out);
+    }
+
+    @media (min-width: 860px) {
+      .service-row {
+        grid-template-columns: 72px 68px minmax(0, 1.15fr) minmax(0, 1.45fr) auto;
+      }
+    }
+
+    .service-row:hover {
+      background-color: var(--warm-grey-50);
+    }
+
+    @media (min-width: 860px) {
+      .service-row:hover {
+        padding-inline: 1.25rem;
+      }
+    }
+
+    .service-row__index {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold-600);
+    }
+
+    .service-row__icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: var(--warm-grey-100);
+      border: 1px solid var(--hairline);
+      display: grid;
+      place-items: center;
+      color: var(--navy-900);
+      transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+    }
+
+    .service-row:hover .service-row__icon {
+      background-color: var(--navy-900);
+      color: var(--gold-400);
+      border-color: var(--navy-900);
+    }
+
+    .service-row__title {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      line-height: 1.2;
+    }
+
+    .service-row__tag {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      margin-top: 0.25rem;
+    }
+
+    .service-row__desc {
+      font-size: 0.9375rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+    }
+
+    .service-row__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      white-space: nowrap;
+      transition: color 0.25s var(--ease-out), gap 0.25s var(--ease-out);
+    }
+
+    .service-row__link:hover {
+      color: var(--gold-600);
+      gap: 0.75rem;
+    }
+
+    /* ==========================================================================
+       6. WHY CHOOSE US (Deep Navy Architectural Pillars)
+       ========================================================================== */
+    .why-section {
+      padding-block: var(--section-pad);
+      background-color: var(--navy-950);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-section::before {
+      content: "";
+      position: absolute;
+      top: -180px;
+      right: -180px;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 139, 53, 0.14) 0%, rgba(184, 139, 53, 0) 70%);
+      pointer-events: none;
+    }
+
+    .why-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 1024px) {
+      .why-layout {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: 4rem;
+        align-items: start;
+      }
+    }
+
+    .why-sticky h2 {
+      font-size: clamp(2.15rem, 3.6vw, 3.15rem);
+      margin-top: 0.7rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .why-pillars {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--hairline-light);
+    }
+
+    .why-pillar {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 1.25rem;
+      padding-block: 1.65rem;
+      border-bottom: 1px solid var(--hairline-light);
+      align-items: start;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .why-pillar:hover {
+      transform: translateX(6px);
+    }
+
+    .why-pillar__badge {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(207, 163, 75, 0.4);
+      background: rgba(207, 163, 75, 0.08);
+      color: var(--gold-400);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .why-pillar__title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .why-pillar__desc {
+      font-size: 0.925rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       7. BUSINESS STATISTICS (Animated Counters on Warm Stone)
+       ========================================================================== */
+    .stats-section {
+      padding-block: clamp(3.5rem, 6vw, 5.5rem);
+      background-color: var(--warm-grey-100);
+      border-top: 1px solid var(--warm-grey-200);
+      border-bottom: 1px solid var(--warm-grey-200);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .stat-block {
+      padding: 1.5rem 1.25rem;
+      background-color: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--hairline);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-block::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy-900), var(--gold-500));
+    }
+
+    .stat-block__number {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.35rem);
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1.05;
+    }
+
+    .stat-block__suffix {
+      color: var(--gold-600);
+    }
+
+    .stat-block__label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-top: 0.45rem;
+    }
+
+    .stat-block__note {
+      font-size: 0.78rem;
+      color: var(--slate-500);
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================================================
+       8. OUR TEAM (Editorial Portrait Showcase)
+       ========================================================================== */
+    .team-section {
+      padding-block: var(--section-pad);
+      background-color: var(--white);
+    }
+
+    .team-header {
+      max-width: 640px;
+      margin-bottom: 3.5rem;
+    }
+
+    .team-header h2 {
+      font-size: clamp(2.15rem, 3.6vw, 3.1rem);
+      margin-top: 0.65rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+      }
+    }
+
+    .team-member:nth-child(2) {
+      transform: none;
+    }
+
+    @media (min-width: 768px) {
+      .team-member:nth-child(2) {
+        transform: translateY(1.75rem);
+      }
+    }
+
+    .team-member__portrait {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background-color: var(--warm-grey-100);
+      margin-bottom: 1.25rem;
+    }
+
+    .team-member__portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.65s var(--ease-out);
+    }
+
+    .team-member:hover .team-member__portrait img {
+      transform: scale(1.04);
+    }
+
+    .team-member__socials {
+      position: absolute;
+      right: 0.85rem;
+      bottom: 0.85rem;
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .social-pill {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(12, 27, 51, 0.9);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+
+    .social-pill:hover {
+      background-color: var(--gold-500);
+      color: var(--navy-950);
+      transform: translateY(-2px);
+    }
+
+    .team-member__name {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      line-height: 1.2;
+    }
+
+    .team-member__role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-600);
+      margin-top: 0.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .team-member__bio {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      line-height: 1.65;
+    }
+
+    /* ==========================================================================
+       9. GOOGLE CUSTOMER REVIEWS (Google Business Profile Showcase)
+       ========================================================================== */
+    .reviews-section {
+      padding-block: var(--section-pad);
+      background-color: var(--warm-grey-50);
+      border-top: 1px solid var(--hairline);
+    }
+
+    .reviews-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2.75rem;
+    }
+
+    @media (min-width: 900px) {
+      .reviews-top {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+    }
+
+    .gbp-summary {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.1rem 1.6rem;
+      background-color: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem 1.5rem;
+      box-shadow: var(--shadow-card);
+      margin-top: 1.15rem;
+    }
+
+    .gbp-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy-900);
+    }
+
+    .gbp-score {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .gbp-score__num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      line-height: 1;
+    }
+
+    .stars {
+      display: inline-flex;
+      gap: 0.15rem;
+      color: #f59e0b;
+    }
+
+    .gbp-count {
+      font-size: 0.84rem;
+      color: var(--slate-600);
+    }
+
+    .reviews-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--navy-900);
+      background-color: var(--white);
+      color: var(--navy-900);
+      display: grid;
+      place-items: center;
+      transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out);
+    }
+
+    .carousel-btn:hover {
+      background-color: var(--navy-900);
+      color: var(--white);
+    }
+
+    .reviews-viewport {
+      overflow: hidden;
+    }
+
+    .reviews-track {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      transition: transform 0.45s var(--ease-out);
+    }
+
+    @media (min-width: 768px) {
+      .reviews-track {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .review-card {
+      background-color: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-md);
+      padding: 1.65rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .review-card__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .review-card__date {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+    }
+
+    .review-card__quote {
+      font-size: 0.925rem;
+      color: var(--slate-700);
+      line-height: 1.68;
+    }
+
+    .review-card__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--warm-grey-100);
+    }
+
+    .review-card__author {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy-900);
+    }
+
+    .review-card__role {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+    }
+
+    .review-card__source {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      background-color: var(--warm-grey-50);
+      border: 1px solid var(--hairline);
+      padding: 0.25rem 0.55rem;
+      border-radius: var(--radius-sm);
+    }
+
+    .reviews-disclaimer {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    /* ==========================================================================
+       10. FULL-WIDTH CALL TO ACTION
+       ========================================================================== */
+    .cta-banner {
+      position: relative;
+      padding-block: clamp(4.5rem, 8vw, 7rem);
+      background: linear-gradient(125deg, var(--navy-950) 0%, var(--navy-800) 60%, #172e52 100%);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .cta-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(207, 163, 75, 0.16) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .cta-banner__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .cta-banner__inner {
+        grid-template-columns: minmax(0, 1.3fr) auto;
+        gap: 3rem;
+      }
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(2.15rem, 3.8vw, 3.25rem);
+      margin-top: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-banner__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ==========================================================================
+       11. CONTACT SECTION
+       ========================================================================== */
+    .contact-section {
+      padding-block: var(--section-pad);
+      background-color: var(--white);
+    }
+
+    .contact-header {
+      max-width: 660px;
+      margin-bottom: 3.25rem;
+    }
+
+    .contact-header h2 {
+      font-size: clamp(2.15rem, 3.6vw, 3.1rem);
+      margin-top: 0.65rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 3.5rem;
+        align-items: start;
+      }
+    }
+
+    .contact-form-card {
+      background-color: var(--warm-grey-50);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 3.5vw, 2.5rem);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 640px) {
+      .form-grid--two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-field label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.8rem 0.95rem;
+      font-size: 0.925rem;
+      background-color: var(--white);
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: var(--navy-900);
+      box-shadow: 0 0 0 3px rgba(12, 27, 51, 0.08);
+      outline: none;
+    }
+
+    .form-field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-field.has-error input,
+    .form-field.has-error select,
+    .form-field.has-error textarea {
+      border-color: var(--error);
+      background-color: var(--error-bg);
+    }
+
+    .form-error {
+      font-size: 0.76rem;
+      color: var(--error);
+      font-weight: 500;
+      min-height: 1rem;
+    }
+
+    .form-status {
+      margin-top: 1.15rem;
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-status.is-success {
+      display: block;
+      background-color: var(--success-bg);
+      color: var(--success);
+      border: 1px solid rgba(21, 105, 71, 0.25);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn--whatsapp {
+      background-color: #128c7e;
+      color: var(--white);
+      border: 1px solid #128c7e;
+    }
+
+    .btn--whatsapp:hover {
+      background-color: #0e7367;
+      border-color: #0e7367;
+    }
+
+    .contact-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .contact-details-box {
+      background-color: var(--navy-900);
+      color: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.85rem;
+    }
+
+    .contact-details-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      color: var(--white);
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .contact-list__item {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 0.85rem;
+      align-items: start;
+      font-size: 0.88rem;
+    }
+
+    .contact-list__icon {
+      color: var(--gold-400);
+      padding-top: 0.15rem;
+    }
+
+    .contact-list__label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.58);
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-list__value {
+      color: var(--white);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .map-placeholder {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--hairline);
+      background-color: var(--warm-grey-100);
+      overflow: hidden;
+    }
+
+    .map-placeholder__canvas {
+      height: 220px;
+      background:
+        linear-gradient(135deg, rgba(12, 27, 51, 0.06) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(12, 27, 51, 0.06) 25%, transparent 25%),
+        linear-gradient(45deg, rgba(12, 27, 51, 0.06) 25%, transparent 25%),
+        linear-gradient(315deg, rgba(12, 27, 51, 0.06) 25%, var(--warm-grey-100) 25%);
+      background-position: 24px 0, 24px 0, 0 0, 0 0;
+      background-size: 48px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      gap: 0.5rem;
+    }
+
+    .map-placeholder__pin {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--navy-900);
+      color: var(--gold-400);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    .map-placeholder__caption {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .map-placeholder__sub {
+      font-size: 0.75rem;
+      color: var(--slate-600);
+      max-width: 34ch;
+    }
+
+    /* ==========================================================================
+       12. FOOTER
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--navy-950);
+      color: rgba(255, 255, 255, 0.78);
+      padding-top: 4.5rem;
+      border-top: 1px solid var(--hairline-light);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--hairline-light);
+    }
+
+    @media (min-width: 640px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1.4fr 0.9fr 1.1fr 1.1fr;
+      }
+    }
+
+    .footer-brand-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.68);
+      margin-top: 1rem;
+      margin-bottom: 1.35rem;
+      max-width: 36ch;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .footer-heading {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-400);
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .footer-bottom {
+      padding-block: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* ==========================================================================
+       BACK TO TOP BUTTON
+       ========================================================================== */
+    .back-to-top {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      z-index: 900;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background-color: var(--navy-900);
+      color: var(--gold-400);
+      border: 1px solid rgba(207, 163, 75, 0.45);
+      box-shadow: var(--shadow-elevated);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), visibility 0.3s, background-color 0.25s;
+    }
+
+    .back-to-top.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background-color: var(--gold-500);
+      color: var(--navy-950);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       2. HEADER & NAVIGATION
+       ======================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#home" class="brand-logo" aria-label="Apex Corporate Group Home">
+        <span class="brand-logo__mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3L3 20h5.5l3.5-7 3.5 7H21L12 3z" />
+            <line x1="7.5" y1="15.5" x2="16.5" y2="15.5" />
+          </svg>
+        </span>
+        <span class="brand-logo__text">
+          <span class="brand-logo__name">Apex Corporate Group</span>
+          <span class="brand-logo__sub">Advisory &amp; Governance</span>
+        </span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link is-active">Home</a></li>
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#team" class="nav-link">Our Team</a></li>
+          <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn btn--gold btn--sm">Request a Consultation</a>
+      </nav>
+
+      <button
+        type="button"
+        class="burger-btn"
+        id="burgerBtn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileDrawer"
+      >
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Responsive Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul class="mobile-nav-list">
+      <li><a href="#home" class="mobile-nav-link">Home</a></li>
+      <li><a href="#about" class="mobile-nav-link">About Us</a></li>
+      <li><a href="#services" class="mobile-nav-link">Services</a></li>
+      <li><a href="#team" class="mobile-nav-link">Our Team</a></li>
+      <li><a href="#testimonials" class="mobile-nav-link">Testimonials</a></li>
+      <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+    </ul>
+    <div class="mobile-drawer__cta">
+      <a href="#contact" class="btn btn--gold mobile-nav-link-cta">Request a Consultation</a>
+      <a href="#services" class="btn btn--outline-light mobile-nav-link-cta">Explore Capabilities</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ======================================================================
+         3. HERO SECTION
+         ====================================================================== -->
+    <section class="hero" id="home" aria-labelledby="heroHeading">
+      <div class="hero__content">
+        <div class="hero__badge-row">
+          <span class="eyebrow eyebrow--light">Institutional Strategy &amp; Operations</span>
+        </div>
+
+        <h1 class="hero__title" id="heroHeading">
+          Decisive counsel for <em>enduring</em> enterprise value.
+        </h1>
+
+        <p class="hero__desc">
+          Apex Corporate Group partners with executive leadership teams, boards, and institutional investors to architect resilient operating models, navigate high-stakes transitions, and scale sustainable performance.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--gold">Request a Consultation</a>
+          <a href="#services" class="btn btn--outline-light">Our Services</a>
+        </div>
+
+        <div class="hero__credibility" aria-label="Key credibility highlights">
+          <div class="cred-item">
+            <div class="cred-item__num">18<span>+</span></div>
+            <div class="cred-item__label">Years in corporate advisory</div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-item__num">98.4<span>%</span></div>
+            <div class="cred-item__label">Client retention &amp; satisfaction</div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-item__num">340<span>+</span></div>
+            <div class="cred-item__label">Enterprise mandates delivered</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <img
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85"
+          alt="Glass and steel corporate headquarters tower rising into a clear sky"
+          class="hero__img"
+        />
+        <div class="hero__floating-card">
+          <div>
+            <div class="hero__floating-title">Executive Board &amp; M&amp;A Readiness Brief</div>
+            <div class="hero__floating-meta">Q4/Q1 Strategic Planning &amp; Capital Allocation</div>
+          </div>
+          <span class="hero__floating-pill">Advisory</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. COMPANY INTRODUCTION (ABOUT US)
+         ====================================================================== -->
+    <section class="about-section" id="about" aria-labelledby="aboutHeading">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <div class="about-visual__frame">
+            <img
+              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=85"
+              alt="Senior executives reviewing strategic documentation in a modern conference room"
+            />
+          </div>
+          <div class="about-stamp">
+            <div class="about-stamp__years">18 Years</div>
+            <div class="about-stamp__caption">Guiding mid-market and enterprise leaders through complex growth.</div>
+          </div>
+        </div>
+
+        <div class="about-content reveal">
+          <span class="eyebrow">About Apex Corporate Group</span>
+          <h2 class="display-title" id="aboutHeading">
+            Rooted in analytical rigor. Built for measurable execution.
+          </h2>
+          <p class="lead-copy">
+            Founded with a clear mandate to bridge boardroom strategy and frontline operational reality, Apex Corporate Group delivers independent advisory across commercial restructuring, market expansion, and governance modernization.
+          </p>
+          <p class="lead-copy">
+            Rather than handing over static slide decks, our multidisciplinary principals work alongside your leadership team to embed clear accountability, disciplined financial controls, and repeatable execution cadence.
+          </p>
+
+          <div class="mv-strip">
+            <div class="mv-box">
+              <div class="mv-box__label">Our Mission</div>
+              <p class="mv-box__text">
+                Equip ambitious organizations with clarity, financial discipline, and operational precision to outperform in shifting markets.
+              </p>
+            </div>
+            <div class="mv-box">
+              <div class="mv-box__label">Our Vision</div>
+              <p class="mv-box__text">
+                To set the benchmark for trusted corporate counsel—recognized for integrity, commercial foresight, and lasting client outcomes.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-metrics-row">
+            <div class="mini-metric">
+              <div class="mini-metric__val">$4.2B+</div>
+              <div class="mini-metric__lbl">Client value influenced</div>
+            </div>
+            <div class="mini-metric">
+              <div class="mini-metric__val">14</div>
+              <div class="mini-metric__lbl">Core industry verticals</div>
+            </div>
+            <div class="mini-metric">
+              <div class="mini-metric__val">24/7</div>
+              <div class="mini-metric__lbl">Executive response SLA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. SERVICES (Editorial Ledger Layout)
+         ====================================================================== -->
+    <section class="services-section" id="services" aria-labelledby="servicesHeading">
+      <div class="container">
+        <div class="section-header-split reveal">
+          <div>
+            <span class="eyebrow">Core Capabilities</span>
+            <h2 class="display-title" id="servicesHeading">
+              Integrated advisory structured around your inflection points.
+            </h2>
+          </div>
+          <p class="lead-copy">
+            Each engagement is tailored to your capital structure, organizational maturity, and commercial timeline—combining senior partner oversight with dedicated analytical teams.
+          </p>
+        </div>
+
+        <div class="service-ledger">
+          <!-- Service 01 -->
+          <article class="service-row reveal">
+            <div class="service-row__index">01</div>
+            <div class="service-row__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                <polyline points="16 7 22 7 22 13" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-row__title">Corporate Strategy &amp; Growth</h3>
+              <span class="service-row__tag">Market Entry &bull; Portfolio Design</span>
+            </div>
+            <p class="service-row__desc">
+              Clarify long-term competitive positioning, evaluate new market entry or product expansion, and align capital deployment with multi-year revenue targets.
+            </p>
+            <a href="#contact" class="service-row__link" data-service="Corporate Strategy &amp; Growth">
+              Learn More <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <!-- Service 02 -->
+          <article class="service-row reveal">
+            <div class="service-row__index">02</div>
+            <div class="service-row__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="9" y1="3" x2="9" y2="21" />
+                <line x1="9" y1="12" x2="21" y2="12" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-row__title">Operational Transformation</h3>
+              <span class="service-row__tag">Margin Optimization &bull; Process Scale</span>
+            </div>
+            <p class="service-row__desc">
+              Streamline cross-functional workflows, modernize supply and delivery operations, and lift EBITDA margins without compromising service quality.
+            </p>
+            <a href="#contact" class="service-row__link" data-service="Operational Transformation">
+              Learn More <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <!-- Service 03 -->
+          <article class="service-row reveal">
+            <div class="service-row__index">03</div>
+            <div class="service-row__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <polyline points="9 12 11 14 15 10" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-row__title">Governance, Risk &amp; Compliance</h3>
+              <span class="service-row__tag">Board Oversight &bull; Internal Controls</span>
+            </div>
+            <p class="service-row__desc">
+              Strengthen board charters, enterprise risk frameworks, and regulatory readiness to build institutional confidence with stakeholders and lenders.
+            </p>
+            <a href="#contact" class="service-row__link" data-service="Governance, Risk &amp; Compliance">
+              Learn More <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+
+          <!-- Service 04 -->
+          <article class="service-row reveal">
+            <div class="service-row__index">04</div>
+            <div class="service-row__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M14.5 9a2.5 2.5 0 0 0-5 0c0 2.5 5 2 5 5a2.5 2.5 0 0 1-5 0" />
+                <line x1="12" y1="5" x2="12" y2="19" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-row__title">M&amp;A &amp; Capital Advisory</h3>
+              <span class="service-row__tag">Due Diligence &bull; Post-Merger Integration</span>
+            </div>
+            <p class="service-row__desc">
+              Support acquisitions, divestitures, and growth financing with commercial due diligence, valuation modeling, and structured 100-day integration plans.
+            </p>
+            <a href="#contact" class="service-row__link" data-service="M&amp;A &amp; Capital Advisory">
+              Learn More <span aria-hidden="true">&rarr;</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. WHY CHOOSE US
+         ====================================================================== -->
+    <section class="why-section" id="why-us" aria-labelledby="whyHeading">
+      <div class="container why-layout">
+        <div class="why-sticky reveal">
+          <span class="eyebrow eyebrow--light">Why Choose Apex</span>
+          <h2 class="display-title display-title--light" id="whyHeading">
+            Distinctive standards from first brief to final handover.
+          </h2>
+          <p class="lead-copy lead-copy--light">
+            Organizations select Apex Corporate Group when precision, discretion, and accountability matter most. Every mandate is led directly by seasoned practitioners.
+          </p>
+        </div>
+
+        <div class="why-pillars reveal">
+          <div class="why-pillar">
+            <div class="why-pillar__badge">01</div>
+            <div>
+              <h3 class="why-pillar__title">Experienced Professionals</h3>
+              <p class="why-pillar__desc">
+                Former managing directors, operators, and financial specialists with deep sector track records—never junior generalists learning on your business.
+              </p>
+            </div>
+          </div>
+
+          <div class="why-pillar">
+            <div class="why-pillar__badge">02</div>
+            <div>
+              <h3 class="why-pillar__title">Quality Service</h3>
+              <p class="why-pillar__desc">
+                Every deliverable undergoes multi-partner peer review, grounded in verified empirical data, clear financial logic, and practical implementation roadmaps.
+              </p>
+            </div>
+          </div>
+
+          <div class="why-pillar">
+            <div class="why-pillar__badge">03</div>
+            <div>
+              <h3 class="why-pillar__title">Customer Satisfaction</h3>
+              <p class="why-pillar__desc">
+                Transparent milestone reporting, candid communication, and alignment around measurable business outcomes keep client satisfaction above 98%.
+              </p>
+            </div>
+          </div>
+
+          <div class="why-pillar">
+            <div class="why-pillar__badge">04</div>
+            <div>
+              <h3 class="why-pillar__title">Reliable Support</h3>
+              <p class="why-pillar__desc">
+                Dedicated partner access and responsive post-engagement support ensure your internal teams sustain momentum long after initial rollout.
+              </p>
+            </div>
+          </div>
+
+          <div class="why-pillar">
+            <div class="why-pillar__badge">05</div>
+            <div>
+              <h3 class="why-pillar__title">Business Expertise</h3>
+              <p class="why-pillar__desc">
+                Cross-industry pattern recognition combined with tailored commercial insight to uncover margin leaks, growth levers, and risk exposures early.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         7. BUSINESS STATISTICS (Animated Counters)
+         ====================================================================== -->
+    <section class="stats-section" id="statistics" aria-label="Company performance statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-block reveal">
+            <div class="stat-block__number">
+              <span class="counter" data-target="340">0</span><span class="stat-block__suffix">+</span>
+            </div>
+            <div class="stat-block__label">Projects Completed</div>
+            <div class="stat-block__note">Strategy, governance &amp; transformation mandates</div>
+          </div>
+
+          <div class="stat-block reveal">
+            <div class="stat-block__number">
+              <span class="counter" data-target="215">0</span><span class="stat-block__suffix">+</span>
+            </div>
+            <div class="stat-block__label">Happy Clients</div>
+            <div class="stat-block__note">Corporate &amp; institutional partnerships</div>
+          </div>
+
+          <div class="stat-block reveal">
+            <div class="stat-block__number">
+              <span class="counter" data-target="18">0</span><span class="stat-block__suffix"> yrs</span>
+            </div>
+            <div class="stat-block__label">Years of Experience</div>
+            <div class="stat-block__note">Proven track record across market cycles</div>
+          </div>
+
+          <div class="stat-block reveal">
+            <div class="stat-block__number">
+              <span class="counter" data-target="98.4" data-decimals="1">0</span><span class="stat-block__suffix">%</span>
+            </div>
+            <div class="stat-block__label">Customer Satisfaction</div>
+            <div class="stat-block__note">Post-engagement executive score</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         8. OUR TEAM
+         ====================================================================== -->
+    <section class="team-section" id="team" aria-labelledby="teamHeading">
+      <div class="container">
+        <div class="team-header reveal">
+          <span class="eyebrow">Leadership &amp; Principals</span>
+          <h2 class="display-title" id="teamHeading">
+            Seasoned leaders guiding complex mandates.
+          </h2>
+          <p class="lead-copy">
+            Replace the sample portraits, names, and bios below with your firm&rsquo;s managing partners and executive leadership team.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <article class="team-member reveal">
+            <div class="team-member__portrait">
+              <img
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85"
+                alt="Portrait of Marcus Vance, Managing Partner at Apex Corporate Group"
+              />
+              <div class="team-member__socials">
+                <a href="#contact" class="social-pill" aria-label="Marcus Vance LinkedIn profile">in</a>
+                <a href="#contact" class="social-pill" aria-label="Email Marcus Vance">@</a>
+              </div>
+            </div>
+            <h3 class="team-member__name">Marcus Vance</h3>
+            <div class="team-member__role">Managing Partner &amp; CEO</div>
+            <p class="team-member__bio">
+              Over two decades advising boards and chief executives on corporate strategy, cross-border expansion, and capital restructuring.
+            </p>
+          </article>
+
+          <!-- Member 2 -->
+          <article class="team-member reveal">
+            <div class="team-member__portrait">
+              <img
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=85"
+                alt="Portrait of Elena Rostova, Head of Operational Strategy"
+              />
+              <div class="team-member__socials">
+                <a href="#contact" class="social-pill" aria-label="Elena Rostova LinkedIn profile">in</a>
+                <a href="#contact" class="social-pill" aria-label="Email Elena Rostova">@</a>
+              </div>
+            </div>
+            <h3 class="team-member__name">Elena Rostova</h3>
+            <div class="team-member__role">Partner, Operational Excellence</div>
+            <p class="team-member__bio">
+              Specializes in large-scale operating model redesign, supply chain resilience, and margin expansion for multi-site enterprises.
+            </p>
+          </article>
+
+          <!-- Member 3 -->
+          <article class="team-member reveal">
+            <div class="team-member__portrait">
+              <img
+                src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=85"
+                alt="Portrait of David Sterling, Director of Governance and M&A"
+              />
+              <div class="team-member__socials">
+                <a href="#contact" class="social-pill" aria-label="David Sterling LinkedIn profile">in</a>
+                <a href="#contact" class="social-pill" aria-label="Email David Sterling">@</a>
+              </div>
+            </div>
+            <h3 class="team-member__name">David Sterling</h3>
+            <div class="team-member__role">Partner, Governance &amp; M&amp;A</div>
+            <p class="team-member__bio">
+              Leads commercial due diligence, post-merger integration programs, and corporate governance frameworks for institutional clients.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         9. GOOGLE CUSTOMER REVIEWS (Google Business Profile Showcase)
+         ====================================================================== -->
+    <section class="reviews-section" id="testimonials" aria-labelledby="reviewsHeading">
+      <div class="container">
+        <div class="reviews-top reveal">
+          <div>
+            <span class="eyebrow">Client Feedback &amp; Reputation</span>
+            <h2 class="display-title" id="reviewsHeading">
+              What clients say on Google Business Profile.
+            </h2>
+
+            <div class="gbp-summary" aria-label="Sample Google rating summary: 4.9 out of 5 stars from 128 reviews">
+              <div class="gbp-brand">
+                <!-- Recognisable Google G Mark -->
+                <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.54-1.14 2.85-2.4 3.72v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.21z" />
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24z" />
+                  <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14z" />
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96z" />
+                </svg>
+                <span>Google Reviews</span>
+              </div>
+
+              <div class="gbp-score">
+                <span class="gbp-score__num">4.9</span>
+                <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </div>
+
+              <span class="gbp-count">Based on <strong>128</strong> sample Google reviews</span>
+            </div>
+          </div>
+
+          <div class="reviews-controls">
+            <button type="button" class="carousel-btn" id="prevReviewBtn" aria-label="Show previous reviews">
+              <span aria-hidden="true">&larr;</span>
+            </button>
+            <button type="button" class="carousel-btn" id="nextReviewBtn" aria-label="Show next reviews">
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+            <!-- Replace href below with your actual Google Business Profile review URL -->
+            <a
+              href="https://www.google.com/maps"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--outline-dark btn--sm"
+              id="viewAllGoogleReviewsBtn"
+            >
+              View All Google Reviews
+            </a>
+          </div>
+        </div>
+
+        <div class="reviews-viewport">
+          <div class="reviews-track" id="reviewsTrack">
+            <!-- Review 1 -->
+            <article class="review-card">
+              <div>
+                <div class="review-card__head">
+                  <span class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span class="review-card__date">October 2026</span>
+                </div>
+                <p class="review-card__quote">
+                  &ldquo;Apex Corporate Group helped our executive team untangle multi-region reporting and align our regional branches around clear quarterly KPIs. Practical, calm, and thorough.&rdquo;
+                </p>
+              </div>
+              <div class="review-card__foot">
+                <div>
+                  <div class="review-card__author">Hannah Lindholm</div>
+                  <div class="review-card__role">Chief Operating Officer</div>
+                </div>
+                <span class="review-card__source">Google</span>
+              </div>
+            </article>
+
+            <!-- Review 2 -->
+            <article class="review-card">
+              <div>
+                <div class="review-card__head">
+                  <span class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span class="review-card__date">September 2026</span>
+                </div>
+                <p class="review-card__quote">
+                  &ldquo;Their commercial due diligence and integration planning gave our board real confidence prior to acquisition. Every timeline and deliverable arrived exactly as scoped.&rdquo;
+                </p>
+              </div>
+              <div class="review-card__foot">
+                <div>
+                  <div class="review-card__author">Tariq Al-Mansoor</div>
+                  <div class="review-card__role">Managing Director</div>
+                </div>
+                <span class="review-card__source">Google</span>
+              </div>
+            </article>
+
+            <!-- Review 3 -->
+            <article class="review-card">
+              <div>
+                <div class="review-card__head">
+                  <span class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span class="review-card__date">August 2026</span>
+                </div>
+                <p class="review-card__quote">
+                  &ldquo;Refreshingly direct counsel without unnecessary jargon. They modernized our risk and governance documentation and trained department leads with minimal disruption.&rdquo;
+                </p>
+              </div>
+              <div class="review-card__foot">
+                <div>
+                  <div class="review-card__author">Claire Beaumont</div>
+                  <div class="review-card__role">VP of Finance</div>
+                </div>
+                <span class="review-card__source">Google</span>
+              </div>
+            </article>
+
+            <!-- Review 4 (Revealed via carousel navigation) -->
+            <article class="review-card">
+              <div>
+                <div class="review-card__head">
+                  <span class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span class="review-card__date">July 2026</span>
+                </div>
+                <p class="review-card__quote">
+                  &ldquo;From initial diagnostic to rollout, the partners stayed closely involved. Our fulfillment bottlenecks dropped noticeably within the first two quarters.&rdquo;
+                </p>
+              </div>
+              <div class="review-card__foot">
+                <div>
+                  <div class="review-card__author">Samuel Okafor</div>
+                  <div class="review-card__role">Head of Operations</div>
+                </div>
+                <span class="review-card__source">Google</span>
+              </div>
+            </article>
+
+            <!-- Review 5 (Revealed via carousel navigation) -->
+            <article class="review-card">
+              <div>
+                <div class="review-card__head">
+                  <span class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span class="review-card__date">June 2026</span>
+                </div>
+                <p class="review-card__quote">
+                  &ldquo;Strong analytical discipline and executive presence in board meetings. We rely on Apex whenever we evaluate major capital investments or market expansion.&rdquo;
+                </p>
+              </div>
+              <div class="review-card__foot">
+                <div>
+                  <div class="review-card__author">Rachel Kowalski</div>
+                  <div class="review-card__role">Founder &amp; CEO</div>
+                </div>
+                <span class="review-card__source">Google</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="reviews-disclaimer">
+          <span>
+            <strong>Template Placeholder Notice:</strong> Sample ratings, review counts, and customer testimonials shown above are placeholder demonstration content for template preview purposes and should be replaced with your live Google Business Profile reviews.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         10. FULL-WIDTH CALL TO ACTION
+         ====================================================================== -->
+    <section class="cta-banner" aria-labelledby="ctaHeading">
+      <div class="container cta-banner__inner reveal">
+        <div>
+          <span class="eyebrow eyebrow--light">Ready to Move Forward</span>
+          <h2 class="display-title display-title--light" id="ctaHeading">
+            Turn strategic ambition into disciplined execution.
+          </h2>
+          <p class="lead-copy lead-copy--light">
+            Speak directly with an Apex Corporate Group advisor to scope an engagement or request a tailored proposal for your organization.
+          </p>
+        </div>
+
+        <div class="cta-banner__actions">
+          <a href="#contact" class="btn btn--gold" data-inquiry-type="General Contact">Contact Us</a>
+          <a href="#contact" class="btn btn--outline-light" data-inquiry-type="Request a Quote">Request a Quote</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         11. CONTACT SECTION
+         ====================================================================== -->
+    <section class="contact-section" id="contact" aria-labelledby="contactHeading">
+      <div class="container">
+        <div class="contact-header reveal">
+          <span class="eyebrow">Get In Touch</span>
+          <h2 class="display-title" id="contactHeading">
+            Schedule a confidential consultation.
+          </h2>
+          <p class="lead-copy">
+            Complete the form below or reach our advisory desk directly by phone, email, or WhatsApp.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Form -->
+          <div class="contact-form-card reveal">
+            <form id="contactForm" novalidate>
+              <div class="form-grid form-grid--two">
+                <div class="form-field" id="fieldName">
+                  <label for="fullName">Full Name *</label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Jordan Mercer" autocomplete="name" required />
+                  <span class="form-error" id="errorName" role="alert"></span>
+                </div>
+
+                <div class="form-field" id="fieldEmail">
+                  <label for="workEmail">Work Email *</label>
+                  <input type="email" id="workEmail" name="workEmail" placeholder="jordan@company.com" autocomplete="email" required />
+                  <span class="form-error" id="errorEmail" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-grid form-grid--two">
+                <div class="form-field" id="fieldPhone">
+                  <label for="phoneInput">Telephone Number</label>
+                  <input type="tel" id="phoneInput" name="phone" placeholder="+1 (555) 234-5678" autocomplete="tel" />
+                  <span class="form-error" id="errorPhone" role="alert"></span>
+                </div>
+
+                <div class="form-field" id="fieldTopic">
+                  <label for="inquiryTopic">Advisory Area</label>
+                  <select id="inquiryTopic" name="topic">
+                    <option value="General Consultation">General Consultation</option>
+                    <option value="Request a Quote">Request a Quote</option>
+                    <option value="Corporate Strategy & Growth">Corporate Strategy &amp; Growth</option>
+                    <option value="Operational Transformation">Operational Transformation</option>
+                    <option value="Governance, Risk & Compliance">Governance, Risk &amp; Compliance</option>
+                    <option value="M&A & Capital Advisory">M&amp;A &amp; Capital Advisory</option>
+                  </select>
+                  <span class="form-error" id="errorTopic" role="alert"></span>
+                </div>
+              </div>
+
+              <div class="form-field" id="fieldMessage">
+                <label for="messageBox">Project Brief or Inquiry *</label>
+                <textarea id="messageBox" name="message" placeholder="Share your objectives, approximate timeline, or key questions..." required></textarea>
+                <span class="form-error" id="errorMessage" role="alert"></span>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn--navy">Send Inquiry</button>
+
+                <!-- Replace phone number in href with your business WhatsApp number in international format -->
+                <a
+                  href="https://wa.me/15552345678?text=Hello%20Apex%20Corporate%20Group%2C%20I%20would%20like%20to%20request%20a%20consultation."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn--whatsapp"
+                  id="whatsappBtn"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.52 3.48A11.82 11.82 0 0 0 12.04 0C5.45 0 .09 5.36.09 11.95c0 2.1.55 4.16 1.6 5.97L0 24l6.25-1.64a11.93 11.93 0 0 0 5.79 1.48h.01c6.59 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.48-8.41zM12.05 21.82h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.22-3.71.97.99-3.62-.24-.37a9.88 9.88 0 0 1-1.52-5.25c0-5.47 4.45-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.91a9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.92 9.92zm5.44-7.43c-.3-.15-1.76-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z" />
+                  </svg>
+                  WhatsApp Desk
+                </a>
+              </div>
+
+              <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <!-- Contact Details & Map Embed Placeholder -->
+          <div class="contact-side reveal">
+            <div class="contact-details-box">
+              <h3>Headquarters &amp; Desk</h3>
+              <ul class="contact-list">
+                <li class="contact-list__item">
+                  <span class="contact-list__icon" aria-hidden="true">&#9742;</span>
+                  <div>
+                    <span class="contact-list__label">Telephone</span>
+                    <a href="tel:+15552345678" class="contact-list__value">+1 (555) 234-5678</a>
+                  </div>
+                </li>
+
+                <li class="contact-list__item">
+                  <span class="contact-list__icon" aria-hidden="true">&#9993;</span>
+                  <div>
+                    <span class="contact-list__label">Email</span>
+                    <a href="mailto:advisory@apexcorporategroup.example" class="contact-list__value">advisory@apexcorporategroup.example</a>
+                  </div>
+                </li>
+
+                <li class="contact-list__item">
+                  <span class="contact-list__icon" aria-hidden="true">&#9906;</span>
+                  <div>
+                    <span class="contact-list__label">Physical Address</span>
+                    <span class="contact-list__value">750 Meridian Financial Plaza, Suite 2400, Chicago, IL 60601</span>
+                  </div>
+                </li>
+
+                <li class="contact-list__item">
+                  <span class="contact-list__icon" aria-hidden="true">&#9200;</span>
+                  <div>
+                    <span class="contact-list__label">Operating Hours</span>
+                    <span class="contact-list__value">Mon &ndash; Fri: 8:00 AM &ndash; 6:30 PM CST<br />Sat &ndash; Sun: By Appointment</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Google Maps Embed Placeholder (Swap inner content with official Google Maps iframe when deploying) -->
+            <div class="map-placeholder" aria-label="Google Maps embed placeholder">
+              <div class="map-placeholder__canvas">
+                <div class="map-placeholder__pin" aria-hidden="true">&#9906;</div>
+                <div class="map-placeholder__caption">Google Maps Embed Placeholder</div>
+                <div class="map-placeholder__sub">
+                  Insert your Google Maps iframe embed code here for 750 Meridian Financial Plaza.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       12. FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#home" class="brand-logo" aria-label="Apex Corporate Group Home">
+            <span class="brand-logo__mark" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 3L3 20h5.5l3.5-7 3.5 7H21L12 3z" />
+                <line x1="7.5" y1="15.5" x2="16.5" y2="15.5" />
+              </svg>
+            </span>
+            <span class="brand-logo__text">
+              <span class="brand-logo__name">Apex Corporate Group</span>
+              <span class="brand-logo__sub">Advisory &amp; Governance</span>
+            </span>
+          </a>
+
+          <p class="footer-brand-desc">
+            Independent corporate advisory firm delivering strategic clarity, operational discipline, and governance excellence for growth-focused enterprises.
+          </p>
+
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#contact" class="social-pill" aria-label="LinkedIn">in</a>
+            <a href="#contact" class="social-pill" aria-label="X / Social">X</a>
+            <a href="#contact" class="social-pill" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Services</h3>
+          <ul class="footer-links">
+            <li><a href="#services">Corporate Strategy &amp; Growth</a></li>
+            <li><a href="#services">Operational Transformation</a></li>
+            <li><a href="#services">Governance, Risk &amp; Compliance</a></li>
+            <li><a href="#services">M&amp;A &amp; Capital Advisory</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <ul class="footer-links">
+            <li>750 Meridian Financial Plaza, Ste 2400</li>
+            <li>Chicago, IL 60601</li>
+            <li><a href="tel:+15552345678">+1 (555) 234-5678</a></li>
+            <li><a href="mailto:advisory@apexcorporategroup.example">advisory@apexcorporategroup.example</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="copyrightYear">2026</span> Apex Corporate Group. All rights reserved.</p>
+        <p>Commercial Website Template &bull; Replace placeholder details prior to launch.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <span aria-hidden="true">&uarr;</span>
+  </button>
+
+  <!-- ========================================================================
+       13. VANILLA JAVASCRIPT FUNCTIONALITY
+       ======================================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* 1. Dynamic Copyright Year */
+      const yearEl = document.getElementById("copyrightYear");
+      if (yearEl) {
+        yearEl.textContent = String(new Date().getFullYear());
+      }
+
+      /* 2. Sticky Header State & Back-to-Top Visibility */
+      const header = document.getElementById("siteHeader");
+      const backToTopBtn = document.getElementById("backToTopBtn");
+      const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+      const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+      function onScroll() {
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        if (header) {
+          header.classList.toggle("is-scrolled", scrollY > 48);
+        }
+
+        if (backToTopBtn) {
+          backToTopBtn.classList.toggle("is-visible", scrollY > 420);
+        }
+
+        /* Active Nav Highlight */
+        const offset = 140;
+        let currentId = "home";
+        for (const sec of sections) {
+          const top = sec.offsetTop - offset;
+          if (scrollY >= top) {
+            currentId = sec.getAttribute("id");
+          }
+        }
+        navLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          link.classList.toggle("is-active", href === "#" + currentId);
+        });
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener("click", function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      /* 3. Responsive Mobile Navigation Drawer */
+      const burgerBtn = document.getElementById("burgerBtn");
+      const mobileDrawer = document.getElementById("mobileDrawer");
+
+      function setDrawerState(isOpen) {
+        if (!burgerBtn || !mobileDrawer) return;
+        burgerBtn.setAttribute("aria-expanded", String(isOpen));
+        burgerBtn.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+        mobileDrawer.classList.toggle("is-open", isOpen);
+        mobileDrawer.setAttribute("aria-hidden", String(!isOpen));
+        document.body.style.overflow = isOpen ? "hidden" : "";
+      }
+
+      if (burgerBtn && mobileDrawer) {
+        burgerBtn.addEventListener("click", function () {
+          const expanded = burgerBtn.getAttribute("aria-expanded") === "true";
+          setDrawerState(!expanded);
+        });
+
+        mobileDrawer.querySelectorAll("a").forEach((anchor) => {
+          anchor.addEventListener("click", function () {
+            setDrawerState(false);
+          });
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && burgerBtn.getAttribute("aria-expanded") === "true") {
+            setDrawerState(false);
+            burgerBtn.focus();
+          }
+        });
+      }
+
+      /* 4. Pre-select Service / Inquiry Topic when clicking Learn More or CTA */
+      const topicSelect = document.getElementById("inquiryTopic");
+      document.querySelectorAll("[data-service]").forEach((link) => {
+        link.addEventListener("click", function () {
+          const serviceName = link.getAttribute("data-service");
+          if (topicSelect && serviceName) {
+            const matched = Array.from(topicSelect.options).find(
+              (opt) => opt.value.toLowerCase() === serviceName.toLowerCase()
+            );
+            if (matched) {
+              topicSelect.value = matched.value;
+            }
+          }
+        });
+      });
+
+      document.querySelectorAll("[data-inquiry-type]").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const typeVal = btn.getAttribute("data-inquiry-type");
+          if (topicSelect && typeVal) {
+            const matched = Array.from(topicSelect.options).find(
+              (opt) => opt.value === typeVal
+            );
+            if (matched) {
+              topicSelect.value = matched.value;
+            }
+          }
+        });
+      });
+
+      /* 5. Scroll Reveal Animations (IntersectionObserver) */
+      const revealEls = Array.from(document.querySelectorAll(".reveal"));
+      if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add("is-visible"));
+      }
+
+      /* 6. Animated Statistics Counters */
+      const counters = Array.from(document.querySelectorAll(".counter"));
+      let statsAnimated = false;
+
+      function animateCounters() {
+        if (statsAnimated) return;
+        statsAnimated = true;
+
+        counters.forEach((counter) => {
+          const target = parseFloat(counter.getAttribute("data-target") || "0");
+          const decimals = parseInt(counter.getAttribute("data-decimals") || "0", 10);
+          const duration = 1600;
+          const startTime = performance.now();
+
+          function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const currentVal = target * eased;
+
+            counter.textContent = decimals > 0
+              ? currentVal.toFixed(decimals)
+              : Math.round(currentVal).toLocaleString();
+
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              counter.textContent = decimals > 0
+                ? target.toFixed(decimals)
+                : Math.round(target).toLocaleString();
+            }
+          }
+
+          requestAnimationFrame(step);
+        });
+      }
+
+      const statsSection = document.getElementById("statistics");
+      if (statsSection && "IntersectionObserver" in window) {
+        const statsObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateCounters();
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.25 }
+        );
+        statsObserver.observe(statsSection);
+      } else {
+        animateCounters();
+      }
+
+      /* 7. Interactive Testimonial Carousel Navigation */
+      const reviewsTrack = document.getElementById("reviewsTrack");
+      const prevReviewBtn = document.getElementById("prevReviewBtn");
+      const nextReviewBtn = document.getElementById("nextReviewBtn");
+
+      if (reviewsTrack && prevReviewBtn && nextReviewBtn) {
+        const cards = Array.from(reviewsTrack.children);
+        let startIndex = 0;
+
+        function visibleCount() {
+          return window.innerWidth >= 768 ? 3 : 1;
+        }
+
+        function renderCarousel() {
+          const count = visibleCount();
+          const maxStart = Math.max(0, cards.length - count);
+          if (startIndex > maxStart) startIndex = 0;
+
+          cards.forEach((card, idx) => {
+            const shouldShow = idx >= startIndex && idx < startIndex + count;
+            card.style.display = shouldShow ? "flex" : "none";
+          });
+        }
+
+        prevReviewBtn.addEventListener("click", function () {
+          const count = visibleCount();
+          const maxStart = Math.max(0, cards.length - count);
+          startIndex = startIndex <= 0 ? maxStart : startIndex - 1;
+          renderCarousel();
+        });
+
+        nextReviewBtn.addEventListener("click", function () {
+          const count = visibleCount();
+          const maxStart = Math.max(0, cards.length - count);
+          startIndex = startIndex >= maxStart ? 0 : startIndex + 1;
+          renderCarousel();
+        });
+
+        window.addEventListener("resize", renderCarousel, { passive: true });
+        renderCarousel();
+      }
+
+      /* 8. Front-End Contact Form Validation */
+      const contactForm = document.getElementById("contactForm");
+      const fullNameInput = document.getElementById("fullName");
+      const workEmailInput = document.getElementById("workEmail");
+      const phoneInput = document.getElementById("phoneInput");
+      const messageInput = document.getElementById("messageBox");
+      const formStatus = document.getElementById("formStatus");
+
+      function setFieldError(fieldId, errorId, message) {
+        const fieldEl = document.getElementById(fieldId);
+        const errorEl = document.getElementById(errorId);
+        if (fieldEl) fieldEl.classList.toggle("has-error", Boolean(message));
+        if (errorEl) errorEl.textContent = message || "";
+      }
+
+      function validateForm() {
+        let isValid = true;
+
+        const nameVal = (fullNameInput?.value || "").trim();
+        if (nameVal.length < 2) {
+          setFieldError("fieldName", "errorName", "Please enter your full name.");
+          isValid = false;
+        } else {
+          setFieldError("fieldName", "errorName", "");
+        }
+
+        const emailVal = (workEmailInput?.value || "").trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        if (!emailPattern.test(emailVal)) {
+          setFieldError("fieldEmail", "errorEmail", "Please enter a valid email address.");
+          isValid = false;
+        } else {
+          setFieldError("fieldEmail", "errorEmail", "");
+        }
+
+        const phoneVal = (phoneInput?.value || "").trim();
+        if (phoneVal.length > 0 && !/^[+\d\s().-]{7,20}$/.test(phoneVal)) {
+          setFieldError("fieldPhone", "errorPhone", "Please enter a valid telephone number.");
+          isValid = false;
+        } else {
+          setFieldError("fieldPhone", "errorPhone", "");
+        }
+
+        const msgVal = (messageInput?.value || "").trim();
+        if (msgVal.length < 10) {
+          setFieldError("fieldMessage", "errorMessage", "Please enter at least 10 characters describing your inquiry.");
+          isValid = false;
+        } else {
+          setFieldError("fieldMessage", "errorMessage", "");
+        }
+
+        return isValid;
+      }
+
+      if (contactForm) {
+        [fullNameInput, workEmailInput, phoneInput, messageInput].forEach((input) => {
+          if (!input) return;
+          input.addEventListener("input", function () {
+            if (formStatus) {
+              formStatus.className = "form-status";
+              formStatus.textContent = "";
+            }
+            validateForm();
+          });
+        });
+
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (!validateForm()) return;
+
+          const senderName = (fullNameInput?.value || "").trim();
+          const selectedTopic = topicSelect?.value || "General Consultation";
+
+          if (formStatus) {
+            formStatus.className = "form-status is-success";
+            formStatus.textContent =
+              "Thank you, " +
+              senderName +
+              ". Your " +
+              selectedTopic.toLowerCase() +
+              " details have been validated locally in this template preview. Connect this form to your preferred backend endpoint or CRM webhook before going live.";
+          }
+
+          contactForm.reset();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
