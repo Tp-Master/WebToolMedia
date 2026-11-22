@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOU BUSINESS NAME HERE | Real Estate &amp; Property Sales</title>
+    <meta name="description" content="YOU BUSINESS NAME HERE — Real estate portal with clickable 3D property listings gallery, full room & feature breakdowns, search filters, agent contact actions, mortgage calculator, and map view.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['IBM Plex Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        alabaster: '#EEF2F6',
+                        alabasterCard: '#FFFFFF',
+                        alabasterLine: '#CBD5E1',
+                        indigoInk: '#111827',
+                        indigoSlate: '#1E293B',
+                        cobalt: '#2563EB',
+                        cobaltDark: '#1D4ED8',
+                        coral: '#E11D48',
+                        tealAccent: '#0D9488',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #EEF2F6;
+            color: #111827;
+            overflow-x: hidden;
+        }
+
+        .architectural-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 85% 10%, rgba(37, 99, 235, 0.10), transparent 36%),
+                radial-gradient(circle at 12% 75%, rgba(13, 148, 136, 0.08), transparent 40%),
+                linear-gradient(180deg, #F8FAFC 0%, #EEF2F6 100%);
+        }
+
+        #topProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, #2563EB, #E11D48, #0D9488);
+            z-index: 80;
+        }
+
+        /* 3D Perspective Card Lift */
+        .card-3d-box {
+            perspective: 1200px;
+        }
+        .card-3d-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+        }
+        .card-3d-box:hover .card-3d-inner {
+            transform: rotateX(4deg) rotateY(-4deg) translateY(-8px);
+            box-shadow: 0 24px 40px -14px rgba(17, 24, 39, 0.2), 0 0 0 1px rgba(37, 99, 235, 0.35);
+            border-color: #2563EB;
+        }
+        .card-3d-img {
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .card-3d-box:hover .card-3d-img {
+            transform: scale(1.06);
+        }
+        .card-3d-float {
+            transform: translateZ(18px);
+        }
+
+        /* Bevel Action Button */
+        .bevel-btn {
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.2s ease;
+        }
+        .bevel-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px -4px rgba(17, 24, 39, 0.22);
+        }
+        .bevel-btn:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cobalt selection:text-white">
+
+    <div class="architectural-bg"></div>
+    <div id="topProgress"></div>
+
+    <!-- Two-Row Editorial Header with Underlined Nav -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-alabasterLine shadow-2xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Top Contact Row -->
+            <div class="h-16 flex items-center justify-between gap-4 border-b border-alabasterLine/70">
+                <a href="#" class="flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-lg bg-indigoInk text-white flex items-center justify-center font-display font-bold text-base">
+                        <i class="fa-solid fa-city text-cobalt text-sm"></i>
+                    </span>
+                    <div>
+                        <span class="font-display font-bold text-base sm:text-lg tracking-tight text-indigoInk block leading-none">YOU BUSINESS NAME HERE</span>
+                        <span class="text-[11px] font-medium text-indigoSlate/65">Residential &amp; Commercial Sales</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center gap-6 text-xs font-medium text-indigoSlate/80">
+                    <span><i class="fa-solid fa-phone text-cobalt mr-1.5"></i>+27×××××××××</span>
+                    <span><i class="fa-solid fa-envelope text-tealAccent mr-1.5"></i>youremailhere@gmail.com</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button type="button" id="quickSearchDrawerBtn" class="bevel-btn hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-alabasterLine bg-alabaster text-xs font-semibold text-indigoInk hover:border-cobalt">
+                        <i class="fa-solid fa-sliders text-cobalt"></i> Quick Search
+                    </button>
+                    <button type="button" id="openCompareDrawerBtn" class="bevel-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-indigoInk text-white text-xs font-semibold hover:bg-indigoSlate">
+                        <i class="fa-solid fa-scale-balanced text-coral"></i>
+                        <span>Compare (<span id="compareBadgeCount">0</span>/2)</span>
+                    </button>
+                    <button type="button" id="mobileNavBtn" class="md:hidden w-9 h-9 rounded-lg border border-alabasterLine flex items-center justify-center text-indigoInk" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Underlined Navigation Row -->
+            <nav class="hidden md:flex items-center gap-8 h-11 text-xs font-bold uppercase tracking-wider text-indigoSlate/75">
+                <a href="#listings" class="h-full inline-flex items-center gap-1.5 border-b-2 border-cobalt text-indigoInk">
+                    <i class="fa-solid fa-cube text-cobalt"></i> 3D Listings
+                </a>
+                <a href="#agents" class="h-full inline-flex items-center gap-1.5 border-b-2 border-transparent hover:border-cobalt hover:text-indigoInk transition">
+                    <i class="fa-solid fa-user-tie text-tealAccent"></i> Agents
+                </a>
+                <a href="#calculator-map" class="h-full inline-flex items-center gap-1.5 border-b-2 border-transparent hover:border-cobalt hover:text-indigoInk transition">
+                    <i class="fa-solid fa-calculator text-coral"></i> Mortgage Calculator &amp; Map
+                </a>
+            </nav>
+        </div>
+
+        <!-- Slide-Down Quick Search Bar -->
+        <div id="quickSearchDrawer" class="hidden bg-alabaster border-t border-alabasterLine py-3.5 px-4">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+                <span class="font-bold text-indigoInk"><i class="fa-solid fa-bolt text-cobalt mr-1"></i> Jump to Budget Filter:</span>
+                <div class="flex flex-wrap gap-2">
+                    <button type="button" onclick="applyQuickBudget(1200000)" class="bevel-btn px-3 py-1.5 rounded-lg bg-white border border-alabasterLine font-semibold hover:border-cobalt">Under R1.2M</button>
+                    <button type="button" onclick="applyQuickBudget(2000000)" class="bevel-btn px-3 py-1.5 rounded-lg bg-white border border-alabasterLine font-semibold hover:border-cobalt">Under R2.0M</button>
+                    <button type="button" onclick="applyQuickBudget(3500000)" class="bevel-btn px-3 py-1.5 rounded-lg bg-white border border-alabasterLine font-semibold hover:border-cobalt">Under R3.5M</button>
+                    <button type="button" onclick="applyQuickBudget(99999999)" class="bevel-btn px-3 py-1.5 rounded-lg bg-indigoInk text-white font-semibold">Show All</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileNavPanel" class="hidden md:hidden bg-white border-t border-alabasterLine px-4 py-4 space-y-2 text-sm font-semibold">
+            <a href="#listings" class="block py-1.5 text-indigoInk"><i class="fa-solid fa-cube text-cobalt mr-2"></i>3D Property Listings</a>
+            <a href="#agents" class="block py-1.5 text-indigoInk"><i class="fa-solid fa-user-tie text-tealAccent mr-2"></i>Agents</a>
+            <a href="#calculator-map" class="block py-1.5 text-indigoInk"><i class="fa-solid fa-calculator text-coral mr-2"></i>Mortgage Calculator &amp; Map</a>
+            <div class="pt-2 border-t border-alabasterLine text-xs text-indigoSlate/70 space-y-1">
+                <p>Phone: +27×××××××××</p>
+                <p>Email: youremailhere@gmail.com</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Full-Width Banner Hero with Overlapping Filter Strip -->
+        <section class="relative">
+            <div class="relative h-[430px] sm:h-[470px] w-full overflow-hidden bg-indigoInk">
+                <img src="https://media.istockphoto.com/id/2175972607/photo/modern-luxury-home-with-geometric-driveway-and-sunset-sky.jpg?s=612x612&w=0&k=20&c=0pvJ_frDStQGywjOptq9XmyEQgVIxfH3Yg7MbYIfIjI=" alt="Modern home with geometric driveway" class="w-full h-full object-cover opacity-55">
+                <div class="absolute inset-0 bg-gradient-to-r from-indigoInk/90 via-indigoInk/70 to-indigoInk/40"></div>
+
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pb-10">
+                    <span class="inline-flex items-center gap-2 w-fit px-3.5 py-1 rounded-md bg-cobalt text-white text-xs font-bold uppercase tracking-wider mb-4">
+                        <i class="fa-solid fa-house-circle-check"></i> YOU BUSINESS NAME HERE
+                    </span>
+
+                    <h1 class="font-display text-4xl sm:text-6xl font-bold text-white max-w-3xl leading-[1.06] tracking-tight">
+                        Modern Homes &amp; Smart Property Sales.
+                    </h1>
+
+                    <p class="text-slate-200 text-sm sm:text-base max-w-2xl mt-3 leading-relaxed">
+                        Click any property to inspect every room, floor plan spec, and advertised feature—or compare listings side by side, talk to an agent, estimate bonds, and view locations on Google Maps.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Overlapping Search Filter Bar -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
+                <div class="bg-white border border-alabasterLine rounded-2xl p-4 sm:p-5 shadow-xl grid sm:grid-cols-2 lg:grid-cols-5 gap-3.5 items-end">
+                    <div class="lg:col-span-2">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-indigoSlate/70 mb-1">
+                            <i class="fa-solid fa-magnifying-glass text-cobalt mr-1"></i> Keyword / Location / Room
+                        </label>
+                        <input type="text" id="propSearchInput" placeholder="Search Polokwane, study, garage, pool, villa..." class="w-full bg-alabaster border border-alabasterLine rounded-xl px-3.5 py-2.5 text-sm text-indigoInk focus:outline-none focus:border-cobalt">
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-indigoSlate/70 mb-1">
+                            <i class="fa-solid fa-building text-tealAccent mr-1"></i> Type
+                        </label>
+                        <select id="propTypeFilter" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-3.5 py-2.5 text-sm font-semibold text-indigoInk focus:outline-none focus:border-cobalt">
+                            <option value="all">All Types</option>
+                            <option value="House">House</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Estate">Estate</option>
+                            <option value="Townhouse">Townhouse</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-indigoSlate/70 mb-1">
+                            <i class="fa-solid fa-wallet text-coral mr-1"></i> Max Budget
+                        </label>
+                        <select id="propBudgetFilter" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-3.5 py-2.5 text-sm font-semibold text-indigoInk focus:outline-none focus:border-cobalt">
+                            <option value="99999999">Any Price</option>
+                            <option value="1200000">Up to R1,200,000</option>
+                            <option value="2000000">Up to R2,000,000</option>
+                            <option value="3500000">Up to R3,500,000</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-indigoSlate/70 mb-1">
+                            <i class="fa-solid fa-bed text-cobalt mr-1"></i> Bedrooms
+                        </label>
+                        <select id="propBedsFilter" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-3.5 py-2.5 text-sm font-semibold text-indigoInk focus:outline-none focus:border-cobalt">
+                            <option value="0">Any Beds</option>
+                            <option value="2">2+ Beds</option>
+                            <option value="3">3+ Beds</option>
+                            <option value="4">4+ Beds</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Clickable 3D Property Listings Gallery -->
+        <section id="listings" class="py-16 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-cobalt">01 / Click Any Card for Full Rooms &amp; Specs</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold text-indigoInk mt-0.5">Available Properties</h2>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span id="propCountText" class="font-mono text-xs font-bold text-indigoSlate/75">6 LISTINGS</span>
+                        <button type="button" id="resetPropFilters" class="bevel-btn text-xs font-bold text-coral hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-rotate-left"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Side-by-Side Comparison Strip -->
+                <div id="compareStrip" class="hidden mb-10 bg-indigoInk text-white rounded-2xl p-5 shadow-lg border border-indigoSlate">
+                    <div class="flex items-center justify-between gap-3 mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-cobalt flex items-center gap-1.5">
+                            <i class="fa-solid fa-scale-balanced text-coral"></i> Side-by-Side Property Comparison
+                        </span>
+                        <button type="button" id="clearCompareBtn" class="text-xs text-slate-300 hover:text-white underline">Clear Comparison</button>
+                    </div>
+                    <div id="compareCardsSlot" class="grid sm:grid-cols-2 gap-4"></div>
+                </div>
+
+                <!-- 3D Listings Grid -->
+                <div id="threeDListingsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+
+                <div id="noPropsFound" class="hidden text-center py-12 bg-white border border-alabasterLine rounded-2xl mt-6">
+                    <p class="font-display text-xl font-bold text-indigoInk">No properties match your search criteria</p>
+                    <p class="text-xs text-indigoSlate/70 mt-1">Click Reset to view all available listings.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Listing Agents -->
+        <section id="agents" class="py-16 lg:py-20 bg-white border-y border-alabasterLine">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-tealAccent">02 / Sales Advisors</span>
+                        <h2 class="font-display text-3xl sm:text-4xl font-bold text-indigoInk mt-0.5">Agent Contact Desk</h2>
+                    </div>
+                    <p class="text-xs font-medium text-indigoSlate/75">
+                        <strong class="text-indigoInk">YOU BUSINESS NAME HERE</strong> • +27××××××××× • youremailhere@gmail.com
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-alabaster border border-alabasterLine rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-11 h-11 rounded-xl bg-cobalt text-white flex items-center justify-center">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </span>
+                                <div>
+                                    <h3 class="font-display text-xl font-bold text-indigoInk">Thabo Mokoena</h3>
+                                    <p class="text-xs font-semibold text-cobalt">Residential &amp; Family Homes</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-indigoSlate/75 leading-relaxed">Assists buyers with property tours, room walkthroughs, and offer submission.</p>
+                        </div>
+                        <button type="button" onclick="triggerAgentDesk('General Property Viewing', 'Flexible Budget', 'Thabo Mokoena')" class="bevel-btn mt-5 w-full py-2.5 px-4 rounded-xl bg-indigoInk hover:bg-indigoSlate text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone text-cobalt"></i> Contact Thabo
+                        </button>
+                    </div>
+
+                    <div class="bg-alabaster border border-alabasterLine rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-11 h-11 rounded-xl bg-tealAccent text-white flex items-center justify-center">
+                                    <i class="fa-solid fa-building-user"></i>
+                                </span>
+                                <div>
+                                    <h3 class="font-display text-xl font-bold text-indigoInk">Naledi Khumalo</h3>
+                                    <p class="text-xs font-semibold text-tealAccent">Estates &amp; Townhouses</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-indigoSlate/75 leading-relaxed">Specializes in gated estates, garden homes, and private viewings.</p>
+                        </div>
+                        <button type="button" onclick="triggerAgentDesk('Estate & Townhouse Viewing', 'Flexible Budget', 'Naledi Khumalo')" class="bevel-btn mt-5 w-full py-2.5 px-4 rounded-xl bg-indigoInk hover:bg-indigoSlate text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone text-tealAccent"></i> Contact Naledi
+                        </button>
+                    </div>
+
+                    <div class="bg-alabaster border border-alabasterLine rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-3">
+                                <span class="w-11 h-11 rounded-xl bg-coral text-white flex items-center justify-center">
+                                    <i class="fa-solid fa-key"></i>
+                                </span>
+                                <div>
+                                    <h3 class="font-display text-xl font-bold text-indigoInk">Pieter Botha</h3>
+                                    <p class="text-xs font-semibold text-coral">Apartments &amp; Bond Planning</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-indigoSlate/75 leading-relaxed">Guides first-time buyers and investors on pricing and monthly repayments.</p>
+                        </div>
+                        <button type="button" onclick="triggerAgentDesk('Apartment & Investment Inquiry', 'Flexible Budget', 'Pieter Botha')" class="bevel-btn mt-5 w-full py-2.5 px-4 rounded-xl bg-indigoInk hover:bg-indigoSlate text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone text-coral"></i> Contact Pieter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Mortgage Calculator & Google Map View -->
+        <section id="calculator-map" class="py-16 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-coral">03 / Repayments &amp; Location</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-indigoInk mt-0.5">Mortgage Calculator &amp; Map</h2>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-7 items-stretch">
+                    <!-- Mortgage Calculator -->
+                    <div class="lg:col-span-6 bg-white border border-alabasterLine rounded-2xl p-6 sm:p-7 shadow-xs flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-display text-2xl font-bold text-indigoInk flex items-center gap-2">
+                                    <i class="fa-solid fa-calculator text-cobalt"></i> Mortgage Calculator
+                                </h3>
+                                <span class="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-alabaster text-indigoInk">ZAR</span>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-indigoSlate/75 mb-1">Property Price (R)</label>
+                                <input type="number" id="mcPrice" value="1850000" min="100000" step="25000" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-4 py-2.5 font-mono text-sm text-indigoInk focus:outline-none focus:border-cobalt">
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-indigoSlate/75 mb-1">Deposit (R)</label>
+                                    <input type="number" id="mcDeposit" value="185000" min="0" step="10000" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-4 py-2.5 font-mono text-sm text-indigoInk focus:outline-none focus:border-cobalt">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-indigoSlate/75 mb-1">Interest Rate (%)</label>
+                                    <input type="number" id="mcRate" value="11.25" min="1" max="25" step="0.25" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-4 py-2.5 font-mono text-sm text-indigoInk focus:outline-none focus:border-cobalt">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-indigoSlate/75 mb-1">Loan Term (Years)</label>
+                                <select id="mcTerm" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-4 py-2.5 text-sm font-semibold text-indigoInk focus:outline-none focus:border-cobalt">
+                                    <option value="10">10 Years</option>
+                                    <option value="15">15 Years</option>
+                                    <option value="20" selected>20 Years</option>
+                                    <option value="25">25 Years</option>
+                                    <option value="30">30 Years</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-5 border-t border-alabasterLine grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-indigoInk text-white">
+                                <p class="text-[11px] uppercase tracking-wider text-slate-300 font-semibold">Est. Monthly Bond</p>
+                                <p id="mcMonthlyOut" class="font-mono text-2xl font-bold text-cobalt mt-1">R0</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-alabaster border border-alabasterLine">
+                                <p class="text-[11px] uppercase tracking-wider text-indigoSlate/70 font-semibold">Loan (<span id="mcDepPct">10%</span> dep)</p>
+                                <p id="mcLoanOut" class="font-mono text-2xl font-bold text-tealAccent mt-1">R0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Google Map View -->
+                    <div id="map-section" class="lg:col-span-6 bg-white border border-alabasterLine rounded-2xl overflow-hidden shadow-xs flex flex-col justify-between">
+                        <div class="px-6 py-4 border-b border-alabasterLine flex items-center justify-between gap-3">
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-tealAccent">
+                                    <i class="fa-solid fa-map-location-dot mr-1"></i> Google Maps View
+                                </span>
+                                <h3 id="mapBannerTitle" class="font-display text-lg font-bold text-indigoInk">Limpopo, South Africa</h3>
+                            </div>
+                            <a id="mapOpenExternal" href="https://www.google.com/maps/search/?api=1&query=Limpopo%2C+South+Africa" target="_blank" rel="noopener noreferrer" class="bevel-btn bg-cobalt text-white text-xs font-bold px-3.5 py-2 rounded-lg inline-flex items-center gap-1.5">
+                                <span>Open Map</span> <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                        <div class="flex-1 min-h-[300px]">
+                            <iframe
+                                id="portalMapView"
+                                title="Real Estate Google Map View"
+                                src="https://maps.google.com/maps?q=Limpopo%2C%20South+Africa&t=&z=11&ie=UTF8&iwloc=&output=embed"
+                                class="w-full h-full min-h-[300px] border-0"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Full Property Advertised Details & Rooms Modal -->
+    <div id="propertyDetailModal" class="fixed inset-0 z-[95] hidden bg-indigoInk/80 backdrop-blur-xs items-center justify-center p-3 sm:p-5 overflow-y-auto">
+        <div class="bg-white border border-alabasterLine rounded-2xl max-w-4xl w-full my-auto overflow-hidden shadow-2xl">
+            <!-- Modal Top Header -->
+            <div class="px-5 sm:px-7 py-4 bg-indigoInk text-white flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
+                        <span id="detailBadgeType" class="px-2.5 py-0.5 rounded bg-cobalt text-white">House</span>
+                        <span id="detailRefCode" class="font-mono text-slate-300">REF #001</span>
+                        <span id="detailLocationTop" class="text-tealAccent"><i class="fa-solid fa-location-dot mr-1"></i>Location</span>
+                    </div>
+                    <h3 id="detailTitle" class="font-display text-2xl sm:text-3xl font-bold text-white truncate mt-1">Property Title</h3>
+                </div>
+                <button type="button" id="closeDetailModalBtn" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-coral text-white flex items-center justify-center shrink-0 transition" aria-label="Close property details">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-5 sm:p-7 max-h-[82vh] overflow-y-auto space-y-6">
+                <!-- Gallery + Key Price Summary -->
+                <div class="grid md:grid-cols-12 gap-6 items-start">
+                    <div class="md:col-span-7 space-y-2.5">
+                        <div class="rounded-xl overflow-hidden h-60 sm:h-72 bg-alabaster border border-alabasterLine relative">
+                            <img id="detailMainImg" src="" alt="" class="w-full h-full object-cover">
+                            <span id="detailPhotoCaption" class="absolute bottom-3 left-3 bg-indigoInk/85 text-white text-[11px] font-semibold px-3 py-1 rounded-md">
+                                Exterior View
+                            </span>
+                        </div>
+                        <div id="detailThumbRow" class="grid grid-cols-3 gap-2.5"></div>
+                    </div>
+
+                    <div class="md:col-span-5 bg-alabaster border border-alabasterLine rounded-xl p-5 space-y-4">
+                        <div>
+                            <p class="text-[11px] font-bold uppercase tracking-wider text-indigoSlate/65">Asking Price</p>
+                            <p id="detailPrice" class="font-mono text-3xl font-bold text-cobalt mt-0.5">R0</p>
+                            <p class="text-xs text-indigoSlate/75 mt-1">
+                                Est. Monthly Bond (20 yrs, 10% dep): <strong id="detailEstBond" class="font-mono text-indigoInk">R0</strong>
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2.5 pt-3 border-t border-alabasterLine text-xs">
+                            <div class="bg-white p-2.5 rounded-lg border border-alabasterLine">
+                                <span class="text-indigoSlate/60 block">Floor Size</span>
+                                <strong id="detailSqm" class="font-mono text-sm text-indigoInk">0 m²</strong>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-lg border border-alabasterLine">
+                                <span class="text-indigoSlate/60 block">Erf / Plot</span>
+                                <strong id="detailErf" class="font-mono text-sm text-indigoInk">0 m²</strong>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-lg border border-alabasterLine">
+                                <span class="text-indigoSlate/60 block">Levies / Rates</span>
+                                <strong id="detailRates" class="font-mono text-sm text-indigoInk">R0/m</strong>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-lg border border-alabasterLine">
+                                <span class="text-indigoSlate/60 block">Parking</span>
+                                <strong id="detailParking" class="text-sm text-indigoInk">Garage</strong>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 pt-2">
+                            <button type="button" id="detailContactAgentBtn" class="bevel-btn w-full py-3 px-4 rounded-xl bg-indigoInk hover:bg-indigoSlate text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-phone text-cobalt"></i> Contact Agent (<span id="detailAgentName">Agent</span>)
+                            </button>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button type="button" id="detailBondBtn" class="bevel-btn py-2.5 px-3 rounded-xl bg-white hover:bg-cobalt/10 text-indigoInk border border-alabasterLine font-bold text-xs flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-calculator text-cobalt"></i> Bond Calc
+                                </button>
+                                <button type="button" id="detailMapBtn" class="bevel-btn py-2.5 px-3 rounded-xl bg-white hover:bg-tealAccent/10 text-indigoInk border border-alabasterLine font-bold text-xs flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-map-pin text-tealAccent"></i> View Map
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Advertised Description -->
+                <div class="bg-alabaster/70 border border-alabasterLine rounded-xl p-5">
+                    <h4 class="font-display text-lg font-bold text-indigoInk mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-file-lines text-cobalt"></i> Property Overview &amp; Advertisement Notes
+                    </h4>
+                    <p id="detailDescription" class="text-sm text-indigoSlate/85 leading-relaxed"></p>
+                </div>
+
+                <!-- Room-by-Room Breakdown -->
+                <div>
+                    <h4 class="font-display text-lg font-bold text-indigoInk mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-door-open text-tealAccent"></i> Rooms &amp; Interior Layout
+                    </h4>
+                    <div id="detailRoomsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+                </div>
+
+                <!-- Advertised Features & Fittings -->
+                <div>
+                    <h4 class="font-display text-lg font-bold text-indigoInk mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-coral"></i> Included Features &amp; Fittings
+                    </h4>
+                    <div id="detailFeaturesList" class="flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent Contact Modal -->
+    <div id="agentDeskModal" class="fixed inset-0 z-[100] hidden bg-indigoInk/70 backdrop-blur-xs items-center justify-center p-4">
+        <div class="bg-white border border-alabasterLine rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-3 border-b border-alabasterLine">
+                <div>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-cobalt">Agent Desk</span>
+                    <h3 id="deskAgentName" class="font-display text-xl font-bold text-indigoInk">Agent</h3>
+                </div>
+                <button type="button" id="closeDeskModal" class="w-8 h-8 rounded-lg bg-alabaster text-indigoInk hover:bg-indigoInk hover:text-white flex items-center justify-center transition" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            </div>
+
+            <div class="mt-3 p-3 rounded-xl bg-alabaster text-xs flex items-center justify-between">
+                <span id="deskPropTitle" class="font-bold text-indigoInk">Property</span>
+                <span id="deskPropPrice" class="font-mono font-bold text-cobalt">R0</span>
+            </div>
+
+            <form id="deskInquiryForm" class="mt-4 space-y-3">
+                <input type="text" id="deskBuyerName" required placeholder="Your Name" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-3.5 py-2.5 text-sm text-indigoInk focus:outline-none focus:border-cobalt">
+                <input type="tel" id="deskBuyerPhone" required placeholder="Phone / WhatsApp (+27...)" class="w-full bg-alabaster border border-alabasterLine rounded-xl px-3.5 py-2.5 text-sm text-indigoInk focus:outline-none focus:border-cobalt">
+                <textarea id="deskBuyerNote" rows="2" placeholder="Viewing request or question about rooms/features..." class="w-full bg-alabaster border border-alabasterLine rounded-xl px-3.5 py-2.5 text-sm text-indigoInk focus:outline-none focus:border-cobalt"></textarea>
+                <div class="grid grid-cols-2 gap-2.5 pt-1">
+                    <button type="submit" class="bevel-btn bg-indigoInk text-white font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-paper-plane text-cobalt"></i> Send
+                    </button>
+                    <button type="button" id="deskWaBtn" class="bevel-btn bg-cobalt text-white font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                    </button>
+                </div>
+            </form>
+
+            <div id="deskSuccessBanner" class="hidden mt-3 p-3 rounded-xl bg-tealAccent/15 border border-tealAccent/35 text-tealAccent text-xs font-bold">
+                Sent! Call +27××××××××× or email youremailhere@gmail.com.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-indigoInk text-slate-300 py-10 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <p class="font-display font-bold text-base text-white">YOU BUSINESS NAME HERE</p>
+                <p class="text-slate-400 mt-0.5">+27××××××××× &nbsp;•&nbsp; youremailhere@gmail.com</p>
+            </div>
+            <p class="text-slate-500">&copy; 2026 YOU BUSINESS NAME HERE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll progress bar
+        const topProgress = document.getElementById('topProgress');
+        window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            topProgress.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : '0%';
+        });
+
+        // Mobile & quick search drawers
+        const mobileNavBtn = document.getElementById('mobileNavBtn');
+        const mobileNavPanel = document.getElementById('mobileNavPanel');
+        mobileNavBtn.addEventListener('click', () => mobileNavPanel.classList.toggle('hidden'));
+
+        const quickSearchDrawerBtn = document.getElementById('quickSearchDrawerBtn');
+        const quickSearchDrawer = document.getElementById('quickSearchDrawer');
+        if (quickSearchDrawerBtn) {
+            quickSearchDrawerBtn.addEventListener('click', () => quickSearchDrawer.classList.toggle('hidden'));
+        }
+
+        const fmtZar = (val) => "R" + Number(val).toLocaleString("en-ZA");
+
+        function estimateMonthlyBond(price, depositPct = 0.1, annualRate = 11.25, years = 20) {
+            const loan = Math.max(0, price - price * depositPct);
+            const r = (annualRate / 100) / 12;
+            const n = years * 12;
+            if (loan === 0) return 0;
+            const f = Math.pow(1 + r, n);
+            return Math.round((loan * (r * f)) / (f - 1));
+        }
+
+        // Complete Property Listings with Room-by-Room Breakdowns & Advertised Specs
+        const propList = [
+            {
+                id: 1,
+                ref: "REF #PLK-101",
+                title: "Architectural Residence",
+                type: "House",
+                location: "Polokwane, Limpopo",
+                price: 2450000,
+                beds: 4,
+                baths: 3,
+                sqm: 310,
+                erf: "780 m²",
+                rates: "R1,850/m",
+                parking: "Double Garage + 3 Bays",
+                agent: "Thabo Mokoena",
+                img: "https://cdn.shopify.com/s/files/1/3099/2610/files/Abstract_House_Styled_By_You_Interior_Design_Ideas_Art5.jpg?v=1740525577",
+                photos: [
+                    {
+                        url: "https://cdn.shopify.com/s/files/1/3099/2610/files/Abstract_House_Styled_By_You_Interior_Design_Ideas_Art5.jpg?v=1740525577",
+                        label: "Open-Plan Living & Dining"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+                        label: "Front Elevation & Garden"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=80",
+                        label: "Modern Interior Suite"
+                    }
+                ],
+                description: "Spacious double-storey family residence in Polokwane featuring high ceilings, a chef's kitchen with separate scullery, dedicated home office/study, covered entertainment patio with built-in braai, and a landscaped garden.",
+                rooms: [
+                    { name: "Main Bedroom Suite", detail: "Walk-in dressing room, air-con, full en-suite bathroom", icon: "fa-bed" },
+                    { name: "Bedrooms 2, 3 & 4", detail: "3 family bedrooms with built-in cupboards & garden views", icon: "fa-bed" },
+                    { name: "Bathrooms (3)", detail: "Main en-suite, full family bath, and guest bathroom", icon: "fa-bath" },
+                    { name: "Kitchen & Scullery", detail: "Center island, gas/electric stove, pantry & laundry scullery", icon: "fa-kitchen-set" },
+                    { name: "Lounge & Dining", detail: "Open-plan dining area & double-volume TV lounge", icon: "fa-couch" },
+                    { name: "Study & Patio", detail: "Quiet work-from-home study + covered patio with braai", icon: "fa-laptop-house" }
+                ],
+                features: ["Double Automated Garage", "Covered Patio & Braai", "Home Study", "Separate Scullery", "Perimeter Wall & Gate", "Fibre Ready"]
+            },
+            {
+                id: 2,
+                ref: "REF #TZN-204",
+                title: "Sunset Driveway Villa",
+                type: "Estate",
+                location: "Tzaneen, Limpopo",
+                price: 3250000,
+                beds: 5,
+                baths: 4,
+                sqm: 420,
+                erf: "1,150 m²",
+                rates: "R2,400/m",
+                parking: "Triple Garage + Carport",
+                agent: "Naledi Khumalo",
+                img: "https://media.istockphoto.com/id/2175972607/photo/modern-luxury-home-with-geometric-driveway-and-sunset-sky.jpg?s=612x612&w=0&k=20&c=0pvJ_frDStQGywjOptq9XmyEQgVIxfH3Yg7MbYIfIjI=",
+                photos: [
+                    {
+                        url: "https://media.istockphoto.com/id/2175972607/photo/modern-luxury-home-with-geometric-driveway-and-sunset-sky.jpg?s=612x612&w=0&k=20&c=0pvJ_frDStQGywjOptq9XmyEQgVIxfH3Yg7MbYIfIjI=",
+                        label: "Geometric Driveway & Sunset Facade"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80",
+                        label: "Estate Grounds & Terrace"
+                    },
+                    {
+                        url: "https://cdn.shopify.com/s/files/1/3099/2610/files/Abstract_House_Styled_By_You_Interior_Design_Ideas_Art5.jpg?v=1740525577",
+                        label: "Main Reception & Dining"
+                    }
+                ],
+                description: "Commanding estate villa in Tzaneen designed for multi-generational living and entertaining. Includes 5 bedrooms, 4 bathrooms, formal dining room, pajama lounge upstairs, staff quarters, and wide paved driveway.",
+                rooms: [
+                    { name: "Primary Suite", detail: "Private balcony, walk-in closet, freestanding tub & shower", icon: "fa-bed" },
+                    { name: "Guest & Family Beds (4)", detail: "4 generous bedrooms with built-in storage", icon: "fa-bed" },
+                    { name: "Bathrooms (4)", detail: "2 en-suite bathrooms, 1 shared bath, 1 guest cloakroom", icon: "fa-bath" },
+                    { name: "Gourmet Kitchen", detail: "Breakfast bar, double oven, scullery & walk-in pantry", icon: "fa-kitchen-set" },
+                    { name: "Lounges & Dining (2)", detail: "Formal dining, main living room, and upstairs pajama lounge", icon: "fa-couch" },
+                    { name: "Staff Room & Garage", detail: "En-suite domestic room + triple garage with storage", icon: "fa-warehouse" }
+                ],
+                features: ["Gated Estate Security", "Triple Garage", "Pajama Lounge", "Staff Quarters", "Covered Braai Deck", "Solar Backup Prep"]
+            },
+            {
+                id: 3,
+                ref: "REF #LTD-309",
+                title: "Courtyard Garden Home",
+                type: "Townhouse",
+                location: "Louis Trichardt, Limpopo",
+                price: 1480000,
+                beds: 3,
+                baths: 2,
+                sqm: 165,
+                erf: "340 m²",
+                rates: "R1,120/m",
+                parking: "Single Garage + Courtyard Bay",
+                agent: "Naledi Khumalo",
+                img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+                        label: "Street Front & Courtyard"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+                        label: "Living & Dining Flow"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=80",
+                        label: "Bedroom & Finishes"
+                    }
+                ],
+                description: "Low-maintenance townhouse in Louis Trichardt with a private walled courtyard garden, open-plan living/dining area, fitted kitchen, 3 bedrooms, and 2 bathrooms—ideal for families or lock-up-and-go living.",
+                rooms: [
+                    { name: "Main Bedroom", detail: "Built-in cupboards & en-suite shower room", icon: "fa-bed" },
+                    { name: "Bedrooms 2 & 3", detail: "2 bright bedrooms with tiled floors & wardrobes", icon: "fa-bed" },
+                    { name: "Bathrooms (2)", detail: "Main en-suite + family bathroom with bath & shower", icon: "fa-bath" },
+                    { name: "Kitchen", detail: "Fitted cabinets, granite counter & washing machine point", icon: "fa-kitchen-set" },
+                    { name: "Living & Dining", detail: "Open-plan lounge opening onto private garden patio", icon: "fa-couch" },
+                    { name: "Private Courtyard", detail: "Pet-friendly enclosed lawn & outdoor seating area", icon: "fa-tree" }
+                ],
+                features: ["Private Garden Courtyard", "Low Maintenance", "Fitted Kitchen", "Lock-Up Garage", "Pet Friendly", "Prepaid Electricity"]
+            },
+            {
+                id: 4,
+                ref: "REF #BND-412",
+                title: "Bendor Skyline Loft",
+                type: "Apartment",
+                location: "Bendor, Polokwane",
+                price: 980000,
+                beds: 2,
+                baths: 2,
+                sqm: 98,
+                erf: "Complex Unit",
+                rates: "R940/m",
+                parking: "2 Allocated Bays",
+                agent: "Pieter Botha",
+                img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+                        label: "Loft Living Space & Balcony"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=80",
+                        label: "Interior Finishes"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+                        label: "Complex Surroundings"
+                    }
+                ],
+                description: "Modern 2-bedroom, 2-bathroom apartment in sought-after Bendor, Polokwane. Features an open kitchen/lounge layout, private balcony, 2 bathrooms, and convenient access to shopping and schools.",
+                rooms: [
+                    { name: "Main Bedroom", detail: "Built-in cupboards & en-suite bathroom", icon: "fa-bed" },
+                    { name: "Second Bedroom", detail: "Built-in wardrobes, ideal for family or guest room", icon: "fa-bed" },
+                    { name: "Bathrooms (2)", detail: "En-suite shower bathroom + second full bathroom", icon: "fa-bath" },
+                    { name: "Kitchen & Living", detail: "Modern kitchen counter open to lounge & balcony door", icon: "fa-kitchen-set" },
+                    { name: "Balcony", detail: "Covered balcony overlooking complex greenery", icon: "fa-sun" }
+                ],
+                features: ["2 Bathrooms", "Balcony", "2 Parking Bays", "Access Control", "Close to Malls & Schools", "Rental Ready"]
+            },
+            {
+                id: 5,
+                ref: "REF #GYN-508",
+                title: "Ridgeview Family Residence",
+                type: "House",
+                location: "Giyani, Limpopo",
+                price: 1690000,
+                beds: 3,
+                baths: 2,
+                sqm: 215,
+                erf: "650 m²",
+                rates: "R1,290/m",
+                parking: "Double Carport + Yard Parking",
+                agent: "Thabo Mokoena",
+                img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80",
+                        label: "Front Exterior & Terrace"
+                    },
+                    {
+                        url: "https://cdn.shopify.com/s/files/1/3099/2610/files/Abstract_House_Styled_By_You_Interior_Design_Ideas_Art5.jpg?v=1740525577",
+                        label: "Living & Dining Area"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+                        label: "Bright Interior Room"
+                    }
+                ],
+                description: "Well-proportioned 3-bedroom family home in Giyani offering generous indoor living space, a functional kitchen, 2 bathrooms, a versatile dining/study nook, and a spacious yard.",
+                rooms: [
+                    { name: "Main Bedroom", detail: "Built-in cupboards & en-suite bathroom", icon: "fa-bed" },
+                    { name: "Bedrooms 2 & 3", detail: "2 comfortable bedrooms with natural light", icon: "fa-bed" },
+                    { name: "Bathrooms (2)", detail: "En-suite bathroom + family bathroom", icon: "fa-bath" },
+                    { name: "Kitchen", detail: "Ample cupboard space & prep counters", icon: "fa-kitchen-set" },
+                    { name: "Lounge & Dining", detail: "Family lounge plus dining / study space", icon: "fa-couch" },
+                    { name: "Yard & Carport", detail: "Spacious yard with covered parking for 2 vehicles", icon: "fa-car" }
+                ],
+                features: ["3 Bedrooms", "2 Bathrooms", "Double Carport", "Spacious Yard", "Tiled Throughout", "Family Neighborhood"]
+            },
+            {
+                id: 6,
+                ref: "REF #THO-615",
+                title: "Central Park Suite",
+                type: "Apartment",
+                location: "Thohoyandou, Limpopo",
+                price: 760000,
+                beds: 1,
+                baths: 1,
+                sqm: 64,
+                erf: "Complex Unit",
+                rates: "R680/m",
+                parking: "1 Dedicated Bay",
+                agent: "Pieter Botha",
+                img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=80",
+                photos: [
+                    {
+                        url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=80",
+                        label: "Modern Suite Interior"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+                        label: "Living & Kitchen Zone"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+                        label: "Building & Surroundings"
+                    }
+                ],
+                description: "Neat 1-bedroom, 1-bathroom apartment in Thohoyandou ideal for first-time buyers, solo professionals, or buy-to-let investors looking for strong demand and easy upkeep.",
+                rooms: [
+                    { name: "Bedroom", detail: "Built-in wardrobe & natural ventilation", icon: "fa-bed" },
+                    { name: "Bathroom", detail: "Shower, basin & toilet", icon: "fa-bath" },
+                    { name: "Kitchenette & Living", detail: "Compact fitted kitchen & open living space", icon: "fa-kitchen-set" },
+                    { name: "Parking Bay", detail: "Dedicated parking bay inside property", icon: "fa-car" }
+                ],
+                features: ["1 Bedroom", "1 Bathroom", "Starter / Investor Friendly", "Dedicated Parking", "Low Monthly Costs", "Central Access"]
+            }
+        ];
+
+        // Property Detail Modal Logic
+        const propertyDetailModal = document.getElementById('propertyDetailModal');
+        const closeDetailModalBtn = document.getElementById('closeDetailModalBtn');
+        const detailBadgeType = document.getElementById('detailBadgeType');
+        const detailRefCode = document.getElementById('detailRefCode');
+        const detailLocationTop = document.getElementById('detailLocationTop');
+        const detailTitle = document.getElementById('detailTitle');
+        const detailMainImg = document.getElementById('detailMainImg');
+        const detailPhotoCaption = document.getElementById('detailPhotoCaption');
+        const detailThumbRow = document.getElementById('detailThumbRow');
+        const detailPrice = document.getElementById('detailPrice');
+        const detailEstBond = document.getElementById('detailEstBond');
+        const detailSqm = document.getElementById('detailSqm');
+        const detailErf = document.getElementById('detailErf');
+        const detailRates = document.getElementById('detailRates');
+        const detailParking = document.getElementById('detailParking');
+        const detailAgentName = document.getElementById('detailAgentName');
+        const detailDescription = document.getElementById('detailDescription');
+        const detailRoomsGrid = document.getElementById('detailRoomsGrid');
+        const detailFeaturesList = document.getElementById('detailFeaturesList');
+        const detailContactAgentBtn = document.getElementById('detailContactAgentBtn');
+        const detailBondBtn = document.getElementById('detailBondBtn');
+        const detailMapBtn = document.getElementById('detailMapBtn');
+
+        let inspectedProp = null;
+
+        function openPropertyDetails(propId) {
+            const p = propList.find(item => item.id === propId);
+            if (!p) return;
+            inspectedProp = p;
+
+            detailBadgeType.textContent = p.type;
+            detailRefCode.textContent = p.ref;
+            detailLocationTop.innerHTML = `<i class="fa-solid fa-location-dot mr-1"></i>${p.location}`;
+            detailTitle.textContent = p.title;
+
+            detailPrice.textContent = fmtZar(p.price);
+            detailEstBond.textContent = fmtZar(estimateMonthlyBond(p.price)) + "/m";
+            detailSqm.textContent = `${p.sqm} m²`;
+            detailErf.textContent = p.erf;
+            detailRates.textContent = p.rates;
+            detailParking.textContent = p.parking;
+            detailAgentName.textContent = p.agent;
+            detailDescription.textContent = p.description;
+
+            // Gallery photos & thumbnails
+            const photos = p.photos && p.photos.length ? p.photos : [{ url: p.img, label: p.title }];
+            detailMainImg.src = photos[0].url;
+            detailMainImg.alt = p.title;
+            detailPhotoCaption.textContent = photos[0].label;
+
+            detailThumbRow.innerHTML = "";
+            photos.forEach((ph, idx) => {
+                const tBtn = document.createElement("button");
+                tBtn.type = "button";
+                tBtn.className = `rounded-lg overflow-hidden h-16 border-2 transition ${idx === 0 ? 'border-cobalt' : 'border-transparent opacity-75 hover:opacity-100'}`;
+                tBtn.innerHTML = `<img src="${ph.url}" alt="${ph.label}" class="w-full h-full object-cover">`;
+                tBtn.addEventListener("click", () => {
+                    detailMainImg.src = ph.url;
+                    detailPhotoCaption.textContent = ph.label;
+                    detailThumbRow.querySelectorAll("button").forEach(b => {
+                        b.className = "rounded-lg overflow-hidden h-16 border-2 border-transparent opacity-75 hover:opacity-100 transition";
+                    });
+                    tBtn.className = "rounded-lg overflow-hidden h-16 border-2 border-cobalt transition";
+                });
+                detailThumbRow.appendChild(tBtn);
+            });
+
+            // Rooms breakdown
+            detailRoomsGrid.innerHTML = "";
+            p.rooms.forEach(rm => {
+                const rCard = document.createElement("div");
+                rCard.className = "bg-alabaster border border-alabasterLine rounded-xl p-3.5";
+                rCard.innerHTML = `
+                    <p class="font-display font-bold text-sm text-indigoInk flex items-center gap-2">
+                        <i class="fa-solid ${rm.icon} text-cobalt"></i> ${rm.name}
+                    </p>
+                    <p class="text-xs text-indigoSlate/75 mt-1 leading-relaxed">${rm.detail}</p>
+                `;
+                detailRoomsGrid.appendChild(rCard);
+            });
+
+            // Advertised features
+            detailFeaturesList.innerHTML = "";
+            p.features.forEach(ft => {
+                const pill = document.createElement("span");
+                pill.className = "px-3 py-1.5 rounded-lg bg-alabaster border border-alabasterLine text-xs font-semibold text-indigoInk inline-flex items-center gap-1.5";
+                pill.innerHTML = `<i class="fa-solid fa-check text-tealAccent text-[11px]"></i> ${ft}`;
+                detailFeaturesList.appendChild(pill);
+            });
+
+            propertyDetailModal.classList.remove("hidden");
+            propertyDetailModal.classList.add("flex");
+        }
+
+        function closePropertyDetails() {
+            propertyDetailModal.classList.add("hidden");
+            propertyDetailModal.classList.remove("flex");
+        }
+
+        closeDetailModalBtn.addEventListener("click", closePropertyDetails);
+        propertyDetailModal.addEventListener("click", (e) => {
+            if (e.target === propertyDetailModal) closePropertyDetails();
+        });
+
+        detailContactAgentBtn.addEventListener("click", () => {
+            if (!inspectedProp) return;
+            const p = inspectedProp;
+            closePropertyDetails();
+            triggerAgentDesk(p.title, fmtZar(p.price), p.agent);
+        });
+
+        detailBondBtn.addEventListener("click", () => {
+            if (!inspectedProp) return;
+            const price = inspectedProp.price;
+            closePropertyDetails();
+            syncBondPrice(price);
+        });
+
+        detailMapBtn.addEventListener("click", () => {
+            if (!inspectedProp) return;
+            const { location, title } = inspectedProp;
+            closePropertyDetails();
+            showOnPortalMap(location, title);
+        });
+
+        // Side-by-side comparison state (up to 2 properties)
+        let comparedIds = [];
+        const compareBadgeCount = document.getElementById('compareBadgeCount');
+        const compareStrip = document.getElementById('compareStrip');
+        const compareCardsSlot = document.getElementById('compareCardsSlot');
+        const clearCompareBtn = document.getElementById('clearCompareBtn');
+        const openCompareDrawerBtn = document.getElementById('openCompareDrawerBtn');
+
+        function toggleCompare(event, id) {
+            if (event) event.stopPropagation();
+            if (comparedIds.includes(id)) {
+                comparedIds = comparedIds.filter(x => x !== id);
+            } else {
+                if (comparedIds.length >= 2) {
+                    comparedIds.shift();
+                }
+                comparedIds.push(id);
+            }
+            renderComparisonBar();
+            renderThreeDGallery();
+        }
+
+        function renderComparisonBar() {
+            compareBadgeCount.textContent = comparedIds.length;
+            if (comparedIds.length === 0) {
+                compareStrip.classList.add('hidden');
+                return;
+            }
+            compareStrip.classList.remove('hidden');
+            compareCardsSlot.innerHTML = "";
+
+            comparedIds.forEach(id => {
+                const p = propList.find(item => item.id === id);
+                if (!p) return;
+                const box = document.createElement("div");
+                box.className = "bg-indigoSlate rounded-xl p-4 flex items-center justify-between gap-4 border border-white/10";
+                box.innerHTML = `
+                    <div class="flex items-center gap-3.5 min-w-0">
+                        <img src="${p.img}" alt="${p.title}" class="w-16 h-16 rounded-lg object-cover shrink-0">
+                        <div class="min-w-0">
+                            <p class="font-mono text-sm font-bold text-cobalt">${fmtZar(p.price)}</p>
+                            <h4 class="font-display font-bold text-base text-white truncate">${p.title}</h4>
+                            <p class="text-xs text-slate-300">${p.location} • ${p.beds} Bed • ${p.baths} Bath • ${p.sqm} m²</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button type="button" onclick="openPropertyDetails(${p.id})" class="px-2.5 py-1 rounded bg-white/10 hover:bg-cobalt text-white text-[11px] font-bold">Details</button>
+                        <button type="button" onclick="toggleCompare(event, ${p.id})" class="text-xs text-slate-300 hover:text-coral" title="Remove">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                `;
+                compareCardsSlot.appendChild(box);
+            });
+        }
+
+        clearCompareBtn.addEventListener('click', () => {
+            comparedIds = [];
+            renderComparisonBar();
+            renderThreeDGallery();
+        });
+
+        openCompareDrawerBtn.addEventListener('click', () => {
+            if (comparedIds.length === 0) {
+                comparedIds = [1, 2];
+                renderComparisonBar();
+                renderThreeDGallery();
+            }
+            compareStrip.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Search & filters
+        const propSearchInput = document.getElementById('propSearchInput');
+        const propTypeFilter = document.getElementById('propTypeFilter');
+        const propBudgetFilter = document.getElementById('propBudgetFilter');
+        const propBedsFilter = document.getElementById('propBedsFilter');
+        const resetPropFilters = document.getElementById('resetPropFilters');
+        const threeDListingsGrid = document.getElementById('threeDListingsGrid');
+        const noPropsFound = document.getElementById('noPropsFound');
+        const propCountText = document.getElementById('propCountText');
+
+        function applyQuickBudget(budgetVal) {
+            propBudgetFilter.value = String(budgetVal);
+            renderThreeDGallery();
+            document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderThreeDGallery() {
+            const q = propSearchInput.value.trim().toLowerCase();
+            const t = propTypeFilter.value;
+            const maxB = Number(propBudgetFilter.value);
+            const minB = Number(propBedsFilter.value);
+
+            const filtered = propList.filter(p => {
+                const roomText = (p.rooms || []).map(r => `${r.name} ${r.detail}`).join(" ");
+                const featText = (p.features || []).join(" ");
+                const okText = !q ||
+                    p.title.toLowerCase().includes(q) ||
+                    p.location.toLowerCase().includes(q) ||
+                    p.type.toLowerCase().includes(q) ||
+                    p.description.toLowerCase().includes(q) ||
+                    roomText.toLowerCase().includes(q) ||
+                    featText.toLowerCase().includes(q);
+                const okType = t === "all" || p.type === t;
+                const okPrice = p.price <= maxB;
+                const okBeds = p.beds >= minB;
+                return okText && okType && okPrice && okBeds;
+            });
+
+            threeDListingsGrid.innerHTML = "";
+            propCountText.textContent = `${filtered.length} ${filtered.length === 1 ? "LISTING" : "LISTINGS"}`;
+
+            if (filtered.length === 0) {
+                noPropsFound.classList.remove("hidden");
+                return;
+            }
+            noPropsFound.classList.add("hidden");
+
+            filtered.forEach(p => {
+                const isComp = comparedIds.includes(p.id);
+                const box = document.createElement("article");
+                box.className = "card-3d-box cursor-pointer";
+                box.setAttribute("role", "button");
+                box.setAttribute("tabindex", "0");
+                box.setAttribute("aria-label", `Inspect ${p.title} full details and rooms`);
+                box.addEventListener("click", () => openPropertyDetails(p.id));
+                box.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openPropertyDetails(p.id);
+                    }
+                });
+
+                box.innerHTML = `
+                    <div class="card-3d-inner bg-white border border-alabasterLine rounded-2xl overflow-hidden flex flex-col justify-between h-full shadow-xs">
+                        <div>
+                            <div class="h-52 overflow-hidden relative">
+                                <img src="${p.img}" alt="${p.title}" class="card-3d-img w-full h-full object-cover">
+                                <span class="card-3d-float absolute top-3 left-3 bg-indigoInk text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
+                                    ${p.type}
+                                </span>
+                                <button type="button" onclick="toggleCompare(event, ${p.id})" class="card-3d-float absolute top-3 right-3 px-2.5 py-1 rounded-md text-[11px] font-bold transition ${isComp ? 'bg-coral text-white' : 'bg-white/95 text-indigoInk hover:bg-cobalt hover:text-white'}">
+                                    <i class="fa-solid fa-scale-balanced mr-1"></i>${isComp ? 'Comparing' : 'Compare'}
+                                </button>
+                                <span class="card-3d-float absolute bottom-3 left-3 bg-cobalt text-white font-mono text-xs font-bold px-3 py-1 rounded-md shadow-sm">
+                                    ${fmtZar(p.price)}
+                                </span>
+                                <span class="card-3d-float absolute bottom-3 right-3 bg-white/95 text-indigoInk text-[11px] font-bold px-2.5 py-1 rounded-md shadow-xs">
+                                    <i class="fa-solid fa-door-open text-tealAccent mr-1"></i>${p.rooms.length} Rooms &amp; Areas
+                                </span>
+                            </div>
+
+                            <div class="p-5">
+                                <p class="text-xs font-medium text-tealAccent flex items-center gap-1">
+                                    <i class="fa-solid fa-location-dot"></i> ${p.location}
+                                </p>
+                                <h3 class="font-display text-xl font-bold text-indigoInk mt-1">${p.title}</h3>
+                                <p class="text-xs text-indigoSlate/75 mt-1.5 line-clamp-2">${p.description}</p>
+
+                                <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-alabasterLine text-xs font-semibold text-indigoSlate/80">
+                                    <span><i class="fa-solid fa-bed text-cobalt mr-1"></i>${p.beds} Beds</span>
+                                    <span><i class="fa-solid fa-bath text-tealAccent mr-1"></i>${p.baths} Baths</span>
+                                    <span class="font-mono"><i class="fa-solid fa-ruler-combined text-coral mr-1"></i>${p.sqm}m²</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 flex items-center gap-2" onclick="event.stopPropagation()">
+                            <button type="button" onclick="openPropertyDetails(${p.id})" class="bevel-btn flex-1 bg-cobalt hover:bg-cobaltDark text-white font-bold text-xs uppercase tracking-wider py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-expand"></i> Full Details
+                            </button>
+                            <button type="button" onclick="triggerAgentDesk('${p.title}', '${fmtZar(p.price)}', '${p.agent}')" class="bevel-btn bg-indigoInk hover:bg-indigoSlate text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1" title="Contact Agent">
+                                <i class="fa-solid fa-phone text-cobalt"></i>
+                            </button>
+                            <button type="button" onclick="showOnPortalMap('${p.location}', '${p.title}')" class="bevel-btn bg-alabaster hover:bg-tealAccent/15 text-indigoInk border border-alabasterLine font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1" title="View Map">
+                                <i class="fa-solid fa-map-pin text-tealAccent"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                threeDListingsGrid.appendChild(box);
+            });
+        }
+
+        [propSearchInput, propTypeFilter, propBudgetFilter, propBedsFilter].forEach(el => {
+            el.addEventListener("input", renderThreeDGallery);
+            el.addEventListener("change", renderThreeDGallery);
+        });
+
+        resetPropFilters.addEventListener("click", () => {
+            propSearchInput.value = "";
+            propTypeFilter.value = "all";
+            propBudgetFilter.value = "99999999";
+            propBedsFilter.value = "0";
+            renderThreeDGallery();
+        });
+
+        renderThreeDGallery();
+
+        // Mortgage calculator logic
+        const mcPrice = document.getElementById("mcPrice");
+        const mcDeposit = document.getElementById("mcDeposit");
+        const mcRate = document.getElementById("mcRate");
+        const mcTerm = document.getElementById("mcTerm");
+        const mcMonthlyOut = document.getElementById("mcMonthlyOut");
+        const mcLoanOut = document.getElementById("mcLoanOut");
+        const mcDepPct = document.getElementById("mcDepPct");
+
+        function computeMortgage() {
+            const p = Math.max(0, Number(mcPrice.value) || 0);
+            const d = Math.max(0, Math.min(p, Number(mcDeposit.value) || 0));
+            const rAnn = Math.max(0, Number(mcRate.value) || 0);
+            const yrs = Math.max(1, Number(mcTerm.value) || 20);
+
+            const loan = Math.max(0, p - d);
+            const pct = p > 0 ? Math.round((d / p) * 100) : 0;
+            mcDepPct.textContent = `${pct}%`;
+            mcLoanOut.textContent = fmtZar(loan);
+            mcMonthlyOut.textContent = fmtZar(estimateMonthlyBond(p, p > 0 ? d / p : 0, rAnn, yrs));
+        }
+
+        function syncBondPrice(priceVal) {
+            mcPrice.value = priceVal;
+            mcDeposit.value = Math.round(priceVal * 0.1);
+            computeMortgage();
+            document.getElementById("calculator-map").scrollIntoView({ behavior: "smooth" });
+        }
+
+        [mcPrice, mcDeposit, mcRate, mcTerm].forEach(inp => {
+            inp.addEventListener("input", computeMortgage);
+            inp.addEventListener("change", computeMortgage);
+        });
+        computeMortgage();
+
+        // Map view helper
+        const portalMapView = document.getElementById("portalMapView");
+        const mapBannerTitle = document.getElementById("mapBannerTitle");
+        const mapOpenExternal = document.getElementById("mapOpenExternal");
+
+        function showOnPortalMap(area, propName) {
+            const enc = encodeURIComponent(area);
+            portalMapView.src = `https://maps.google.com/maps?q=${enc}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+            mapBannerTitle.textContent = `${propName} — ${area}`;
+            mapOpenExternal.href = `https://www.google.com/maps/search/?api=1&query=${enc}`;
+            document.getElementById("calculator-map").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Agent contact modal
+        const agentDeskModal = document.getElementById("agentDeskModal");
+        const closeDeskModal = document.getElementById("closeDeskModal");
+        const deskAgentName = document.getElementById("deskAgentName");
+        const deskPropTitle = document.getElementById("deskPropTitle");
+        const deskPropPrice = document.getElementById("deskPropPrice");
+        const deskInquiryForm = document.getElementById("deskInquiryForm");
+        const deskSuccessBanner = document.getElementById("deskSuccessBanner");
+        const deskWaBtn = document.getElementById("deskWaBtn");
+
+        let curAgent = "Thabo Mokoena";
+        let curProp = "Property";
+        let curPrice = "R0";
+
+        function triggerAgentDesk(title, priceStr, agentName) {
+            curAgent = agentName;
+            curProp = title;
+            curPrice = priceStr;
+            deskAgentName.textContent = agentName;
+            deskPropTitle.textContent = title;
+            deskPropPrice.textContent = priceStr;
+            deskSuccessBanner.classList.add("hidden");
+            agentDeskModal.classList.remove("hidden");
+            agentDeskModal.classList.add("flex");
+        }
+
+        closeDeskModal.addEventListener("click", () => {
+            agentDeskModal.classList.add("hidden");
+            agentDeskModal.classList.remove("flex");
+        });
+
+        deskInquiryForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            deskSuccessBanner.classList.remove("hidden");
+            deskInquiryForm.reset();
+        });
+
+        deskWaBtn.addEventListener("click", () => {
+            const waNum = "27000000000";
+            const buyer = document.getElementById("deskBuyerName").value.trim() || "Buyer";
+            const phone = document.getElementById("deskBuyerPhone").value.trim() || "+27×××××××××";
+            const note = document.getElementById("deskBuyerNote").value.trim() || "Viewing inquiry";
+            const text = `*PROPERTY INQUIRY - YOU BUSINESS NAME HERE*%0A` +
+                         `*Agent:* ${encodeURIComponent(curAgent)}%0A` +
+                         `*Property:* ${encodeURIComponent(curProp)} (${encodeURIComponent(curPrice)})%0A` +
+                         `*Buyer:* ${encodeURIComponent(buyer)} (${encodeURIComponent(phone)})%0A` +
+                         `*Note:* ${encodeURIComponent(note)}`;
+            window.open(`https://wa.me/${waNum}?text=${text}`, "_blank");
+        });
+    </script>
+</body>
+</html>
