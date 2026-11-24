@@ -15,5 +15,5 @@ js/
     main.js           -> Navigation toggles, desktop iframe viewport scaling, full-screen preview modals, and WhatsApp quote form integration
 
 Contact Details:
-Phone / WhatsApp: 064 636 2673
+Phone / WhatsApp: 070 357 2248
 Location: Ka-Bungeni, Limpopo, South Africa
